@@ -1,0 +1,3955 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "3j08j7axckjm8"
+  },
+  "info": {
+    "version": "1.2.0",
+    "title": "API de Pagamentos",
+    "description": "# Introdução\nBem-vindo à documentação de APIs do Banrisul.\n\nSomos um banco com quase um século de história, que trabalha ativamente em busca de novas soluções para melhor atender nossos clientes e parceiros. Fique por dentro! Acompanhe as novidades e descubra todas as funcionalidades das nossas APIs. \n\nEm nosso Portal de Desenvolvedores, você encontra todas as informações relacionadas ao funcionamento e uso das APIs do Banrisul. Estamos atualizando constantemente este material, para facilitar seu entendimento e acelerar a integração dos nossos parceiros. \n\nConheça as vantagens de ter o Banrisul ao seu lado. Fale conosco e torne-se um Parceiro de Negócios.\n\n**Banrisul - Nossa parceria faz a diferença!**\n\n\n# Explore nossas APIs\nInformações gerais sobre as APIs do Banrisul. Como começar, materiais de apoio, especificações técnicas, dicas e muito mais.\n\n\n ## Primeiros Passos\n\n\n1. [Cadastre-se no Portal de Desenvolvedores](https://developers.banrisul.com.br/BPI/link/cadastre-se.html)\n2. [Crie sua primeira Aplicação](#section/Seguranca/Criando-uma-Aplicacao)\n3. [Gere as Credenciais de Acesso para a API](#section/Seguranca/Criando-uma-Aplicacao)\n4. [Prepare seu Ambiente de Desenvolvimento](#section/Testes)\n5. [Obtenha o token de Autorização Oauth2](#section/Seguranca/Tokens-de-Acesso)\n6. [Teste as chamadas para as APIs](#section/Seguranca/Chamadas-Autenticadas)\n7. [Valide a sua Aplicação](#section/Explore-nossas-APIs/Suporte)\n8. Leve sua Aplicação para o ambiente de Produção\n\n\nCada endpoint possui sua própria documentação. Navegue pelos links, busca ou menu lateral, diretamente para a parte desejada na documentação, incluindo exemplos e tutoriais.\n\n## Melhores Práticas\nVisando oferecer as melhores soluções digitais para nossos clientes e parceiros, o Banrisul segue inovando, sempre atento aos padrões de mercado internacionais e aderente às convenções de melhores práticas para desenvolvimento e uso de APIs. \n\n**Aqui você encontra algumas definições que norteiam o desenvolvimento das APIs do Banrisul:**\n\n### Segurança\nNossos ambientes e APIs passam por testes rigorosos, sempre observando todos os critérios e recomendações de segurança, esperados de um ambiente bancário. O Banrisul preza muito pela sua segurança e privacidade ao utilizar nossas soluções digitais.\n\n### HTTPS\nToda a comunicação com as nossas APIs é segura, criptografada de ponta-a-ponta, através de HTTPS e certificados SSL. É vedada a utilização de protocolos inseguros. \n\nVerifique suas chamadas para começarem sempre por `'https://'`.\n\n### RESTful\nNossas APIs são aderentes ao conceito RESTful. Consulte a documentação de cada API e verifique a utilização dos serviços, rotas, verbos e parâmetros de cada endpoint.\n\n### Encoding\nUtilizamos o padrão de codificação de conteúdo `'UTF-8'`. \n\nCaso você venha a ter algum problema com acentos ou caracteres especiais, sendo substituídos por outros símbolos, verifique a correta utilização do Encoding para UTF-8. \n  \n### JSON\nAs nossas APIs seguem o padrão de estruturação de dados em formato JSON.\n\nTodas as chamadas devem conter o cabeçalho de requisição: `'Accept: application/json'`.\n\nTodas as chamadas do tipo POST, que enviam um payload de dados, devem conter também o cabeçalho `'Content-Type: application/json'` na requisição.\n\nTodos os retornos das chamadas, terão o seguinte cabeçalho de resposta: `'Content-Type: application/json;charset=utf-8'`.\n\n### Otimização de Payloads\nQuando você implementar sua aplicação, garanta que ela suporte respostas em formato \"gzipped\", para garantir um melhor desempenho na transmissão de dados e experiência dos seus clientes.\n    \nInclua sempre o seguinte cabeçalho nas suas requisições: `'Accept-Encoding: gzip'`\n \n\n\n\n## Suporte\n\nCaso você encontre dificuldades ou tenha alguma pergunta, por favor, verifique os seguintes canais de atendimento:\n\n- [Documentação da API](#tag/Pagamentos)\n\n- [FAQ - Perguntas Frequentes](#section/Duvidas-Comuns/Perguntas-Frequentes)\n\n- [Atendimento Banrisul](mailto:api@banrisul.com.br)\n\n**Nossa equipe preza pela sua experiência de integração e todo feedback é bem-vindo.** \n\nNo caso de dúvidas ou sugestões sobre a documentação, [fale conosco.](mailto:api@banrisul.com.br)\n\n## Novidades\nMantenha-se sempre atualizado sobre as novidades do Banrisul, estamos inovando nossos serviços continuamente.\n- Acompanhe o Banrisul nas redes sociais: [Twitter](https://twitter.com/banrisul), [Facebook](https://www.facebook.com/Banrisul), [Instagram](https://www.instagram.com/banrisul), [Youtube](https://www.youtube.com/user/bancobanrisul).\n\n- Saiba mais sobre o Banrisul, acesse nosso [Portal Institucional](https://www.banrisul.com.br).\n\n- Informações sobre **Open Finance e APIs para Parceiros**, você encontra no portal [Banrisul for Developers](https://developers.banrisul.com.br).\n\nFique a vontade para escolher o canal de sua preferência.\n\n\n# Segurança\n\nInformações gerais sobre a segurança das APIs do Banrisul. Fluxo de autenticação e autorização das chamadas, geração de tokens, especificações técnicas e muito mais.\n\n## OAuth v2.0\nO Banrisul segue os padrões de mercado e recomenda a utilização do padrão de segurança OAuth2 para autenticação e autorização das chamadas às APIs.\n Atualmente o OAuth2 é suportado em todo os nossos ambientes, de forma a facilitar o desenvolvimento e reduzir o atrito ao levar  aplicação para produção. Isso torna transparente a virada de chaves para o ambiente produtivo, sendo necessária apenas a criação das novas chaves de acesso.\n\nApós o seu cadastro e ativação de conta no Portal de Desenvolvedores, você poderá criar a sua primeira Aplicação, escolher as APIs que quer utilizar e gerar as credenciais de acesso para realizar a autenticação no nosso ambiente.\n\nCom as credenciais geradas, você precisará realizar uma chamada de Autenticação no serviço OAuth2, para receber um token de acesso. Este token será utilizado na chamada para a API, devendo ser informado no cabeçalho, para que seja feita a Autorização do acesso.\n\n**O Fluxo OAuth2 utilizado é o Client Credentials.**\n\nPara realizar uma chamada de API, primerio você precisa seguir estes passos: \n1.  Criar uma \"Application\" no Portal de Desenvolvedores\n2.  Associar as APIs que deseja utilizar\n3.  Gerar as credenciais de acesso da sua Application\n4.  Realizar uma chamada para o serviço OAuth2 informando as credenciais, para receber um token de acesso.\n5.  Chamar a API desejada, informando o token de acesso obtido. Você pode reaproveitar o token para fazer múltiplas chamadas.\n\n## Criando uma Aplicação\n**Esta etapa precisa ser realizada apenas uma vez.**\n\nAo acessar o Portal de Desenvolvedores, você vai poder criar uma nova aplicação na opção **`\"Application\"`**, basta informar um nome para ela, as APIs que deseja utilizar e dar o aceite nos termos de uso.\n\nAo criar a aplicação, você irá receber um par de chaves `Client ID` e `Client Secret`, copie e guarde essas informações pois elas serão necessárias no próximo passo.\n## Tokens de Acesso\nCom a sua primeira aplicação criada, você precisa fazer agora uma chamada para obter um **`\"Bearer Token\"`** utilizando suas credenciais. Este chamada é do tipo `POST` e requer os seguintes parâmetros:\n  \n-   `client_id` - a Client ID que você recebeu ao criar a sua aplicação\n-   `client_secret` - a Client Secret que você recebeu ao criar a sua aplicação\n-   `grant_type` - informar no corpo da requisição o valor padrão: **`client_credentials`**\n\n**Serviço OAuth2**: verifique a URL base para a geração de Tokens na seção [Authentication](#section/Authentication) deste documento.\n\nA resposta da chamada acima, retorna um Token gerado com a seguinte estrutura em JSON:\n-   `access_token` - o seu Token de Acesso válido\n-   `token_type` - o tipo de Token, neste caso vai ser sempre: `\"Bearer\"`\n-   `expires_in` - o tempo de expiração do Token, em segundos.  Valor padrão: `3600`\n-   `scope` - escopos associados, conforme configurações e APIs selecionadas para sua aplicação.\n\n\n Este token de acesso que lhe foi gerado, especifica por quanto tempo ele é válido e você pode **fazer múltiplas chamadas utilizando o mesmo token**, dentro deste período de **vida útil**. \n \n \n## Chamadas Autenticadas\nTodas as chamadas devem ser autenticadas e para isso, é necessário informar um **\"Bearer Token\"** válido no cabeçalho HTTP de cada requisição: \n\n**`'Authorization: Bearer TOKEN_OAUTH2'`**\n\nExemplo com um Token OAuth2 fictício: `'Authorization: Bearer 1a2b7a37-3e7d-4cb3-b0e2-883de9e766cc'`\n\nVocê tem a opção de gerar um token por chamada, mas **recomendamos** o uso do Token durante toda a sua validade. Um Token válido permite a **realização de múltiplas chamadas** até que ele expire.\n\nQuando o token expirar, você receberá um retorno com `'Status Code 401: Unauthorized'`, alegando falha na autenticação.\n\n\n Para seguir fazendo as requisições normalmente, basta fazer uma nova chamada ao serviço OAuth2 (conforme descrito no passo anterior) e gerar um novo token válido.\n \n Depois é só utilizá-lo nas requisições até que expire novamente, e assim por diante.\n   \n \n## Gestão das Credenciais\n\n**OBSERVAÇÕES** \n  \n- A Client ID e Client Secret mencionadas acima, funcionam por aplicação, ou seja, você pode ter mais de uma.\n\n- A gestão das credenciais é feita diretamente na sua conta no Portal de Desenvolvedores, na área das suas Aplicações. \n- Você pode solicitar novas chaves e/ou revogar chaves existentes a qualquer momento.\n- Escopos também podem ser adicionados nas configurações da aplicação. Caso você implementar perfis de acesso diferentes na sua aplicação.\n\nNo caso de dúvidas, entre em contato com nossa [equipe especializada](mailto:api@banrisul.com.br).\n\n\n## Atenção Especial\n\n * **Fique atento aos golpes.**\n\n * **O Banrisul jamais irá solicitar que você nos informe alguma senha.**\n \n * Nunca repasse uma senha por mensagem, email, ligação, ou qualquer outra forma de suposto atendimento. \n\n * Saiba mais sobre a nossa [Política de Privacidade, Segurança e LGPD.](https://banrisul.com.br/)\n\n\n# Dúvidas Comuns\n\n\n## Status Codes\nTodas as APIs seguem o padrão e convenções de uso dos \"HTTP Status Codes\" nas respostas. Cada API apresenta na sua documentação, os possíveis códigos de retorno para as chamadas. Verifique as especificidades de cada endpoint.\n\nVisão geral das faixas de retorno:\n  - Status `2xx`: **Chamada processada com sucesso.** \n  \n    Você vai receber o retorno que esperava para a consulta ou operação realizada.\n\n  - Status `4xx`: **Erro na requisição ou no processamento em decorrência de erro de sintaxe ou validações de regras.** \n    \n    Você vai reeber uma mensagem informativa sobre o que aconteceu. Os erros mais comuns são algum parâmetro faltando e erros de tipagem na conversão dos dados. \n\n  - Status `5xx`: **Erro de servidor ou incapacidade de processar a requisição.**\n    \n     Pode ser ocasionado por um erro de rede ou conexão, ou ainda, alguma indisponibilidade temporária de um serviço ou ambiente.\n\n## Validação de Contrato\n\nTodos os endpoints do tipo `POST` possuem uma validação nativa do contrato das APIs, que verifica o nome, obrigatoriedade, tipo e tamanho dos parâmetros enviados no payload da requisição. \n\nEssa validação é global e possui um caráter técnico, com o intuito de auxiliar o desenvolvedor na integração e envio correto dos parâmetros esperados.  \n\nExemplo de retorno de violações de contrato em uma chamada:\n\n```json\n{\n  \"Erro\": {\n    \"ErrosValidacaoSchema\": \n      {\n        \"TipoErroValidacao\": \"StringTooShort\",\n        \"NomePropriedade\": \"cpf\",\n        \"CaminhoPropriedade\": \"#/cpf\",\n        \"JsonSchema\":\n          \"pattern\": \"^[0-9]*$\",\n          \"tamanhoMinimo\": 11,\n          \"tamanhoMaximo\": 11,\n          \"descricao\": \"Campo obrigatório na estrutura do json.\"\n        },\n        \"NumeroLinha\": 2,\n        \"PosicaoLinha\": 31,\n        \"Mensagem\": \"O valor deve conter pelo menos 11 caractere(s).\"\n      },\n      {\n        \"TipoErroValidacao\": \"PropertyRequired\",\n        \"NomePropriedade\": \"data_vencimento\",\n        \"CaminhoPropriedade\": \"#/data_vencimento\",\n        \"JsonSchema\":\n        {\n          \"titulo\": \"API de Pagamentos\",\n          \"descricao\": \"Json Schema do endpoint de Pagamento de Títulos\"\n        },\n        \"NumeroLinha\": 1,\n        \"PosicaoLinha\": 1,\n        \"Mensagem\": \"Propriedade requirida não foi informada.\"\n      }\n    ]\n  }\n}\n```\n\n\n# Orientações a nível de negócio\n## Campos gerados pelo fluxo do Banrisul\n\n**Número de identificação da empresa parceira, para controle do documento a ser pago (Número Origem):**\n\nEste número é necessário para o parceiro identificar suas operações ao consultar o sistema de \npagamentos. Deve ser um número sequencial e único para o Parceiro.\n\nEsse número pode conter até 14 dígitos numéricos, sendo composto por:\n\n3 primeiros dígitos – identificação fixa do parceiro (fixo e atribuído pelo Banrisul);\n4 Dígitos – Identificação da filial (Se cada filial gerar seu próprio NSU, deve ser informado o código dessa filial. Se o NSU for gerado de forma centralizada, não é necessário);\n7 Dígitos – Número sequencial.\n\nEsse número poderá ser zerado diariamente ou conforme o parceiro definir, lembrando que não pode ser repetido durante o dia útil.\n\n**Agência de Pagamento Banrisul de Referência do Parceiro (Agência Origem):**\n\nÉ necessário para validação de feriados.\n\nExistem duas opções:\n\nInformar um código de agência conforme a localização da filial (para que seja validado feriado local) ou Informar a agência '10' (valida apenas feriado nacional).\n\nO parceiro precisa informar a relação das cidades que possuem filiais, para que seja fornecido ao parceiro uma tabela de agências.\n\n## Etapas de Operação - Títulos\n\nA operação prevê 4 etapas:\n\n**Consulta do título**\nPermite ao parceiro consultar os dados de um título a ser pago, a partir do seu código de barras.\n\n**Solicitação de pagamento do título**\nPermite ao parceiro solicitar o pagamento de um título a ser pago, enviando os dados solicitados. Importante:  O parceiro sempre deverá informar o CPF do portador/pagador final do boleto.\n\n**Confirmação (positiva ou negativa) do pagamento**\nPermite ao parceiro confirmar o pagamento de um título a ser pago, enviando os dados solicitados.\n\n**Consulta de status do pagamento**\nPermite ao parceiro consultar o status do pagamento, a partir do NSU do parceiro \nou do NSU do Banrisul.\n\n\n\n![Fluxo Pagamento Titulos](../images/doc-pagamentos/fluxo-pagamento.png)\n\n## Etapas de Operação - Arrecadações\n\nA operação prevê 3 etapas:\n\n**Solicitação de pagamento de arrecadação**\nPermite ao parceiro solicitar o pagamento de uma arrecadação a ser paga, enviando os dados solicitados. Importante: O parceiro sempre deverá informar o CPF do portador/pagador final da arrecadação.\n\n**Confirmação (positiva ou negativa) do pagamento**\nPermite ao parceiro confirmar o pagamento de uma arrecadação a ser paga, enviando os dados solicitados.\n\n**Consulta de status do pagamento**\nPermite ao parceiro consultar o status de um pagamento, a partir do NSU do parceiro ou do NSU do Banrisul.\n\n\n\n![Fluxo Pagamento Arrecadacoes](../images/doc-pagamentos/fluxo-arrecadacoes.png)\n\n## Situações passíveis de timeout\n\nPode ocorrer timeout em três momentos distintos:\n\n1º Timeout no Consultar Título: Repetir a consulta\n\n2º Timeout no Solicitar Pagamento: Realizar um Consultar Situação Pagamento dentro de um prazo de até 3 horas. Se estiver Pendente realizar um Confirmar Pagamento. Se estiver Rejeitado (Cancelado, Negado) encerrar a operação e Pagar novamente (do início do processo, com outro Número Origem).\n\n3º Timeout no Confirmar Pagamento: Se foi setado o ind_confirma = “N”, realizar o Confirmar Pagamento novamente.\n\n## Situações em que a operação pode ficar como PENDENTE\n\nPode ocorrer em 2 situações:\n\n1º Ter ocorrido o timeout sem que o Parceiro tenha recebido o retorno do Solicitar Pagamento. Nesse caso, orientamos a realizar uma consulta à situação do pagamento.\n\n2º O Banrisul não receber a confirmação do pagamento.\n\nObservações: \n- Importante ressaltar que operações de pagamento confirmadas não podem ser canceladas, conforme resolução da FEBRABAN válida a partir de 01/07/2023.\n- Operações que permanecerem com o status = PENDENTE, serão consideradas como PAGO durante a resolução de pendências e realizarão a baixa do boleto. A resolução de pendências ocorre aproximadamente nos seguintes horários: 07:30, 16:50 e 23:05.\n\n## Endpoint Consulta de Débitos\n\nDisponibiliza a consulta da quantidade e o valor total das operações realizadas através da API, separadas por pagas e pendentes.\n \nCódigos de Tipo de Documento: 1 = pagamentos de arrecadações; 21 = pagamentos de títulos \n\n## Sobre o recibo\n\nO comprovante de pagamentos, inclusive segunda via, será emitido pelo parceiro.\n\nOs dados para confecção do comprovante constam no retorno do endpoint Solicitar Pagamento.\n\nSomente deve ser emitido recibo após o OK do endpoint de Confirmar Pagamento.\n\n\nExemplos: \n\n#Recibo Pagamento de Título\n- NÚMERO: Número Banrisul / Número Origem / Número Autenticação\n\n\n![Exemplo Recibo Banrisul](../images/doc-pagamentos/recibo-exemplo.jpg)\n\n#Recibo Pagamento de Arrecadação\n- Alguns documentos possuem layout normatizado para recibo: DARF Barras, DARF Numerado, Simples Nacional, E-Social, GNRE Online e GNRE. \n- Pode ser inserido no comprovante qualquer informação adicional que julgar necessária, desde que fora do espaço reservado para a impressão dos dados obrigatórios.\n- AUTENTICACAO será composta por 12 posições: Agência (4) + Equipamento (4) + Numero Autenticação (6) + Data DDMMAAAA (8).\n- NUMERO DO DOCUMENTO: Extrair o número de documento pelo código de barras 44 dígitos. É formado por 17 posições (25 a 41). \n\n\n\n![Exemplo Recibo DARF Barras](../images/doc-pagamentos/recibo-darf-barras.jpg)\n\n![Exemplo Recibo DARF Numerado](../images/doc-pagamentos/recibo-darf-numerado.jpg)\n\n![Exemplo Recibo DAS Simples Nacional](../images/doc-pagamentos/recibo-das.jpg)\n\n![Exemplo Recibo E-Social](../images/doc-pagamentos/recibo-esocial.jpg)\n\n\n- Arrecadações GNRE: \nGNRE Online = convênio SEFAZ RS \nGNRE = convênio SEFAZ SC\nObs.: Muda apenas nome do convênio: SECRETARIA DA FAZENDA XX e a UF favorecida\n\n\n\n![Exemplo Recibo GNRE](../images/doc-pagamentos/recibo-gnre.jpg)\n\n- Demais documentos de arrecadação, conforme modelo\nNÚMERO: Número Banrisul / Número Origem / Número Autenticação\n\n\n\n![Exemplo Recibo Outras Arrecadacoes](../images/doc-pagamentos/recibo-outras-arrecadacoes.jpg)\n\n\n\n \n## Considerações Gerais\n\n- O parceiro deverá informar a forma de pagamento utilizada pelo pagador final (dinheiro, cartão de crédito), e essa informação será repassada para PCR, no momento da baixa operacional.\n- Não haverá débito de forma online na conta corrente do parceiro. Ao final do dia será realizado o lançamento debitando a conta corrente cadastrada. O parceiro é responsável por manter em conta os valores necessários para garantir a operação.\n- Não está previsto nenhum tipo de remuneração ao parceiro.\n- A coleta e tratamento adequado dos dados pertinentes dos usuários são de responsabilidade do parceiro, que deverá garantir a segurança e privacidade destas informações, de acordo com as regulamentações. O parceiro também deverá seguir todas as regras de Prevenção de Lavagem de Dinheiro e Financiamento ao Terrorismo.\n\n\n**Em caso de dúvidas, [fale com a equipe especializada](mailto:api@banrisul.com.br).**\n\n# Controle de Versões (Changelog)\nNesta seção são apresentadas as alterações realizadas a cada nova versão do documento. \n## v1.1 - 05/08/2024\n\n### Alterações gerais para todos os endpoints:\n- Os campos de data (`data_pagamento` e `data_vencimento`) foram padronizados para o formato `dd/MM/yyyy`, tanto nos envios, quanto nos retornos. \n\n### Alterações no endpoint Consultar Título\n\n- Alterações nos nomes dos campos de retorno OK: `dt_lim_pgto_bol` para `dt_lim_pagto_bol`, \n`nom_rzsoc_pagador` para  `nome_rzsoc_pagador` e `qtd_pgto_parcial` para `qtd_pagto_parcial`.\n\n- Os campos `qtd_pagto_parcial`, `qtd_pagto_parc_reg`, `cod_if` e `num_seq_instrucao`, \npresentes no retorno da consulta, tiveram seu tipo alterado para String.\n\n- Os erros de negócio antes retornados com http status code 422 (Unprocessable Entity), agora retornam com `http status code` 400 (Bad Request).\n\n### Alterações no endpoint Solicitar Pagamento\n\n- Adicionados os campos `numero_origem`, `agencia_origem`, `cod_forma_pagamento`, `data_vencimento`, `valor_movimento`, `tipo_pessoa_pagado_final`, `cpf_cnpj_pagador_final`, `nome_pagador_final` e `tipo_pessoa_avalista` no corpo do retorno de OK.\n\n- Movidos alguns campos para abaixo do objeto `titulo_barra` no corpo do retorno OK.\n\n- Adicionado o campo `id_rastreabilidade` no corpo de retorno (body) do referido endpoint, para os casos de OK.\n\n### Alterações no endpoint Confirmar Pagamento\n\n- Adicionado o campo `id_rastreabilidade` no corpo de entrada (body) do referido endpoint, devendo ser informado obrigatoriamente na chamada, a fim de vincular a confirmação com a solicitação de pagamento.\n\n- Adicionados os campos `numero_banrisul`, `id_rastreabilidade`, `data_pagamento`, `cod_forma_pagamento` e `ind_confirma` no corpo do retorno de OK. \n\n### Alterações no endpoint Consultar Status Pagamento\n\n- Os erros de negócio antes retornados com http status code 422 (Unprocessable Entity), agora retornam com `http status code` 400 (Bad Request).\n\n## v1.2 - 31/03/2025\n\n\n### Atualizada seção de Orientações a nível de negócio\n\n- Adicionado etapas de operação de pagamento de arrecadações.\n- Acrescidos alguns detalhes quanto às situações passíveis de timeout.\n\n\n### Alterações no endpoint Consultar Situação Pagamento \n\n- Alteração no nome da path variable, anteriormente `id_titulo` para `id_documento`.\n- Adicionados os campos `numero_origem`, `numero_banrisul`, `agencia_origem` e `data_pagamento` ao retorno do endpoint.\n\n### Alterações no endpoint Solicitar Pagamento de Título\n\n- Foram adicionados os campos `situacao_movimento`, `cpf_cnpj_debito` e `cpf_cnpj_agregador` no retorno do endpoint.\n\n### Alterações no endpoint Confirmar Pagamento de Título\n\n- Foram adicionados os campos `agencia_origem`, `valor_movimento` e `situacao_movimento`, além do objeto `titulo_barra` contendo os campos `valor_desconto`, `valor_multa`, `valor_abatimento`, `valor_juros` e `cpf_cnpj_agregador` no retorno do endpoint.\n\n### Novos Endpoints\n\n- Foram adicionados 2 novos endpoints, para pagamento de arrecadações, sendo eles Solicitar Pagamento e Confirmar Pagamento.\n- Foram adicionadas novas orientações a nível de negócio na seção correspondente, para esta nova modalidade de pagamento.",
+    "contact": {
+      "email": "api@banrisul.com.br",
+      "name": "Atendimento Banrisul",
+      "url": "https://developers.banrisul.com.br"
+    },
+    "license": {
+      "url": "https://developers.banrisul.com.br",
+      "name": "Banrisul for Developers"
+    },
+    "x-logo": {
+      "altText": "Banrisul for Developers",
+      "backgroundColor": "#FFFFFF",
+      "url": "https://banrisulfordevelopers.s3-sa-east-1.amazonaws.com/static/logo-banri-devs.png"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://apidev.banrisul.com.br/pagamentos/v1",
+      "description": "SANDBOX"
+    },
+    {
+      "url": "https://api.banrisul.com.br/pagamentos/v1",
+      "description": "PRODUÇÃO"
+    }
+  ],
+  "paths": {
+    "/titulos/{codigo_barra}": {
+      "get": {
+        "tags": [
+          "Títulos"
+        ],
+        "summary": "Consultar Título",
+        "description": "Permite ao parceiro consultar os dados de um título a ser pago, a partir do seu código de barras.\n\nEsta chamada exige que o Token Oauth2 seja informado no cabeçalho \"Authorization\" da requisição.",
+        "operationId": "Consulta-Titulo",
+        "parameters": [
+          {
+            "name": "Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa parceira, autorizada pelo Banrisul, contendo apenas os **14 dígitos numéricos**.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$",
+              "minLength": 14,
+              "maxLength": 14,
+              "example": "92702067000196"
+            }
+          },
+          {
+            "name": "Co-Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa terceira/substabelecida/filial, autorizada e autenticada pela empresa parceira, contendo apenas os **14 dígitos numéricos**",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$"
+            }
+          },
+          {
+            "name": "agencia_origem",
+            "in": "query",
+            "description": "Agência de Pagamento Banrisul de Referência do Parceiro.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "maximum": 9999,
+              "example": 10
+            }
+          },
+          {
+            "name": "tipo_codigo_barra",
+            "in": "query",
+            "description": "Tipo do código de barra. Valores: 1- Barra lida (tamanho do código de barras = 44) 2- Barra digitada (tamanho do código de barras = 47)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                2
+              ],
+              "format": "int32"
+            }
+          },
+          {
+            "name": "codigo_barra",
+            "in": "path",
+            "description": "Código de Barra do título a ser pago. Tamanho 44 para barra lida ou tamanho 47 para barra digitada",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "minimum": 44,
+              "maximum": 47
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK (Requisição completada com sucesso)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OK200ConsultaTitulo"
+                },
+                "examples": {
+                  "Retorno OK": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "boleto": {
+                          "codigo_barra": "04191938600049649302100100372080594635924035",
+                          "situacao_boleto": "A",
+                          "linha_digitavel": "04192100180037208059846359240358193860004964930",
+                          "dt_vcto_boleto": "30/07/2024",
+                          "dt_lim_pagto_bol": "29/08/2024",
+                          "vlr_orig_boleto": 49649.3,
+                          "cod_esp_boleto": "99",
+                          "cod_moeda_cnab": "09",
+                          "ind_bloq_pagto": "N",
+                          "ind_pagto_parcial": "N",
+                          "qtd_pagto_parcial": "0",
+                          "qtd_pagto_parc_reg": "0",
+                          "tipo_aut_receb_div": "3",
+                          "vlr_minimo_bol_calculado": 0,
+                          "vlr_maximo_bol_calculado": 49649,
+                          "cod_if": "41",
+                          "tipo_pes_ben_orig": "J",
+                          "cod_beneficiario_original": "12345678000196",
+                          "nom_rzsoc_ben_orig": "NOME BENEFICIARIO",
+                          "nome_fant_ben_orig": "NOME",
+                          "tipo_ident_sac_ava": "0",
+                          "tipo_pes_pagador": "F",
+                          "cod_pagador": "12345678000152",
+                          "nome_rzsoc_pagador": "NOME PAGADOR",
+                          "cod_beneficiario_original_format": "12.345.678/0001-96",
+                          "cod_pagador_format": "12.345.678/0001-52",
+                          "descr_tipo_aut_receb_div": "Não Aceita Pagamento com Valor Divergente",
+                          "ind_vencido": "N",
+                          "ind_perm_alterar_valor": "N"
+                        },
+                        "dados_pagamento": {
+                          "data_referencia": "29/07/2024",
+                          "valor_calculado_juros": 0,
+                          "valor_calculado_multa": 0,
+                          "valor_calculado_desconto": 0,
+                          "valor_calculado_total": 49649.3,
+                          "valor_calculado_abatimento": 0,
+                          "valor_desconto_abatimento": 0
+                        },
+                        "lista_instrucao_boleto": [
+                          {
+                            "num_seq_instrucao": "1",
+                            "instrucao": "PAGAMENTO REFERENTE OPERACAO 104340253 DE"
+                          },
+                          {
+                            "num_seq_instrucao": "2",
+                            "instrucao": "CUSTEIO AGRICOLA UVA"
+                          },
+                          {
+                            "num_seq_instrucao": "3",
+                            "instrucao": "HAVENDO BONUS PGPAF, ESTE SERA CONCEDIDO APOS A LIQUIDACAO DO BOLETO."
+                          },
+                          {
+                            "num_seq_instrucao": "4",
+                            "instrucao": "O VALOR PAGO AMORTIZARA, INCLUSIVE PARCIALMENTE, AS PARCELAS DE MENOR DATA"
+                          },
+                          {
+                            "num_seq_instrucao": "5",
+                            "instrucao": "DE VENCIMENTO, SENDO QUE TAL AMORTIZACAO PODERA SER VISUALIZADA NO EXTRATO"
+                          },
+                          {
+                            "num_seq_instrucao": "6",
+                            "instrucao": "DA OPERACAO, DISPONIVEL EM SUA AGENCIA DE RELACIONAMENTO."
+                          }
+                        ],
+                        "mensagem": "Dados do boleto consultados com sucesso."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. (Retorno de validação dos parâmetros informados)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Header Parceiro não informado": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT001",
+                            "descricao": "Header Partner-Id é obrigatório."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT002",
+                            "descricao": "Header Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Co-Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT006",
+                            "descricao": "Header Co-Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Código de Barras como parâmetro de rota inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT003",
+                            "descricao": "O código de barras informado como parâmetro de rota deve ser válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Query Parameter inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT007",
+                            "descricao": "Valor '-10' informado no parâmetro 'agencia_origem' não atende às especificações."
+                          },
+                          {
+                            "codigo": "CT_PT007",
+                            "descricao": "Valor 'Y' informado no parâmetro 'tipo_codigo_barra' não atende às especificações."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Query Parameter Obrigatório": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT008",
+                            "descricao": "O parâmetro 'agencia_origem' é obrigatório."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Tamanho Código Barra Incompatível Tipo": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT005",
+                            "descricao": "O código de barra informado deve ter tamanho compatível com o tipo de código de barra informado."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Negócio": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_PT115",
+                            "descricao": "Boleto não existe."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. (Falha de autenticação, verifique o Token de acesso)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Parceiro Não Autorizado": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "AU_GP001",
+                            "descricao": "As informações relacionadas ao Partner-Id '12345678000123' não correspondem a um parceiro autorizado."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. (Falha no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Interno": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP500",
+                            "descricao": "Identificamos uma falha de comunicação. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable. (Serviço temporariamente indisponível)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Rota indisponível": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_GP004",
+                            "descricao": "O serviço solicitado não está ativo no momento."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout. (Tempo limite excedido no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Timeout": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP504",
+                            "descricao": "O Gateway não respondeu dentro do tempo limite. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerToken": []
+          },
+          {
+            "portal_oauth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://apidev.banrisul.com.br/pagamentos/v1",
+            "description": "SANDBOX"
+          },
+          {
+            "url": "https://api.banrisul.com.br/pagamentos/v1",
+            "description": "PRODUÇÃO"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Títulos"
+        ],
+        "summary": "Solicitar Pagamento Título",
+        "description": "Permite ao parceiro solicitar o pagamento de um título, enviando os dados solicitados.\n\nEsta chamada exige que o Token Oauth2 seja informado no cabeçalho \"Authorization\" da requisição.",
+        "operationId": "Solicita-Pagamento-Titulo",
+        "parameters": [
+          {
+            "name": "Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa parceira, autorizada pelo Banrisul, contendo apenas os **14 dígitos numéricos**.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$",
+              "minLength": 14,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "Co-Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa terceira/substabelecida/filial, autorizada e autenticada pela empresa parceira, contendo apenas os **14 dígitos numéricos**",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$"
+            }
+          },
+          {
+            "name": "codigo_barra",
+            "in": "path",
+            "description": "Código de Barra do título a ser pago. Tamanho 44 para barra lida ou tamanho 47 para barra digitada",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "minimum": 44,
+              "maximum": 47
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Dados de entrada para solicitação de pagamento",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "numero_origem": {
+                    "type": "string",
+                    "description": "Número de identificação da empresa parceira, para controle do título a ser pago. Pode conter até 14 dígitos numéricos.",
+                    "format": "number",
+                    "pattern": "^[0-9]{1,14}$",
+                    "minLength": 1,
+                    "maxLength": 14
+                  },
+                  "agencia_origem": {
+                    "type": "integer",
+                    "description": "Agência de Pagamento Banrisul de Referência do Parceiro.",
+                    "format": "int32",
+                    "minimum": 1,
+                    "maximum": 9999
+                  },
+                  "cod_forma_pagamento": {
+                    "type": "integer",
+                    "enum": [
+                      19,
+                      43
+                    ],
+                    "description": "Forma de pagamento. Valores do enumerador:\n43 - Cartão de Crédito\n19 - Demais formas de pagamento",
+                    "format": "int32"
+                  },
+                  "valor_movimento": {
+                    "type": "number",
+                    "description": "Valor do título a ser pago.",
+                    "format": "float",
+                    "example": 1500.45
+                  },
+                  "titulo_barra": {
+                    "type": "object",
+                    "properties": {
+                      "tipo_codigo_barra": {
+                        "type": "integer",
+                        "enum": [
+                          1,
+                          2
+                        ],
+                        "description": "Tipo do código de barras. Valores:\n1- Barra lida (tamanho do código de barras = 44)\n2- Barra digitada (tamanho do código de barras = 47)",
+                        "format": "int32"
+                      },
+                      "data_vencimento": {
+                        "type": "string",
+                        "description": "Data de vencimento do título a ser pago. Formato esperado: DD/MM/YYYY."
+                      },
+                      "tipo_pessoa_pagador_final": {
+                        "type": "string",
+                        "enum": [
+                          "F"
+                        ],
+                        "description": "Tipo de pessoa do pagador final. Por enquanto, está sendo aceito apenas o valor \"F\", para pessoa física."
+                      },
+                      "cpf_cnpj_pagador_final": {
+                        "type": "string",
+                        "description": "CPF ou CNPJ do pagador final. Por enquanto, apenas habilitada consulta para pessoa física, então informar apenas CPF, completando com 3 zeros à esquerda.",
+                        "format": "number",
+                        "pattern": "^\\d{14}$"
+                      },
+                      "nome_pagador_final": {
+                        "type": "string",
+                        "description": "Nome do Pagador Final",
+                        "minLength": 1,
+                        "maxLength": 30
+                      }
+                    },
+                    "required": [
+                      "tipo_codigo_barra",
+                      "data_vencimento",
+                      "tipo_pessoa_pagador_final",
+                      "cpf_cnpj_pagador_final",
+                      "nome_pagador_final"
+                    ]
+                  }
+                },
+                "required": [
+                  "numero_origem",
+                  "agencia_origem",
+                  "cod_forma_pagamento",
+                  "valor_movimento",
+                  "titulo_barra"
+                ]
+              },
+              "examples": {
+                "Dados de entrada": {
+                  "value": {
+                    "numero_origem": "00000000876002",
+                    "agencia_origem": 1,
+                    "cod_forma_pagamento": 19,
+                    "valor_movimento": 1500.45,
+                    "titulo_barra": {
+                      "tipo_codigo_barra": 1,
+                      "data_vencimento": "30/07/2024",
+                      "tipo_pessoa_pagador_final": "F",
+                      "cpf_cnpj_pagador_final": "00012345678901",
+                      "nome_pagador_final": "Pagador"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created (Recurso criado com sucesso)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OK201SolicitaPagamentoTitulo"
+                },
+                "examples": {
+                  "Retorno OK - Sem Alerta": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "numero_banrisul": "1234567890",
+                        "numero_autenticacao": "12456",
+                        "numero_origem": "00000000009999",
+                        "agencia_origem": "0010",
+                        "data_pagamento": "30/07/2024",
+                        "id_rastreabilidade": "DX92912139140110",
+                        "cod_forma_pagamento": "19",
+                        "valor_movimento": 345.65,
+                        "situacao_movimento": "PENDENTE",
+                        "cpf_cnpj_debito": "12345678901234",
+                        "titulo_barra": {
+                          "valor_desconto": 6.12,
+                          "valor_multa": 1.45,
+                          "valor_abatimento": 45.25,
+                          "valor_juros": 2.52,
+                          "data_vencimento": "25/08/2024",
+                          "tipo_pessoa_cedente": "J",
+                          "cpf_cnpj_cedente": "12345678000199",
+                          "nome_cedente": "Cedente S.A.",
+                          "nome_fantasia_cedente": "Cedente",
+                          "tipo_pessoa_sacado": "F",
+                          "cpf_cnpj_sacado": "00012345678901",
+                          "nome_sacado": "Sacado",
+                          "cpf_cnpj_avalista": "12345678000123",
+                          "nome_avalista": "Avalista",
+                          "criptograma": "123456asd789rty987654ert159yth756qsd",
+                          "tipo_pessoa_pagador_final": "F",
+                          "cpf_cnpj_pagador_final": "00012345678901",
+                          "nome_pagador_final": "Pagador Final",
+                          "cpf_cnpj_agregador": "12345678901234"
+                        },
+                        "mensagem": "Solicitação de pagamento recebida com sucesso. Aguardando confirmação."
+                      }
+                    }
+                  },
+                  "Retorno OK - Com Alerta": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "numero_banrisul": "1234567890",
+                        "numero_autenticacao": "12456",
+                        "numero_origem": "00000000009999",
+                        "agencia_origem": "0010",
+                        "data_pagamento": "30/07/2024",
+                        "id_rastreabilidade": "DX92912139140110",
+                        "cod_forma_pagamento": "19",
+                        "valor_movimento": 345.65,
+                        "situacao_movimento": "PENDENTE",
+                        "cpf_cnpj_debito": "12345678901234",
+                        "titulo_barra": {
+                          "valor_desconto": 6.12,
+                          "valor_multa": 1.45,
+                          "valor_abatimento": 45.25,
+                          "valor_juros": 2.52,
+                          "data_vencimento": "25/08/2024",
+                          "tipo_pessoa_cedente": "J",
+                          "cpf_cnpj_cedente": "12345678000199",
+                          "nome_cedente": "Cedente S.A.",
+                          "nome_fantasia_cedente": "Cedente",
+                          "tipo_pessoa_sacado": "F",
+                          "cpf_cnpj_sacado": "00012345678901",
+                          "nome_sacado": "Sacado",
+                          "cpf_cnpj_avalista": "12345678000123",
+                          "nome_avalista": "Avalista",
+                          "criptograma": "123456asd789rty987654ert159yth756qsd",
+                          "tipo_pessoa_pagador_final": "F",
+                          "cpf_cnpj_pagador_final": "00012345678901",
+                          "nome_pagador_final": "Pagador Final",
+                          "cpf_cnpj_agregador": "12345678901234"
+                        },
+                        "mensagem": "AUTORIZADO/ATENDIDO COM VALOR DIFERENTE DO INFORMADO - FAVOR CONFIRMAR"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. (Retorno de validação dos parâmetros informados)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Header Parceiro não informado": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT001",
+                            "descricao": "Header Partner-Id é obrigatório."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT002",
+                            "descricao": "Header Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Co-Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT006",
+                            "descricao": "Header Co-Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Código de Barras como parâmetro de rota inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT003",
+                            "descricao": "O código de barras informado como parâmetro de rota deve ser válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Tamanho Código Barra Incompatível Tipo": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT005",
+                            "descricao": "O código de barra informado deve ter tamanho compatível com o tipo de código de barra informado."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. (Falha de autenticação, verifique o Token de acesso)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Parceiro Não Autorizado": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "AU_GP001",
+                            "descricao": "As informações relacionadas ao Partner-Id '12345678000123' não correspondem a um parceiro autorizado."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity (WebDAV)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Negócio - Exemplo 1": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_PT168",
+                            "descricao": "VALOR FORA DOS LIMITES DE PAGAMENTO"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Negócio - Exemplo 2": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_PT179",
+                            "descricao": "SITUACAO DO DOCUMENTO NAO PERMITE PAGAMENTO"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. (Falha no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Interno": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP500",
+                            "descricao": "Identificamos uma falha de comunicação. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable. (Serviço temporariamente indisponível)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Rota indisponível": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_GP004",
+                            "descricao": "O serviço solicitado não está ativo no momento."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout. (Tempo limite excedido no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Timeout": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP504",
+                            "descricao": "O Gateway não respondeu dentro do tempo limite. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerToken": []
+          },
+          {
+            "portal_oauth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://apidev.banrisul.com.br/pagamentos/v1",
+            "description": "SANDBOX"
+          },
+          {
+            "url": "https://api.banrisul.com.br/pagamentos/v1",
+            "description": "PRODUÇÃO"
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Títulos"
+        ],
+        "summary": "Confirmar Pagamento Título",
+        "description": "Permite ao parceiro confirmar o pagamento de um título, enviando os dados solicitados.\n\nEsta chamada exige que o Token Oauth2 seja informado no cabeçalho \"Authorization\" da requisição.",
+        "operationId": "Confirma-Pagamento-Titulo",
+        "parameters": [
+          {
+            "name": "Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa parceira, autorizada pelo Banrisul, contendo apenas os **14 dígitos numéricos**.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$",
+              "minLength": 14,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "Co-Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa terceira/substabelecida/filial, autorizada e autenticada pela empresa parceira, contendo apenas os **14 dígitos numéricos**",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$"
+            }
+          },
+          {
+            "name": "codigo_barra",
+            "in": "path",
+            "description": "Código de Barra do título a ser pago. Tamanho 44 para barra lida ou tamanho 47 para barra digitada",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "minimum": 44,
+              "maximum": 47
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Dados de entrada para confirmação de pagamento",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "numero_banrisul": {
+                    "type": "string",
+                    "description": "Número do documento atribuído pelo Banrisul.",
+                    "format": "number",
+                    "pattern": "^\\d{1,11}$"
+                  },
+                  "data_pagamento": {
+                    "type": "string",
+                    "description": "Data efetiva de pagamento do título. Formato: DD/MM/YYYY."
+                  },
+                  "cod_forma_pagamento": {
+                    "type": "integer",
+                    "enum": [
+                      19,
+                      43
+                    ],
+                    "description": "Forma de pagamento. Valores do enumerador:\n43 - Cartão de Crédito\n19 - Demais formas de pagamento",
+                    "format": "int32"
+                  },
+                  "id_rastreabilidade": {
+                    "type": "string",
+                    "description": "Identificador de rastreabilidade da transação junto ao Banrisul. Deve ser enviado na confirmação.",
+                    "maxLength": 16
+                  },
+                  "ind_confirma": {
+                    "type": "string",
+                    "enum": [
+                      "S",
+                      "N"
+                    ],
+                    "description": "Indica se o cliente confirmou ou não o pagamento."
+                  },
+                  "titulo_barra": {
+                    "type": "object",
+                    "properties": {
+                      "tipo_codigo_barra": {
+                        "type": "integer",
+                        "description": "Tipo do código de barras. Valores:\n1- Barra lida (tamanho do código de barras = 44)\n2- Barra digitada (tamanho do código de barras = 47)",
+                        "format": "int32"
+                      }
+                    },
+                    "required": [
+                      "tipo_codigo_barra"
+                    ]
+                  }
+                },
+                "required": [
+                  "numero_banrisul",
+                  "data_pagamento",
+                  "cod_forma_pagamento",
+                  "id_rastreabilidade",
+                  "ind_confirma",
+                  "titulo_barra"
+                ]
+              },
+              "examples": {
+                "Dados de Entrada": {
+                  "value": {
+                    "numero_banrisul": "00000169065",
+                    "data_pagamento": "24/07/2024",
+                    "cod_forma_pagamento": 19,
+                    "id_rastreabilidade": "DX92912139140110",
+                    "ind_confirma": "S",
+                    "titulo_barra": {
+                      "tipo_codigo_barra": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK (Requisição completada com sucesso)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OK200ConfirmaPagamentoTitulo"
+                },
+                "examples": {
+                  "Retorno OK": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "numero_banrisul": "00000169065",
+                        "data_pagamento": "24/07/2024",
+                        "id_rastreabilidade": "DX92912139140110",
+                        "agencia_origem": "0030",
+                        "situacao_movimento": "PAGO",
+                        "valor_movimento": 100.49,
+                        "titulo_barra": {
+                          "valor_desconto": 0,
+                          "valor_multa": 0,
+                          "valor_abatimento": 0,
+                          "valor_juros": 0,
+                          "cpf_cnpj_agregador": "12345678901234"
+                        },
+                        "mensagem": "Indicação de confirmação/cancelamento de pagamento recebida com sucesso."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. (Retorno de validação dos parâmetros informados)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Header Parceiro não informado": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT001",
+                            "descricao": "Header Partner-Id é obrigatório."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT002",
+                            "descricao": "Header Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Co-Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT006",
+                            "descricao": "Header Co-Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Código de Barras como parâmetro de rota inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT003",
+                            "descricao": "O código de barras informado como parâmetro de rota deve ser válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Tamanho Código Barra Incompatível Tipo": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT005",
+                            "descricao": "O código de barra informado deve ter tamanho compatível com o tipo de código de barra informado."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. (Falha de autenticação, verifique o Token de acesso)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Parceiro Não Autorizado": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "AU_GP001",
+                            "descricao": "As informações relacionadas ao Partner-Id '12345678000123' não correspondem a um parceiro autorizado."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. (Falha no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Interno": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP500",
+                            "descricao": "Identificamos uma falha de comunicação. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable. (Serviço temporariamente indisponível)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Rota indisponível": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_GP004",
+                            "descricao": "O serviço solicitado não está ativo no momento."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout. (Tempo limite excedido no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Timeout": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP504",
+                            "descricao": "O Gateway não respondeu dentro do tempo limite. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerToken": []
+          },
+          {
+            "portal_oauth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://apidev.banrisul.com.br/pagamentos/v1",
+            "description": "SANDBOX"
+          },
+          {
+            "url": "https://api.banrisul.com.br/pagamentos/v1",
+            "description": "PRODUÇÃO"
+          }
+        ]
+      }
+    },
+    "/arrecadacoes/{codigo_barra}": {
+      "post": {
+        "tags": [
+          "Arrecadações"
+        ],
+        "summary": "Solicitar Pagamento Arrecadação",
+        "description": "Permite ao parceiro solicitar o pagamento de uma arrecadação, enviando os dados solicitados.\n\nEsta chamada exige que o Token Oauth2 seja informado no cabeçalho \"Authorization\" da requisição.",
+        "operationId": "Solicita-Pagamento-Arrecadacao",
+        "parameters": [
+          {
+            "name": "Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa parceira, autorizada pelo Banrisul, contendo apenas os **14 dígitos numéricos**.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$",
+              "minLength": 14,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "Co-Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa terceira/substabelecida/filial, autorizada e autenticada pela empresa parceira, contendo apenas os **14 dígitos numéricos**",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$"
+            }
+          },
+          {
+            "name": "codigo_barra",
+            "in": "path",
+            "description": "Código de Barra da arrecadação a ser paga. Tamanho 44 para barra lida ou tamanho 48 para barra digitada",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "minimum": 44,
+              "maximum": 47
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Dados de entrada para solicitação de pagamento",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "numero_origem": {
+                    "type": "string",
+                    "description": "Número de identificação da empresa parceira, para controle do título a ser pago. Pode conter até 14 dígitos numéricos.",
+                    "format": "number",
+                    "pattern": "^[0-9]{1,14}$",
+                    "minLength": 1,
+                    "maxLength": 14
+                  },
+                  "agencia_origem": {
+                    "type": "integer",
+                    "description": "Agência de Pagamento Banrisul de Referência do Parceiro.",
+                    "format": "int32",
+                    "minimum": 1,
+                    "maximum": 9999
+                  },
+                  "cod_forma_pagamento": {
+                    "type": "integer",
+                    "enum": [
+                      19,
+                      43
+                    ],
+                    "description": "Forma de pagamento. Valores do enumerador:\n43 - Cartão de Crédito\n19 - Demais formas de pagamento",
+                    "format": "int32"
+                  },
+                  "valor_movimento": {
+                    "type": "number",
+                    "description": "Valor do título a ser pago.",
+                    "format": "float",
+                    "example": 1500.45
+                  },
+                  "arrecadacao": {
+                    "type": "object",
+                    "properties": {
+                      "tipo_codigo_barra": {
+                        "type": "integer",
+                        "enum": [
+                          1,
+                          2
+                        ],
+                        "description": "Tipo do código de barras. Valores:\n1- Barra lida (tamanho do código de barras = 44)\n2- Barra digitada (tamanho do código de barras = 47)",
+                        "format": "int32"
+                      },
+                      "data_vencimento": {
+                        "type": "string",
+                        "description": "Data de vencimento do título a ser pago. Formato esperado: DD/MM/YYYY."
+                      },
+                      "nome_contribuinte": {
+                        "type": "string",
+                        "description": "Nome do Contribuinte. Apenas para documentos GA Barras e Depósito Judicial. Desconsiderado para os demais.",
+                        "minLength": 1,
+                        "maxLength": 30
+                      },
+                      "identificador": {
+                        "type": "string",
+                        "description": "Identificador. Apenas para documentos FGTS Barras. Desconsiderado para os demais."
+                      }
+                    },
+                    "required": [
+                      "tipo_codigo_barra",
+                      "data_vencimento"
+                    ]
+                  }
+                },
+                "required": [
+                  "numero_origem",
+                  "agencia_origem",
+                  "cod_forma_pagamento",
+                  "valor_movimento",
+                  "arrecadacao"
+                ]
+              },
+              "examples": {
+                "Dados de entrada": {
+                  "value": {
+                    "numero_origem": "00000000876002",
+                    "agencia_origem": 1,
+                    "cod_forma_pagamento": 19,
+                    "valor_movimento": 1500.45,
+                    "arrecadacao": {
+                      "tipo_codigo_barra": 1,
+                      "data_vencimento": "30/07/2024",
+                      "nome_contribuinte": "MARIA DA SILVA",
+                      "identificador": "3000044"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created (Recurso criado com sucesso)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OK201SolicitaPagamentoArrecadacao"
+                },
+                "examples": {
+                  "Retorno OK - Sem Alerta": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "numero_banrisul": "1234567890",
+                        "numero_autenticacao": "12456",
+                        "numero_origem": "00000000009999",
+                        "agencia_origem": "0010",
+                        "data_pagamento": "30/07/2024",
+                        "id_rastreabilidade": "DX92912139140110",
+                        "cod_forma_pagamento": "19",
+                        "valor_movimento": 345.65,
+                        "cpf_cnpj_debito": "12345678901234",
+                        "nome_debito": "NOME PAGADOR",
+                        "situacao_movimento": "PENDENTE",
+                        "arrecadacao": {
+                          "codigo_barra": "12345678901234567890123456789012345678901234",
+                          "codigo_documento_arrecadacao": "20",
+                          "data_vencimento": "15/01/2025",
+                          "nome_convenio": "DMAE - PORTO ALEGRE",
+                          "codigo_tpa": "2",
+                          "codigo_uf": "RS",
+                          "codigo_competencia": "122021",
+                          "criptograma": "123456asd789rty987654ert159yth756qsd",
+                          "cpf_cnpj_agregador": "12345678901234"
+                        },
+                        "mensagem": "Solicitação de pagamento recebida com sucesso. Aguardando confirmação."
+                      }
+                    }
+                  },
+                  "Retorno OK - Com Alerta": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "numero_banrisul": "1234567890",
+                        "numero_autenticacao": "12456",
+                        "numero_origem": "00000000009999",
+                        "agencia_origem": "0010",
+                        "data_pagamento": "30/07/2024",
+                        "id_rastreabilidade": "DX92912139140110",
+                        "cod_forma_pagamento": "19",
+                        "valor_movimento": 345.65,
+                        "cpf_cnpj_debito": "12345678901234",
+                        "nome_debito": "NOME PAGADOR",
+                        "situacao_movimento": "PENDENTE",
+                        "arrecadacao": {
+                          "codigo_barra": "12345678901234567890123456789012345678901234",
+                          "codigo_documento_arrecadacao": "20",
+                          "data_vencimento": "15/01/2025",
+                          "nome_convenio": "DMAE - PORTO ALEGRE",
+                          "codigo_tpa": "2",
+                          "codigo_uf": "RS",
+                          "codigo_competencia": "122021",
+                          "criptograma": "123456asd789rty987654ert159yth756qsd",
+                          "cpf_cnpj_agregador": "12345678901234"
+                        },
+                        "mensagem": "AUTORIZADO/ATENDIDO COM VALOR DIFERENTE DO INFORMADO - FAVOR CONFIRMAR"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. (Retorno de validação dos parâmetros informados)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Header Parceiro não informado": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT001",
+                            "descricao": "Header Partner-Id é obrigatório."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT002",
+                            "descricao": "Header Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Co-Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT006",
+                            "descricao": "Header Co-Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Código de Barras como parâmetro de rota inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT003",
+                            "descricao": "O código de barras informado como parâmetro de rota deve ser válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Tamanho Código Barra Incompatível Tipo": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT005",
+                            "descricao": "O código de barra informado deve ter tamanho compatível com o tipo de código de barra informado."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. (Falha de autenticação, verifique o Token de acesso)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Parceiro Não Autorizado": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "AU_GP001",
+                            "descricao": "As informações relacionadas ao Partner-Id '12345678000123' não correspondem a um parceiro autorizado."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity (WebDAV)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Negócio - Exemplo 1": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_PT168",
+                            "descricao": "VALOR FORA DOS LIMITES DE PAGAMENTO"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Negócio - Exemplo 2": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_PT179",
+                            "descricao": "SITUACAO DO DOCUMENTO NAO PERMITE PAGAMENTO"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. (Falha no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Interno": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP500",
+                            "descricao": "Identificamos uma falha de comunicação. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable. (Serviço temporariamente indisponível)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Rota indisponível": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_GP004",
+                            "descricao": "O serviço solicitado não está ativo no momento."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout. (Tempo limite excedido no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Timeout": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP504",
+                            "descricao": "O Gateway não respondeu dentro do tempo limite. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerToken": []
+          },
+          {
+            "portal_oauth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://apidev.banrisul.com.br/pagamentos/v1",
+            "description": "SANDBOX"
+          },
+          {
+            "url": "https://api.banrisul.com.br/pagamentos/v1",
+            "description": "PRODUÇÃO"
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Arrecadações"
+        ],
+        "summary": "Confirmar Pagamento Arrecadação",
+        "description": "Permite ao parceiro confirmar o pagamento de uma arrecadação, enviando os dados solicitados.\n\nEsta chamada exige que o Token Oauth2 seja informado no cabeçalho \"Authorization\" da requisição.",
+        "operationId": "Confirma-Pagamento-Arrecadacao",
+        "parameters": [
+          {
+            "name": "Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa parceira, autorizada pelo Banrisul, contendo apenas os **14 dígitos numéricos**.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$",
+              "minLength": 14,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "Co-Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa terceira/substabelecida/filial, autorizada e autenticada pela empresa parceira, contendo apenas os **14 dígitos numéricos**",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$"
+            }
+          },
+          {
+            "name": "codigo_barra",
+            "in": "path",
+            "description": "Código de Barra da arrecadação a ser paga. Tamanho 44 para barra lida ou tamanho 48 para barra digitada",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "minimum": 44,
+              "maximum": 47
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Dados de entrada para confirmação de pagamento",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "numero_banrisul": {
+                    "type": "string",
+                    "description": "Número do documento atribuído pelo Banrisul.",
+                    "format": "number",
+                    "pattern": "^\\d{1,11}$"
+                  },
+                  "data_pagamento": {
+                    "type": "string",
+                    "description": "Data efetiva de pagamento do título. Formato: DD/MM/YYYY."
+                  },
+                  "cod_forma_pagamento": {
+                    "type": "integer",
+                    "enum": [
+                      19,
+                      43
+                    ],
+                    "description": "Forma de pagamento. Valores do enumerador:\n43 - Cartão de Crédito\n19 - Demais formas de pagamento",
+                    "format": "int32"
+                  },
+                  "id_rastreabilidade": {
+                    "type": "string",
+                    "description": "Identificador de rastreabilidade da transação junto ao Banrisul. Deve ser enviado na confirmação.",
+                    "maxLength": 16
+                  },
+                  "ind_confirma": {
+                    "type": "string",
+                    "enum": [
+                      "S",
+                      "N"
+                    ],
+                    "description": "Indica se o cliente confirmou ou não o pagamento."
+                  },
+                  "arrecadacao": {
+                    "type": "object",
+                    "properties": {
+                      "tipo_codigo_barra": {
+                        "type": "integer",
+                        "description": "Tipo do código de barras. Valores:\n1- Barra lida (tamanho do código de barras = 44)\n2- Barra digitada (tamanho do código de barras = 47)",
+                        "format": "int32"
+                      }
+                    },
+                    "required": [
+                      "tipo_codigo_barra"
+                    ]
+                  }
+                },
+                "required": [
+                  "numero_banrisul",
+                  "data_pagamento",
+                  "cod_forma_pagamento",
+                  "id_rastreabilidade",
+                  "ind_confirma",
+                  "arrecadacao"
+                ]
+              },
+              "examples": {
+                "Dados de Entrada": {
+                  "value": {
+                    "numero_banrisul": "00000169065",
+                    "data_pagamento": "24/07/2024",
+                    "cod_forma_pagamento": 19,
+                    "id_rastreabilidade": "DX92912139140110",
+                    "ind_confirma": "S",
+                    "arrecadacao": {
+                      "tipo_codigo_barra": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK (Requisição completada com sucesso)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OK200ConfirmaPagamentoArrecadacao"
+                },
+                "examples": {
+                  "Retorno OK": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "numero_banrisul": "00000169065",
+                        "data_pagamento": "24/07/2024",
+                        "agencia_origem": "0010",
+                        "id_rastreabilidade": "DX92912139140110",
+                        "tipo_codigo_barra": "1",
+                        "situacao_movimento": "PAGO",
+                        "valor_movimento": 100.49,
+                        "arrecadacao": {
+                          "codigo_barra": "12345678901234567890123456789012345678901234",
+                          "cpf_cnpj_agregador": "12345678901234"
+                        },
+                        "mensagem": "Indicação de confirmação/cancelamento de pagamento recebida com sucesso."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. (Retorno de validação dos parâmetros informados)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Header Parceiro não informado": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT001",
+                            "descricao": "Header Partner-Id é obrigatório."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT002",
+                            "descricao": "Header Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Co-Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT006",
+                            "descricao": "Header Co-Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Código de Barras como parâmetro de rota inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT003",
+                            "descricao": "O código de barras informado como parâmetro de rota deve ser válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Tamanho Código Barra Incompatível Tipo": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT005",
+                            "descricao": "O código de barra informado deve ter tamanho compatível com o tipo de código de barra informado."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. (Falha de autenticação, verifique o Token de acesso)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Parceiro Não Autorizado": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "AU_GP001",
+                            "descricao": "As informações relacionadas ao Partner-Id '12345678000123' não correspondem a um parceiro autorizado."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. (Falha no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Interno": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP500",
+                            "descricao": "Identificamos uma falha de comunicação. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable. (Serviço temporariamente indisponível)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Rota indisponível": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_GP004",
+                            "descricao": "O serviço solicitado não está ativo no momento."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout. (Tempo limite excedido no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Timeout": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP504",
+                            "descricao": "O Gateway não respondeu dentro do tempo limite. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerToken": []
+          },
+          {
+            "portal_oauth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://apidev.banrisul.com.br/pagamentos/v1",
+            "description": "SANDBOX"
+          },
+          {
+            "url": "https://api.banrisul.com.br/pagamentos/v1",
+            "description": "PRODUÇÃO"
+          }
+        ]
+      }
+    },
+    "/status/{id_documento}": {
+      "get": {
+        "tags": [
+          "Geral"
+        ],
+        "summary": "Consultar Situação Pagamento",
+        "description": "Permite ao parceiro consultar o status do pagamento de um título, a partir do NSU.\n\nEsta chamada exige que o Token Oauth2 seja informado no cabeçalho \"Authorization\" da requisição.",
+        "operationId": "Consulta-Status",
+        "parameters": [
+          {
+            "name": "Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa parceira, autorizada pelo Banrisul, contendo apenas os **14 dígitos numéricos**.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$",
+              "minLength": 14,
+              "maxLength": 14,
+              "example": "92702067000196"
+            }
+          },
+          {
+            "name": "Co-Partner-Id",
+            "in": "header",
+            "description": "CNPJ da empresa terceira/substabelecida/filial, autorizada e autenticada pela empresa parceira, contendo apenas os **14 dígitos numéricos**",
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{14}$"
+            }
+          },
+          {
+            "name": "tipo_id_documento",
+            "in": "query",
+            "description": "Tipo do Id informado para consulta. \"B\" para \"número Banrisul\" ou \"O\" para \"número origem\". Se não informado, será considerado como \"número Banrisul\".",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "B",
+                "O"
+              ],
+              "example": "O"
+            }
+          },
+          {
+            "name": "data_pagamento",
+            "in": "query",
+            "description": "Data de pagamento do documento. Formato DD/MM/YYYY.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "30/07/2024"
+            }
+          },
+          {
+            "name": "id_documento",
+            "in": "path",
+            "description": "Id do documento a ser consultado o status de pagamento.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK (Requisição completada com sucesso)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OK200ConsultaStatus"
+                },
+                "examples": {
+                  "Retorno OK": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "numero_banrisul": "1234567890",
+                        "agencia_origem": "0030",
+                        "data_pagamento": "10/01/2025",
+                        "situacao_movimento": "PAGO",
+                        "valor_movimento": 175.1,
+                        "mensagem": "Situação do pagamento consultada com sucesso."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. (Retorno de validação dos parâmetros informados)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Header Parceiro não informado": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT001",
+                            "descricao": "Header Partner-Id é obrigatório."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT002",
+                            "descricao": "Header Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Co-Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT006",
+                            "descricao": "Header Co-Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro ID título como parâmetro de rota inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT004",
+                            "descricao": "O ID do título informado como parâmetro de rota deve ser válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Query Parameter Inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT007",
+                            "descricao": "Valor 'J' informado no parâmetro 'tipo_id_titulo' não atende às especificações."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Query Parameter Obrigatório": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT008",
+                            "descricao": "O parâmetro 'agencia_origem' é obrigatório."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Data Pagamento inválida": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT009",
+                            "descricao": "A data de pagamento informada deve ser válida e deve ter o formato DD/MM/YYYY."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Negócio": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_PT018",
+                            "descricao": "NAO EXISTEM DOCUMENTOS PARA O CRITERIO INFORMADO"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. (Falha de autenticação, verifique o Token de acesso)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Parceiro Não Autorizado": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "AU_GP001",
+                            "descricao": "As informações relacionadas ao Partner-Id '12345678000123' não correspondem a um parceiro autorizado."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. (Falha no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Interno": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP500",
+                            "descricao": "Identificamos uma falha de comunicação. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable. (Serviço temporariamente indisponível)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Rota indisponível": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_GP004",
+                            "descricao": "O serviço solicitado não está ativo no momento."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout. (Tempo limite excedido no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Timeout": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP504",
+                            "descricao": "O Gateway não respondeu dentro do tempo limite. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerToken": []
+          },
+          {
+            "portal_oauth2": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://apidev.banrisul.com.br/pagamentos/v1",
+            "description": "SANDBOX"
+          },
+          {
+            "url": "https://api.banrisul.com.br/pagamentos/v1",
+            "description": "PRODUÇÃO"
+          }
+        ]
+      }
+    },
+    "/debitos": {
+      "get": {
+        "summary": "Consulta Débitos",
+        "tags": [
+          "Geral"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK (Requisição completada com sucesso)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OK200ConsultaDebitos"
+                },
+                "examples": {
+                  "Retorno OK": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "data_hora_consulta": "20/05/2025 11:30:00",
+                        "data_pagamento": "20/05/2025",
+                        "agencia_consulta": "1080",
+                        "conta_consulta": "1234567890",
+                        "debitos_parceiro": [
+                          {
+                            "valor_total_debitos": "5030.75",
+                            "quantidade_debitos": "20",
+                            "situacao_debitos": "PAGO"
+                          },
+                          {
+                            "valor_total_debitos": "2050.12",
+                            "quantidade_debitos": "17",
+                            "situacao_debitos": "PENDENTE"
+                          }
+                        ],
+                        "mensagem": "Débitos consultados com sucesso."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. (Retorno de validação dos parâmetros informados)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Header Parceiro não informado": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT001",
+                            "descricao": "Header Partner-Id é obrigatório."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT002",
+                            "descricao": "Header Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Header Co-Parceiro com CNPJ inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT006",
+                            "descricao": "Header Co-Partner-Id requer CNPJ válido."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Query Parameter Inválido": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT007",
+                            "descricao": "Valor '30' informado no parâmetro 'codigo_tipo_documento' não atende às especificações."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Query Parameter Obrigatório": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT008",
+                            "descricao": "O parâmetro 'codigo_agregador' é obrigatório."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Data Pagamento inválida": {
+                    "value": {
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CT_PT009",
+                            "descricao": "A data de pagamento informada deve ser válida e deve ter o formato DD/MM/YYYY."
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Erro Negócio": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_PT0018",
+                            "descricao": "NAO EXISTEM DOCUMENTOS PARA O CRITERIO INFORMADO"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. (Falha de autenticação, verifique o Token de acesso)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Parceiro Não Autorizado": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "AU_GP001",
+                            "descricao": "As informações relacionadas ao Partner-Id '12345678000123' não correspondem a um parceiro autorizado."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error. (Falha no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Erro Interno": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP500",
+                            "descricao": "Identificamos uma falha de comunicação. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable. (Serviço temporariamente indisponível)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Rota indisponível": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "RN_GP004",
+                            "descricao": "O serviço solicitado não está ativo no momento."
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout. (Tempo limite excedido no processamento da requisição)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoErros"
+                },
+                "examples": {
+                  "Timeout": {
+                    "value": {
+                      "id_requisicao": 12345,
+                      "retorno": {
+                        "erros": [
+                          {
+                            "codigo": "CE_GP504",
+                            "descricao": "O Gateway não respondeu dentro do tempo limite. Tente novamente em alguns instantes!"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "Debitos",
+        "description": "Endpoint para consulta de débitos referentes a pagamentos realizados em uma data determinada.\n\nEsta chamada exige que o Token Oauth2 seja informado no cabeçalho \"Authorization\" da requisição.",
+        "security": [
+          {
+            "BearerToken": []
+          },
+          {
+            "portal_oauth2": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Partner-Id",
+            "required": true,
+            "description": "CNPJ da empresa parceira, autorizada pelo Banrisul, contendo apenas os **14 dígitos numéricos**."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Co-Partner-Id",
+            "description": "CNPJ da empresa terceira/substabelecida/filial, autorizada e autenticada pela empresa parceira, contendo apenas os **14 dígitos numéricos**"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "codigo_agregador",
+            "description": "Código do Agregador",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "codigo_tipo_documento",
+            "description": "Código do Tipo de Documento. Valores: 1- Arrecadação, 21-Título ",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "data_pagamento",
+            "description": "Data do Pagamento, no formato \"DD/MM/YYYY\"",
+            "required": true
+          }
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "tags": [
+    {
+      "name": "Arrecadações"
+    },
+    {
+      "name": "Geral"
+    },
+    {
+      "name": "Pagamentos"
+    },
+    {
+      "name": "Títulos"
+    }
+  ],
+  "externalDocs": {
+    "url": "https://developers.banrisul.com.br",
+    "description": "Portal Banrisul for Developers"
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerToken": {
+        "type": "oauth2",
+        "description": "Fluxo de Autorização **OAuth2 Client Credentials**. \n\nURL para geração dos Tokens de Acesso necessários para autorizar as suas requisições para as APIs. \n\n**O Token precisa estar presente no cabeçalho Authorization de cada requisição.**\n\nExemplo: `\"Authorization: Bearer b34752d9-bf05-4c4c-a65e-491f935c6903\"`\n\nPara mais informações, verifique a seção de [Segurança](#section/Seguranca) deste documento.",
+        "flows": {
+          "clientCredentials": {
+            "scopes": {},
+            "tokenUrl": "https://apidev.banrisul.com.br/auth/oauth/v2/token"
+          }
+        }
+      },
+      "portal_oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "scopes": {},
+            "tokenUrl": "https://apidev.banrisul.com.br/auth/oauth/v2/token"
+          }
+        }
+      }
+    },
+    "schemas": {
+      "OK200ConsultaTitulo": {
+        "type": "object",
+        "properties": {
+          "id_requisicao": {
+            "type": "integer",
+            "description": "ID único da requisição.",
+            "format": "int64",
+            "example": 12345
+          },
+          "retorno": {
+            "$ref": "#/components/schemas/RetornoConsultaTitulo"
+          }
+        }
+      },
+      "RetornoConsultaTitulo": {
+        "type": "object",
+        "properties": {
+          "boleto": {
+            "$ref": "#/components/schemas/RetornoBoleto"
+          },
+          "dados_pagamento": {
+            "$ref": "#/components/schemas/RetornoDadosPagamento"
+          },
+          "lista_instrucao_boleto": {
+            "$ref": "#/components/schemas/RetornoListaInstrucaoBoleto"
+          },
+          "mensagem": {
+            "type": "string",
+            "description": "Mensagem de retorno de OK para consulta de título."
+          }
+        },
+        "required": [
+          "boleto",
+          "dados_pagamento"
+        ]
+      },
+      "OK200ConsultaDebitos": {
+        "type": "object",
+        "properties": {
+          "id_requisicao": {
+            "type": "integer",
+            "description": "ID único da requisição.",
+            "format": "int64",
+            "example": 12345
+          },
+          "retorno": {
+            "$ref": "#/components/schemas/RetornoConsultaDebitos"
+          }
+        }
+      },
+      "RetornoConsultaDebitos": {
+        "type": "object",
+        "properties": {
+          "data_hora_consulta": {
+            "type": "string",
+            "description": "Data Hora da Consulta, no formato \"DD/MM/YYYY HH:MI:SS\""
+          },
+          "data_pagamento": {
+            "type": "string",
+            "description": "Data do Pagamento, no formato \"DD/MM/YYYY\""
+          },
+          "agencia_consulta": {
+            "type": "string",
+            "description": "Agência da conta do agregador."
+          },
+          "conta_consulta": {
+            "type": "string",
+            "description": "Conta do agregador."
+          },
+          "debitos_parceiro": {
+            "type": "array",
+            "description": "Listagem dos débitos do agregador.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "valor_total_debitos": {
+                  "type": "string",
+                  "description": "Somatório dos débitos.",
+                  "format": "number"
+                },
+                "quantidade_debitos": {
+                  "type": "string",
+                  "description": "Quantidade de débitos.",
+                  "format": "integer"
+                },
+                "situacao_debitos": {
+                  "type": "string",
+                  "description": "Situação do débito (PAGO/PENDENTE)."
+                }
+              },
+              "required": [
+                "valor_total_debitos",
+                "quantidade_debitos",
+                "situacao_debitos"
+              ]
+            }
+          },
+          "mensagem": {
+            "type": "string",
+            "description": "Mensagem de retorno de OK para consulta de valores totais."
+          }
+        },
+        "required": [
+          "data_hora_consulta",
+          "data_pagamento",
+          "agencia_consulta",
+          "conta_consulta",
+          "debitos_parceiro",
+          "mensagem"
+        ]
+      },
+      "RetornoBoleto": {
+        "type": "object",
+        "title": "RetornoBoleto",
+        "description": "Dados do boleto consultado",
+        "properties": {
+          "codigo_barra": {
+            "type": "string",
+            "description": "Código de barras do boleto.",
+            "format": "number",
+            "pattern": "^\\d{44}$"
+          },
+          "situacao_boleto": {
+            "type": "string",
+            "enum": [
+              "A",
+              "B"
+            ],
+            "description": "Situação do boleto. Valores: A-Ativo, B-Baixado.",
+            "minLength": 1,
+            "maxLength": 1
+          },
+          "linha_digitavel": {
+            "type": "string",
+            "description": "Linha digitável do boleto.",
+            "format": "number",
+            "pattern": "^\\d{47}$"
+          },
+          "dt_vcto_boleto": {
+            "type": "string",
+            "description": "Data de vencimento do boleto. Formato DD/MM/YYYY."
+          },
+          "dt_lim_pagto_bol": {
+            "type": "string",
+            "description": "Data limite de pagamento do boleto. Formato DD/MM/YYYY."
+          },
+          "vlr_orig_boleto": {
+            "type": "number",
+            "description": "Valor registrado para o boleto.",
+            "format": "float"
+          },
+          "cod_esp_boleto": {
+            "type": "string",
+            "enum": [
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "12",
+              "13",
+              "14",
+              "15",
+              "16",
+              "17",
+              "18",
+              "19",
+              "20",
+              "21",
+              "22",
+              "23",
+              "24",
+              "25",
+              "26",
+              "27",
+              "28",
+              "29",
+              "30",
+              "31",
+              "32",
+              "33",
+              "99"
+            ],
+            "description": "Código da espécie do boleto. Valores possíveis:\n\n1    CH Cheque\n2    DM Duplicata Mercantil\n3    DMI Duplicata Mercantil Indicação\n4    DS Duplicata de Serviço\n5    DSI Duplicata de Serviço Indicação\n6    DR Duplicata Rural\n7    LC Letra de Câmbio\n8    NCC Nota de Crédito Comercial\n9    NCE Nota de Crédito Exportação\n10    NCI Nota de Crédito Industrial\n11    NCR Nota de Crédito Rural\n12    NP Nota Promissória\n13    NPR Nota Promissória Rural\n14    TM Triplicata Mercantil\n15    TS Triplicata de Serviço\n16    NS Nota de Seguro\n17    RC Recibo\n18    FAT Bloqueto\n19    ND Nota de Débito\n20    AP Apólice de Seguro\n21    ME Mensalidade Escolar\n22    PC Parcela de Consórcio\n23    NF Nota Fiscal\n24    DD Documento de Dívida\n25    Cédula de Produto Rural\n26    Warrant\n27    Dívida Ativa de Estado\n28    Dívida Ativa de Município\n29    Dívida Ativa da União\n30    Encargos condominiais\n31    Cartão de Crédito\n32    Boleto proposta\n33    Boleto de Depósito e Aporte\n99    Outros"
+          },
+          "cod_moeda_cnab": {
+            "type": "string",
+            "enum": [
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "12",
+              "13",
+              "14",
+              "15",
+              "16",
+              "17",
+              "18",
+              "19",
+              "20",
+              "21",
+              "22",
+              "23",
+              "24",
+              "25",
+              "26",
+              "27",
+              "28",
+              "29",
+              "30"
+            ],
+            "description": "Código Moeda CNAB. Possíveis valores:\n\n02 Dólar Americano Comercial (Venda)\n03 Dólar Americano Turismo (Venda)\n04 ITRD\n05 IDTR\n06 UFIR Diária\n07 UFIR Mensal\n08 FAJ-TR\n09 Real\n10 TR\n11 IGPM\n12 CDI\n13 Percentual do CDI\n14 Euro\n15 CDI-CETIP\n16 CHF\n17 CUB/RS(NOVO)\n18 CUB/RS(R8-N)\n19 CUB/SC (ANTIGO)\n20 CUBRS\n21 CUB-SC (NOVO)\n22 GBP\n23 ICC (SALVADOR)\n24 IGPM (A)\n25 IGPM (N)\n26 INCC\n27 INCC-M\n28 INPC\n29 JPY\n30 TJLP",
+            "format": "int32"
+          },
+          "ind_bloq_pagto": {
+            "type": "string",
+            "enum": [
+              "S",
+              "N"
+            ],
+            "description": "Indica se o boleto está bloqueado para pagamento pelo banco emissor.",
+            "minLength": 1,
+            "maxLength": 1
+          },
+          "ind_pagto_parcial": {
+            "type": "string",
+            "enum": [
+              "S",
+              "N"
+            ],
+            "description": "Indicativo se o boleto pode ou não receber pagamento parcial.",
+            "minLength": 1,
+            "maxLength": 1
+          },
+          "qtd_pagto_parcial": {
+            "type": "string",
+            "description": "Quantidade de pagamentos parciais que o boleto pode receber.",
+            "format": "number"
+          },
+          "qtd_pagto_parc_reg": {
+            "type": "string",
+            "description": "Quantidade de pagamentos parciais que o boleto possui.",
+            "format": "number"
+          },
+          "tipo_aut_receb_div": {
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            "description": "Tipo de autorização de recebimento de valor divergente. Possíveis valores:\n\n1-Qualquer valor\n2-Entre o mínimo e o máximo\n3-Não aceitar pagamento com valor divergente\n4-Somente valor mínimo",
+            "format": "int32"
+          },
+          "vlr_minimo_bol_calculado": {
+            "type": "number",
+            "description": "Valor mínimo aceito para pagamento. Somente será maior que zero para tipo_aut_receb_div 2 ou 4.",
+            "format": "float"
+          },
+          "vlr_maximo_bol_calculado": {
+            "type": "number",
+            "description": "Valor máximo aceito para pagamento, quando o boleto aceitar pagamentos divergentes. Caso contrário, é o valor calculado para pagamento.",
+            "format": "float"
+          },
+          "cod_if": {
+            "type": "string",
+            "description": "Código da Instituição Financeira emissora do boleto.",
+            "format": "number"
+          },
+          "tipo_pes_ben_orig": {
+            "type": "string",
+            "enum": [
+              "F",
+              "J"
+            ],
+            "description": "Tipo de Pessoa do beneficiário original do boleto. Pode ser F-Física ou J-Jurídica."
+          },
+          "cod_beneficiario_original": {
+            "type": "string",
+            "description": "CPF/CNPJ do beneficiário original. 14 dígitos, se for CPF, estará com zeros à esquerda.",
+            "format": "number",
+            "pattern": "^\\d{14}$"
+          },
+          "nom_rzsoc_ben_orig": {
+            "type": "string",
+            "description": "Nome ou Razão Social do beneficiário de origem.",
+            "maxLength": 50
+          },
+          "nome_fant_ben_orig": {
+            "type": "string",
+            "description": "Nome Fantasia do beneficiário de origem.",
+            "maxLength": 50
+          },
+          "tipo_pes_ben_fin": {
+            "type": "string",
+            "enum": [
+              "F",
+              "J"
+            ],
+            "description": "Tipo de Pessoa do Beneficiário Final. Pode ser F-Física ou J-Jurídica."
+          },
+          "cod_beneficiario_final": {
+            "type": "string",
+            "description": "CPF/CNPJ do beneficiário final. 14 dígitos, se for CPF, estará com zeros à esquerda.",
+            "format": "number"
+          },
+          "nom_rzsoc_ben_fin": {
+            "type": "string",
+            "description": "Nome ou Razão Social do beneficiário final.",
+            "maxLength": 50
+          },
+          "nome_fanta_ben_fin": {
+            "type": "string",
+            "description": "Nome fantasia do beneficiário final.",
+            "maxLength": 50
+          },
+          "tipo_ident_sac_ava": {
+            "type": "string",
+            "enum": [
+              "0",
+              "1",
+              "2"
+            ],
+            "description": "Tipo de identificação do sacador/avalista do boleto. Valores: 0 - Isento/Não informado, 1 - CPF, 2 - CNPJ.",
+            "format": "int32"
+          },
+          "ident_sac_ava": {
+            "type": "string",
+            "description": "Identificação do sacado/avalista do boleto.",
+            "maxLength": 15
+          },
+          "nom_rzsoc_sac_ava": {
+            "type": "string",
+            "description": "Nome ou Razão Social do sacado/avalista do boleto.",
+            "maxLength": 50
+          },
+          "tipo_pes_pagador": {
+            "type": "string",
+            "enum": [
+              "F",
+              "J"
+            ],
+            "description": "Tipo de Pessoa do Pagador. Pode ser F-Física ou J-Jurídica."
+          },
+          "cod_pagador": {
+            "type": "string",
+            "description": "CPF/CNPJ do pagador do boleto.",
+            "format": "number",
+            "pattern": "^\\d{14}$"
+          },
+          "nome_rzsoc_pagador": {
+            "type": "string",
+            "description": "Nome ou Razão Social do pagador do boleto.",
+            "maxLength": 50
+          },
+          "cod_beneficiario_original_format": {
+            "type": "string",
+            "description": "CPF/CNPJ do beneficiário original do boleto formatado no formato 99.999.999/9999-99, caso CNPJ, ou 999.999.999-99, caso CPF.",
+            "maxLength": 18
+          },
+          "cod_beneficiario_final_format": {
+            "type": "string",
+            "description": "CPF/CNPJ do beneficiário final do boleto formatado no formato 99.999.999/9999-99, caso CNPJ, ou 999.999.999-99, caso CPF",
+            "maxLength": 18
+          },
+          "cod_pagador_format": {
+            "type": "string",
+            "description": "CPF/CNPJ do pagador do boleto formatado no formato 99.999.999/9999-99, caso CNPJ, ou 999.999.999-99, caso CPF",
+            "maxLength": 18
+          },
+          "ident_sac_ava_format": {
+            "type": "string",
+            "description": "CPF/CNPJ do sacador/avalista do boleto formatado no formato 99.999.999/9999-99, caso CNPJ, 999.999.999-99, caso CPF ou 99999999999 caso PIS/PASEP",
+            "maxLength": 18
+          },
+          "descr_tipo_aut_receb_div": {
+            "type": "string",
+            "description": "Descrição do tipo_aut_receb_div já com os valores, se for o caso. Ex.: Boleto que aceitar pagamento entre 10 e 50 reais este campo retornará o texto: \"Entre o valor:  R$ 10,00 e o valor: R$ 50,00\".",
+            "maxLength": 50
+          },
+          "ind_vencido": {
+            "type": "string",
+            "enum": [
+              "S",
+              "N"
+            ],
+            "description": "Indica se o boleto está vencido."
+          },
+          "ind_perm_alterar_valor": {
+            "type": "string",
+            "enum": [
+              "S",
+              "N"
+            ],
+            "description": "Indica se o boleto permite alterar o valor para pagamento."
+          }
+        },
+        "required": [
+          "codigo_barra",
+          "situacao_boleto",
+          "linha_digitavel",
+          "dt_vcto_boleto",
+          "dt_lim_pagto_bol",
+          "vlr_orig_boleto",
+          "cod_esp_boleto",
+          "cod_moeda_cnab",
+          "ind_bloq_pagto",
+          "ind_pagto_parcial",
+          "qtd_pagto_parcial",
+          "qtd_pagto_parc_reg",
+          "tipo_aut_receb_div",
+          "vlr_minimo_bol_calculado",
+          "vlr_maximo_bol_calculado",
+          "cod_if",
+          "tipo_pes_ben_orig",
+          "cod_beneficiario_original",
+          "nom_rzsoc_ben_orig",
+          "tipo_ident_sac_ava",
+          "tipo_pes_pagador",
+          "cod_pagador",
+          "nome_rzsoc_pagador",
+          "cod_beneficiario_original_format",
+          "cod_pagador_format",
+          "descr_tipo_aut_receb_div",
+          "ind_vencido",
+          "ind_perm_alterar_valor"
+        ],
+        "x-examples": {}
+      },
+      "RetornoDadosPagamento": {
+        "type": "object",
+        "title": "RetornoDadosPagamento",
+        "description": "Dados de pagamento do boleto consultado",
+        "properties": {
+          "data_referencia": {
+            "type": "string",
+            "description": "Data de referência para qual o valor de pagamento foi calculado. Formato: DD/MM/YYYY."
+          },
+          "valor_calculado_juros": {
+            "type": "number",
+            "description": "Valor de juros calculado.",
+            "format": "float"
+          },
+          "valor_calculado_multa": {
+            "type": "number",
+            "description": "Valor de multa calculado.",
+            "format": "float"
+          },
+          "valor_calculado_desconto": {
+            "type": "number",
+            "description": "Valor de desconto calculado.",
+            "format": "float"
+          },
+          "valor_calculado_total": {
+            "type": "number",
+            "description": "Valor total calculado para pagamento, já considerando os valores de abatimento, desconto, juros e multa, caso existam.",
+            "format": "float"
+          },
+          "valor_calculado_abatimento": {
+            "type": "number",
+            "description": "Valor do abatimento calculado.",
+            "format": "float"
+          },
+          "valor_desconto_abatimento": {
+            "type": "number",
+            "description": "Valor de desconto calculado a partir do valor de abatimento.",
+            "format": "float"
+          }
+        },
+        "required": [
+          "data_referencia",
+          "valor_calculado_juros",
+          "valor_calculado_multa",
+          "valor_calculado_desconto",
+          "valor_calculado_total",
+          "valor_calculado_abatimento",
+          "valor_desconto_abatimento"
+        ]
+      },
+      "RetornoListaInstrucaoBoleto": {
+        "type": "array",
+        "title": "RetornoListaInstrucaoBoleto",
+        "description": "Dados da Lista de Instrução do Boleto consultado",
+        "items": {
+          "type": "object",
+          "properties": {
+            "num_seq_instrucao": {
+              "type": "string",
+              "description": "Sequência (linha) da instrução a ser montada como texto descritivo do boleto.",
+              "format": "number"
+            },
+            "instrucao": {
+              "type": "string",
+              "description": "Instrução registrada pelo beneficiário do boleto.",
+              "maxLength": 100
+            }
+          },
+          "required": [
+            "num_seq_instrucao",
+            "instrucao"
+          ]
+        }
+      },
+      "RetornoErros": {
+        "type": "object",
+        "title": "RetornoErros",
+        "properties": {
+          "id_requisicao": {
+            "type": "integer",
+            "format": "int64",
+            "example": 12345
+          },
+          "retorno": {
+            "type": "object",
+            "properties": {
+              "erros": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "codigo": {
+                      "type": "string"
+                    },
+                    "descricao": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "retorno"
+        ]
+      },
+      "RetornoSolicitaPagamentoTitulo": {
+        "type": "object",
+        "properties": {
+          "numero_banrisul": {
+            "type": "string",
+            "description": "Número do documento atribuído pelo Banrisul.",
+            "format": "number",
+            "pattern": "^\\d{1,11}$",
+            "minLength": 1,
+            "maxLength": 11
+          },
+          "numero_autenticacao": {
+            "type": "string",
+            "description": "Número de autenticação para geração de recibo.",
+            "format": "number"
+          },
+          "numero_origem": {
+            "type": "string",
+            "description": "Número de identificação da empresa parceira, para controle do título a ser pago. Pode conter até 14 dígitos numéricos.",
+            "format": "number",
+            "pattern": "^[0-9]{1,14}$",
+            "minLength": 1,
+            "maxLength": 14
+          },
+          "agencia_origem": {
+            "type": "string",
+            "description": "Agência de Pagamento Banrisul de Referência do Parceiro.",
+            "format": "number"
+          },
+          "data_pagamento": {
+            "type": "string",
+            "description": "Data efetiva de pagamento do título. Formato: DD/MM/YYYY."
+          },
+          "id_rastreabilidade": {
+            "type": "string",
+            "description": "Identificador de rastreabilidade da transação junto ao Banrisul. Deve ser enviado na confirmação.",
+            "maxLength": 16
+          },
+          "cod_forma_pagamento": {
+            "type": "string",
+            "enum": [
+              "19",
+              "43"
+            ],
+            "description": "Forma de pagamento. Valores do enumerador:\n43 - Cartão de Crédito\n19 - Demais formas de pagamento"
+          },
+          "valor_movimento": {
+            "type": "number",
+            "description": "Valor do movimento.",
+            "format": "float"
+          },
+          "situacao_movimento": {
+            "type": "string",
+            "description": "Situação do documento (Pendente, Cancelado ou Pago)."
+          },
+          "cpf_cnpj_debito": {
+            "type": "string",
+            "description": "CPF ou CNPJ de débito",
+            "format": "number",
+            "pattern": "^\\d{11}|\\d{14}$"
+          },
+          "titulo_barra": {
+            "type": "object",
+            "properties": {
+              "cpf_cnpj_cedente": {
+                "type": "string",
+                "description": "CPF ou CNPJ do cedente do título. Sempre 14 dígitos, se for Pessoa Física / CPF, retornará com 3 zeros à esquerda.",
+                "format": "number",
+                "pattern": "^\\d{11}|\\d{14}$"
+              },
+              "nome_cedente": {
+                "type": "string",
+                "description": "Nome do cedente do título.",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "tipo_pessoa_cedente": {
+                "type": "string",
+                "enum": [
+                  "F",
+                  "J"
+                ],
+                "description": "Tipo de pessoa do cedente do título. F - Pessoa física, J - Pessoa Jurídica."
+              },
+              "nome_fantasia_cedente": {
+                "type": "string",
+                "description": "Nome fantasia do cedente do título.",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "data_vencimento": {
+                "type": "string",
+                "description": "Data de vencimento do título a ser pago. Formato esperado: DD/MM/YYYY."
+              },
+              "valor_desconto": {
+                "type": "number",
+                "description": "Valor de desconto do título.",
+                "format": "float"
+              },
+              "valor_multa": {
+                "type": "number",
+                "description": "Valor de multa do título.",
+                "format": "float"
+              },
+              "valor_abatimento": {
+                "type": "number",
+                "description": "Valor de abatimento do título.",
+                "format": "float"
+              },
+              "valor_juros": {
+                "type": "number",
+                "description": "Valor de juros do título.",
+                "format": "float"
+              },
+              "tipo_pessoa_sacado": {
+                "type": "string",
+                "enum": [
+                  "F",
+                  "J"
+                ],
+                "description": "Tipo de pessoa do sacado do título. F - Pessoa física, J - Pessoa Jurídica."
+              },
+              "cpf_cnpj_sacado": {
+                "type": "string",
+                "description": "CPF ou CNPJ do sacado do título. Sempre 14 dígitos, se for Pessoa Física / CPF, retornará com 3 zeros à esquerda.",
+                "format": "number",
+                "pattern": "^\\d{11}|\\d{14}$"
+              },
+              "nome_sacado": {
+                "type": "string",
+                "description": "Nome do sacado do título.",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "tipo_pessoa_avalista": {
+                "type": "string",
+                "description": "Tipo de pessoa do avalista do título. F - Pessoa física, J - Pessoa Jurídica."
+              },
+              "cpf_cnpj_avalista": {
+                "type": "string",
+                "description": "CPF ou CNPJ do avalista do título. Sempre 14 dígitos, se for Pessoa Física / CPF, retornará com 3 zeros à esquerda.",
+                "format": "number",
+                "pattern": "^\\d{14}$"
+              },
+              "nome_avalista": {
+                "type": "string",
+                "description": "Nome do avalista do título.",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "criptograma": {
+                "type": "string",
+                "description": "Criptograma de autenticação para geração de recibo.",
+                "minLength": 1,
+                "maxLength": 36
+              },
+              "tipo_pessoa_pagador_final": {
+                "type": "string",
+                "enum": [
+                  "F"
+                ],
+                "description": "Tipo de pessoa do pagador final. Por enquanto, está sendo aceito apenas o valor \"F\", para pessoa física."
+              },
+              "cpf_cnpj_pagador_final": {
+                "type": "string",
+                "description": "CPF ou CNPJ do pagador final. Por enquanto, apenas habilitada consulta para pessoa física, então informar apenas CPF, completando com 3 zeros à esquerda.",
+                "format": "number",
+                "pattern": "^\\d{11}|\\d{14}$"
+              },
+              "nome_pagador_final": {
+                "type": "string",
+                "description": "Nome do Pagador Final",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "cpf_cnpj_agregador": {
+                "type": "string",
+                "description": "CPF ou CNPJ do Parceiro.",
+                "format": "number"
+              }
+            },
+            "required": [
+              "cpf_cnpj_cedente",
+              "nome_cedente",
+              "tipo_pessoa_cedente",
+              "nome_fantasia_cedente",
+              "data_vencimento",
+              "valor_desconto",
+              "valor_multa",
+              "valor_abatimento",
+              "valor_juros",
+              "tipo_pessoa_sacado",
+              "cpf_cnpj_sacado",
+              "nome_sacado",
+              "criptograma",
+              "tipo_pessoa_pagador_final",
+              "cpf_cnpj_pagador_final",
+              "nome_pagador_final",
+              "cpf_cnpj_agregador"
+            ]
+          },
+          "mensagem": {
+            "type": "string",
+            "description": "Mensagem descritiva contendo o OK da solicitação e/ou indicação de alerta para conferência de alguma situação específica."
+          }
+        },
+        "required": [
+          "numero_banrisul",
+          "numero_autenticacao",
+          "numero_origem",
+          "agencia_origem",
+          "data_pagamento",
+          "id_rastreabilidade",
+          "cod_forma_pagamento",
+          "valor_movimento",
+          "situacao_movimento",
+          "cpf_cnpj_debito",
+          "titulo_barra",
+          "mensagem"
+        ]
+      },
+      "OK201SolicitaPagamentoTitulo": {
+        "type": "object",
+        "properties": {
+          "id_requisicao": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "retorno": {
+            "$ref": "#/components/schemas/RetornoSolicitaPagamentoTitulo"
+          }
+        }
+      },
+      "OK200ConfirmaPagamentoTitulo": {
+        "type": "object",
+        "properties": {
+          "id_requisicao": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "retorno": {
+            "$ref": "#/components/schemas/RetornoConfirmaPagamentoTitulo"
+          }
+        },
+        "required": [
+          "id_requisicao",
+          "retorno"
+        ]
+      },
+      "RetornoConfirmaPagamentoTitulo": {
+        "type": "object",
+        "properties": {
+          "numero_banrisul": {
+            "type": "string",
+            "description": "Número do documento atribuído pelo Banrisul.",
+            "format": "number",
+            "pattern": "^\\d{1,11}$"
+          },
+          "data_pagamento": {
+            "type": "string",
+            "description": "Data efetiva de pagamento do título. Formato: DD/MM/YYYY."
+          },
+          "id_rastreabilidade": {
+            "type": "string",
+            "description": "Identificador de rastreabilidade da transação junto ao Banrisul. Deve ser enviado na confirmação.",
+            "maxLength": 16
+          },
+          "agencia_origem": {
+            "type": "string",
+            "description": "Agência de Pagamento Banrisul de Referência do Parceiro.",
+            "format": "number"
+          },
+          "situacao_movimento": {
+            "type": "string",
+            "description": "Situação do documento (Pendente, Cancelado ou Pago)."
+          },
+          "valor_movimento": {
+            "type": "number",
+            "description": "Valor do título a ser pago.",
+            "format": "float"
+          },
+          "titulo_barra": {
+            "type": "object",
+            "required": [
+              "valor_desconto",
+              "valor_multa",
+              "valor_abatimento",
+              "valor_juros",
+              "cpf_cnpj_agregador"
+            ],
+            "properties": {
+              "valor_desconto": {
+                "type": "number",
+                "description": "Valor de desconto.",
+                "format": "float"
+              },
+              "valor_multa": {
+                "type": "number",
+                "description": "Valor de multa.",
+                "format": "float"
+              },
+              "valor_abatimento": {
+                "type": "number",
+                "description": "Valor de abatimento.",
+                "format": "float"
+              },
+              "valor_juros": {
+                "type": "number",
+                "description": "Valor de juros.",
+                "format": "float"
+              },
+              "cpf_cnpj_agregador": {
+                "type": "string",
+                "description": "CPF ou CNPJ do Parceiro.",
+                "format": "number",
+                "pattern": "^\\d{11}|\\d{14}$"
+              }
+            }
+          },
+          "mensagem": {
+            "type": "string",
+            "description": "Mensagem de retorno de OK para a confirmação de pagamento."
+          }
+        },
+        "required": [
+          "numero_banrisul",
+          "data_pagamento",
+          "id_rastreabilidade",
+          "agencia_origem",
+          "situacao_movimento",
+          "valor_movimento",
+          "titulo_barra",
+          "mensagem"
+        ]
+      },
+      "OK201SolicitaPagamentoArrecadacao": {
+        "type": "object",
+        "properties": {
+          "id_requisicao": {
+            "type": "integer",
+            "description": "ID único da requisição.",
+            "format": "int64",
+            "example": 12345
+          },
+          "retorno": {
+            "$ref": "#/components/schemas/RetornoSolicitaPagamentoArrecadacao"
+          }
+        },
+        "required": [
+          "id_requisicao",
+          "retorno"
+        ]
+      },
+      "RetornoSolicitaPagamentoArrecadacao": {
+        "type": "object",
+        "properties": {
+          "numero_banrisul": {
+            "type": "string",
+            "description": "Número do documento atribuído pelo Banrisul.",
+            "format": "number",
+            "pattern": "^\\d{1,11}$",
+            "minLength": 1,
+            "maxLength": 11
+          },
+          "numero_autenticacao": {
+            "type": "string",
+            "description": "Número de autenticação para geração de recibo.",
+            "format": "number"
+          },
+          "numero_origem": {
+            "type": "string",
+            "description": "Número de identificação da empresa parceira, para controle do título a ser pago. Pode conter até 14 dígitos numéricos.",
+            "format": "number",
+            "pattern": "^[0-9]{1,14}$",
+            "minLength": 1,
+            "maxLength": 14
+          },
+          "agencia_origem": {
+            "type": "string",
+            "description": "Agência de Pagamento Banrisul de Referência do Parceiro.",
+            "format": "number"
+          },
+          "data_pagamento": {
+            "type": "string",
+            "description": "Data efetiva de pagamento do título. Formato: DD/MM/YYYY."
+          },
+          "id_rastreabilidade": {
+            "type": "string",
+            "description": "Identificador de rastreabilidade da transação junto ao Banrisul. Deve ser enviado na confirmação.",
+            "maxLength": 16
+          },
+          "cod_forma_pagamento": {
+            "type": "string",
+            "enum": [
+              "19",
+              "43"
+            ],
+            "description": "Forma de pagamento. Valores do enumerador:\n43 - Cartão de Crédito\n19 - Demais formas de pagamento"
+          },
+          "valor_movimento": {
+            "type": "number",
+            "description": "Valor do movimento.",
+            "format": "float"
+          },
+          "cpf_cnpj_debito": {
+            "type": "string",
+            "description": "CPF ou CNPJ de débito do pagador.",
+            "format": "number",
+            "pattern": "^\\d{11}|\\d{14}$"
+          },
+          "nome_debito": {
+            "type": "string",
+            "description": "Nome do pagador."
+          },
+          "situacao_movimento": {
+            "type": "string",
+            "description": "Situação do documento (Pendente, Cancelado ou Pago)."
+          },
+          "arrecadacao": {
+            "type": "object",
+            "properties": {
+              "codigo_documento_arrecadacao": {
+                "type": "string",
+                "description": "Código do documento de arrecadação.",
+                "format": "int32",
+                "example": "20"
+              },
+              "nome_convenio": {
+                "type": "string",
+                "description": "Nome do convênio favorecido/emissor da arrecadação.",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "codigo_uf": {
+                "type": "string",
+                "enum": [
+                  "AC",
+                  "AL",
+                  "AP",
+                  "AM",
+                  "BA",
+                  "CE",
+                  "DF",
+                  "ES",
+                  "GO",
+                  "MA",
+                  "MT",
+                  "MS",
+                  "MG",
+                  "PA",
+                  "PB",
+                  "PR",
+                  "PE",
+                  "PI",
+                  "RJ",
+                  "RN",
+                  "RS",
+                  "RO",
+                  "RR",
+                  "SC",
+                  "SP",
+                  "SE",
+                  "TO"
+                ],
+                "description": "Sigla Unidade Federativa (estado do Brasil).",
+                "example": "RS"
+              },
+              "codigo_competencia": {
+                "type": "string",
+                "description": "Código da Competência.",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "criptograma": {
+                "type": "string",
+                "description": "Criptograma de autenticação para geração de recibo.",
+                "minLength": 1,
+                "maxLength": 36
+              },
+              "codigo_barra": {
+                "type": "string",
+                "description": "Código de Barras da arrecadação a ser paga."
+              },
+              "data_vencimento": {
+                "type": "string",
+                "description": "Data de vencimento do título a ser pago. Formato esperado: DD/MM/YYYY."
+              },
+              "cpf_cnpj_agregador": {
+                "type": "string",
+                "description": "CPF ou CNPJ da empresa parceira.",
+                "format": "number",
+                "pattern": "^\\d{11}|\\d{14}$"
+              },
+              "codigo_tpa": {
+                "type": "string",
+                "description": "Código TPA (apresentado em alguns tipos de arrecadação).",
+                "format": "int32",
+                "example": "2"
+              },
+              "identificador": {
+                "type": "string",
+                "description": "Identificador. Apenas para documentos FGTS Barras. Desconsiderado para os demais."
+              },
+              "nome_contribuinte": {
+                "type": "string",
+                "description": "Nome do Contribuinte. Apenas para documentos GA Barras e Depósito Judicial. Desconsiderado para os demais."
+              }
+            },
+            "required": [
+              "codigo_documento_arrecadacao",
+              "nome_convenio",
+              "codigo_uf",
+              "codigo_competencia",
+              "criptograma",
+              "codigo_barra",
+              "data_vencimento",
+              "cpf_cnpj_agregador"
+            ]
+          },
+          "mensagem": {
+            "type": "string",
+            "description": "Mensagem descritiva contendo o OK da solicitação e/ou indicação de alerta para conferência de alguma situação específica."
+          }
+        },
+        "required": [
+          "numero_banrisul",
+          "numero_autenticacao",
+          "numero_origem",
+          "agencia_origem",
+          "data_pagamento",
+          "id_rastreabilidade",
+          "cod_forma_pagamento",
+          "valor_movimento",
+          "cpf_cnpj_debito",
+          "nome_debito",
+          "situacao_movimento",
+          "arrecadacao",
+          "mensagem"
+        ]
+      },
+      "OK200ConfirmaPagamentoArrecadacao": {
+        "type": "object",
+        "properties": {
+          "id_requisicao": {
+            "type": "integer",
+            "description": "ID único da requisição.",
+            "format": "int64",
+            "example": 12345
+          },
+          "retorno": {
+            "$ref": "#/components/schemas/RetornoConfirmaPagamentoArrecadacao"
+          }
+        },
+        "required": [
+          "id_requisicao"
+        ]
+      },
+      "RetornoConfirmaPagamentoArrecadacao": {
+        "type": "object",
+        "properties": {
+          "numero_banrisul": {
+            "type": "string",
+            "description": "Número do documento atribuído pelo Banrisul.",
+            "format": "number",
+            "pattern": "^\\d{1,11}$"
+          },
+          "id_rastreabilidade": {
+            "type": "string",
+            "description": "Identificador de rastreabilidade da transação junto ao Banrisul. Deve ser enviado na confirmação.",
+            "maxLength": 16
+          },
+          "agencia_origem": {
+            "type": "string",
+            "description": "Agência de Pagamento Banrisul de Referência do Parceiro."
+          },
+          "data_pagamento": {
+            "type": "string",
+            "description": "Data efetiva de pagamento do título. Formato: DD/MM/YYYY."
+          },
+          "situacao_movimento": {
+            "type": "string",
+            "description": "Situação do documento (Pendente, Cancelado ou Pago)."
+          },
+          "valor_movimento": {
+            "type": "number",
+            "description": "Valor do documento a ser pago.",
+            "format": "float"
+          },
+          "arrecadacao": {
+            "type": "object",
+            "required": [
+              "codigo_barra",
+              "cpf_cnpj_agregador"
+            ],
+            "properties": {
+              "codigo_barra": {
+                "type": "string",
+                "description": "Código de Barras cujo pagamento foi solicitado."
+              },
+              "cpf_cnpj_agregador": {
+                "type": "string",
+                "description": "CPF ou CNPJ da empresa parceira.",
+                "format": "number",
+                "pattern": "^\\d{11}|\\d{14}$"
+              }
+            }
+          },
+          "mensagem": {
+            "type": "string",
+            "description": "Mensagem de retorno de OK para a confirmação de pagamento."
+          }
+        },
+        "required": [
+          "numero_banrisul",
+          "id_rastreabilidade",
+          "agencia_origem",
+          "data_pagamento",
+          "situacao_movimento",
+          "valor_movimento",
+          "arrecadacao",
+          "mensagem"
+        ]
+      },
+      "OK200ConsultaStatus": {
+        "type": "object",
+        "properties": {
+          "id_requisicao": {
+            "type": "integer",
+            "description": "ID único da requisição.",
+            "format": "int64",
+            "example": 12345
+          },
+          "retorno": {
+            "$ref": "#/components/schemas/RetornoConsultaStatus"
+          }
+        },
+        "required": [
+          "id_requisicao",
+          "retorno"
+        ]
+      },
+      "RetornoConsultaStatus": {
+        "type": "object",
+        "properties": {
+          "numero_banrisul": {
+            "type": "string",
+            "description": "Número do documento atribuído pelo Banrisul.",
+            "format": "number"
+          },
+          "numero_origem": {
+            "type": "string",
+            "description": "Número de identificação da empresa parceira, para controle do título a ser pago. Pode conter até 14 dígitos numéricos.",
+            "format": "number"
+          },
+          "agencia_origem": {
+            "type": "string",
+            "description": "Agência de Pagamento Banrisul de Referência do Parceiro.",
+            "format": "number"
+          },
+          "data_pagamento": {
+            "type": "string",
+            "description": "Data efetiva de pagamento do título. Formato: DD/MM/YYYY."
+          },
+          "valor_movimento": {
+            "type": "number",
+            "description": "Valor do movimento.",
+            "format": "float"
+          },
+          "situacao_movimento": {
+            "type": "string",
+            "enum": [
+              "PAGO",
+              "PENDENTE",
+              "CANCELADO"
+            ],
+            "description": "Situação do pagamento, podendo ser: PAGO, PENDENTE ou CANCELADO"
+          },
+          "mensagem": {
+            "type": "string",
+            "description": "Mensagem de OK para o retorno de consulta de status"
+          }
+        },
+        "required": [
+          "agencia_origem",
+          "data_pagamento",
+          "valor_movimento",
+          "situacao_movimento",
+          "mensagem"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerToken": []
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "Pagamentos",
+      "tags": [
+        "Títulos",
+        "Arrecadações",
+        "Geral"
+      ]
+    }
+  ]
+}

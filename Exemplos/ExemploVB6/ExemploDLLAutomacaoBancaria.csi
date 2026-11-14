@@ -1,0 +1,17 @@
+[History]
+1=#P0#=mb	#P1#=cmdCresol_Click	#P2#=ExemploDLLAutomacaoBancaria/Form1/cmdCresol_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20261104170253	#P7#=0	#P8#=17	.
+2=#P0#=mb	#P1#=btnBB_Click	#P2#=ExemploDLLAutomacaoBancaria/Form1/btnBB_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20260902200037	#P7#=0	#P8#=17	.
+3=#P0#=mb	#P1#=cmdSantander_Click	#P2#=ExemploDLLAutomacaoBancaria/Form1/cmdSantander_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20261104170131	#P7#=0	#P8#=1	.
+4=#P0#=mb	#P1#=BoletosImprimir_F9	#P2#=ExemploDLLAutomacaoBancaria/modAutomacaoBancaria/BoletosImprimir_F9	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20260826105455	#P7#=0	#P8#=185	.
+5=#P0#=mb	#P1#=BoletoConsultaAPI	#P2#=ExemploDLLAutomacaoBancaria/modAutomacaoBancaria/BoletoConsultaAPI	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20260826105436	#P7#=0	#P8#=9	.
+6=#P0#=mb	#P1#=GerarRemessa_F9	#P2#=ExemploDLLAutomacaoBancaria/modAutomacaoBancaria/GerarRemessa_F9	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20260826105417	#P7#=0	#P8#=20	.
+7=#P0#=mb	#P1#=BoletoRegistraAPI	#P2#=ExemploDLLAutomacaoBancaria/modAutomacaoBancaria/BoletoRegistraAPI	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20260826105342	#P7#=0	#P8#=12	.
+8=#P0#=mb	#P1#=btnEmitirBoleto_Click	#P2#=ExemploDLLAutomacaoBancaria/Form1/btnEmitirBoleto_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20260826105041	#P7#=0	#P8#=14	.
+9=#P0#=mb	#P1#=btnConsultarBoleto_Click	#P2#=ExemploDLLAutomacaoBancaria/Form1/btnConsultarBoleto_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20260825200704	#P7#=0	#P8#=4	.
+10=#P0#=mb	#P1#=cmdCredisis_Click	#P2#=ExemploDLLAutomacaoBancaria/Form1/cmdCredisis_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20260825192740	#P7#=0	#P8#=10	.
+11=#P0#=mb	#P1#=btnExtrato_Click	#P2#=ExemploDLLAutomacaoBancaria/Form1/btnExtrato_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20260825182921	#P7#=0	#P8#=7	.
+12=#P0#=mb	#P1#=cmdBradesco_Click	#P2#=ExemploDLLAutomacaoBancaria/Form1/cmdBradesco_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20260822213254	#P7#=0	#P8#=24	.
+13=#P0#=mb	#P1#=btnSicoob_Click	#P2#=ExemploDLLAutomacaoBancaria/Form1/btnSicoob_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20260822213241	#P7#=0	#P8#=-1	.
+14=#P0#=mb	#P1#=btnSaldo_Click	#P2#=ExemploDLLAutomacaoBancaria/Form1/btnSaldo_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20260817005459	#P7#=0	#P8#=1	.
+15=#P0#=mb	#P1#=Form_Load	#P2#=ExemploDLLAutomacaoBancaria/Form1/Form_Load	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20260817003634	#P7#=0	#P8#=2	.
+16=#P0#=mb	#P1#=btnSicredi_Click	#P2#=ExemploDLLAutomacaoBancaria/Form1/btnSicredi_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20260817003428	#P7#=0	#P8#=17	.

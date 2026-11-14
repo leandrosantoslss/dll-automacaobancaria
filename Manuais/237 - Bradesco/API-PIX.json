@@ -1,0 +1,5191 @@
+{
+	"info": {
+		"_postman_id": "5ec918c5-83ec-4e42-9eea-f5d4a851f4ba",
+		"name": "Pix - geração de QR Code",
+		"description": "Coleção com chamadas para todos os serviços da api pix\n\n### Antes de qualquer request realizar chamada do gseg-srv-login.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SANDBOX",
+			"item": [
+				{
+					"name": "Token",
+					"item": [
+						{
+							"name": "Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody); \r",
+											"postman.setGlobalVariable(\"access_token_sandbox\", jsonData.access_token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "f0ee00a3c6086fde9072d03fe06f4365=d818a89f21390c375e9b9c8b3515b782"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{ClientID_SDX}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{ClientSecret_SDX}}",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/auth/server/oauth/token",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"auth",
+										"server",
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Cobrança com Vencimento",
+					"item": [
+						{
+							"name": "Criar Cobrança com Vencimento EMV QR CODE- sucesso com EMV",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"calendario\": {\r\n        \"dataDeVencimento\": \"2024-12-30\",\r\n        \"validadeAposVencimento\": 30\r\n      },\r\n      \"devedor\": {\r\n        \"logradouro\": \"Alameda Souza, Numero 80, Bairro Braz\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"cep\": \"54310750\",\r\n        \"cnpj\": \"68542653101838\",\r\n        \"nome\": \"Joao Souza\"\r\n      },\r\n      \"valor\": {\r\n        \"original\": \"5555.00\",\r\n        \"abatimento\": {\r\n          \"modalidade\": \"1\",\r\n          \"valorPerc\": \"0.50\"\r\n        }\r\n      },\r\n      \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n      \"solicitacaoPagador\": \"Informar matri­cula\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv-emv/TESTEBRADESCOSANDBOX000000000000001",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv-emv",
+										"TESTEBRADESCOSANDBOX000000000000001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança com Vencimento EMV QR CODE - TXID já utilizado",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"calendario\": {\r\n        \"dataDeVencimento\": \"2024-12-30\",\r\n        \"validadeAposVencimento\": 30\r\n      },\r\n      \"devedor\": {\r\n        \"logradouro\": \"Alameda Souza, Numero 80, Bairro Braz\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"cep\": \"54310750\",\r\n        \"cnpj\": \"68542653101838\",\r\n        \"nome\": \"Joao Souza\"\r\n      },\r\n      \"valor\": {\r\n        \"original\": \"5555.00\",\r\n        \"abatimento\": {\r\n          \"modalidade\": \"1\",\r\n          \"valorPerc\": \"0.50\"\r\n        }\r\n      },\r\n      \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n      \"solicitacaoPagador\": \"Informar matri­cula\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv-emv/MarcosGestaoAPIS10000000000001099",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv-emv",
+										"MarcosGestaoAPIS10000000000001099"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança com Vencimento EMV QR CODE - Chave não localizada no DICT",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"calendario\": {\r\n        \"dataDeVencimento\": \"2024-12-30\",\r\n        \"validadeAposVencimento\": 30\r\n      },\r\n      \"devedor\": {\r\n        \"logradouro\": \"Alameda Souza, Numero 80, Bairro Braz\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"cep\": \"54310750\",\r\n        \"cnpj\": \"68542653101838\",\r\n        \"nome\": \"Joao Souza\"\r\n      },\r\n      \"valor\": {\r\n        \"original\": \"5555.00\",\r\n        \"abatimento\": {\r\n          \"modalidade\": \"1\",\r\n          \"valorPerc\": \"0.50\"\r\n        }\r\n      },\r\n      \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n      \"solicitacaoPagador\": \"Informar matri­cula\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv-emv/TESTEBRADESCOSANDBOX000000000000111",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv-emv",
+										"TESTEBRADESCOSANDBOX000000000000111"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança com Vencimento EMV QR CODE -  CPF/CNPJ Devedor sem preenchimento",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"dataDeVencimento\": \"2024-12-21\",\r\n        \"validadeAposVencimento\": 0\r\n    },\r\n    \"devedor\": {\r\n        \"logradouro\": \"Alameda Souza, Numero 80, Bairro Braz\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"cep\": \"70011750\",\r\n        \"cpf\": \"\",\r\n        \"nome\": \"Francisco da Silva\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"123.45\"\r\n    },\r\n    \"chave\": \"5fa54e2d-d1aa-4657-a026-1555f4cc2693\",\r\n    \"solicitacaoPagador\": \"Cobrança dos serviços prestados.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv-emv/TESTEBRADESCOSANDBOX000000000000112",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv-emv",
+										"TESTEBRADESCOSANDBOX000000000000112"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança com Vencimento EMV QR CODE -  Erro na data de vencimento anterior a data de criação",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"dataDeVencimento\": \"2024-11-21\",\r\n        \"validadeAposVencimento\": 0\r\n    },\r\n    \"devedor\": {\r\n        \"logradouro\": \"Alameda Souza, Numero 80, Bairro Braz\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"cep\": \"70011750\",\r\n        \"cpf\": \"12345678909\",\r\n        \"nome\": \"Francisco da Silva\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"123.45\"\r\n    },\r\n    \"chave\": \"5fa54e2d-d1aa-4657-a026-1555f4cc2693\",\r\n    \"solicitacaoPagador\": \"Cobrança dos serviços prestados.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv-emv/TESTEBRADESCOSANDBOX000000000000113",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv-emv",
+										"TESTEBRADESCOSANDBOX000000000000113"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Cobrança com Vencimento Parametrizado",
+					"item": [
+						{
+							"name": "Consultar listas de cobrança com vencimento - sucesso",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv?inicio=2023-07-17T10:00:00.000Z&fim=2023-07-20T14:15:00.000Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv"
+									],
+									"query": [
+										{
+											"key": "inicio",
+											"value": "2023-07-17T10:00:00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2023-07-20T14:15:00.000Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar listas de cobrança com vencimento - data fim anterior a data inicio",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv?inicio=2023-07-20T10:00:00.000Z&fim=2023-07-17T14:15:00.000Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv"
+									],
+									"query": [
+										{
+											"key": "inicio",
+											"value": "2023-07-20T10:00:00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2023-07-17T14:15:00.000Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar listas de cobrança com vencimento - data fim incorreta",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv?inicio=2023-07-20T00:00:00.000Z&fim=123",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv"
+									],
+									"query": [
+										{
+											"key": "inicio",
+											"value": "2023-07-20T00:00:00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar cobrança com vencimento com TXID - sucesso",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv/TESTEAPIGESTAOBRADESCO00000018",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"TESTEAPIGESTAOBRADESCO00000018"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar cobrança com vencimento com TXID erro 1",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv/TESTEAPIGESTAOBRADESCO0123",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"TESTEAPIGESTAOBRADESCO0123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança com Vencimento - sucesso",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n    \"dataDeVencimento\": \"2024-12-30\",\r\n    \"validadeAposVencimento\": 30\r\n    },\r\n    \"devedor\": {\r\n    \"logradouro\": \"Alameda Souza, Numero 80, Bairro Braz\",\r\n    \"cidade\": \"Recife\",\r\n    \"uf\": \"PE\",\r\n    \"cep\": \"54310750\",\r\n    \"cnpj\": \"68542653101838\",\r\n    \"nome\": \"João Souza\"\r\n    },\r\n    \"valor\": {\r\n    \"original\": \"5555.00\"\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Informar matrícula\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv/TESTEAPIGESTAOBRADESCO00000020",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"TESTEAPIGESTAOBRADESCO00000020"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança com Vencimento - CNPJ devedor sem preenchimento",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"calendario\": {\r\n        \"dataDeVencimento\": \"2024-12-24\",\r\n        \"validadeAposVencimento\": 30\r\n      },\r\n      \"devedor\": {\r\n        \"logradouro\": \"Alameda Souza, Numero 80, Bairro Braz\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"cep\": \"54310750\",\r\n        \"cnpj\": \"\",\r\n        \"nome\": \"João Souza\"\r\n      },\r\n      \"valor\": {\r\n        \"original\": \"500.00\",\r\n        \"abatimento\": {\r\n          \"modalidade\": \"1\",\r\n          \"valorPerc\": \"0.50\"\r\n        }\r\n      },\r\n      \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n      \"solicitacaoPagador\": \"Informar matrícula\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv/123",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança com Vencimento - data de vencimento anterior a gravação",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"calendario\": {\r\n        \"dataDeVencimento\": \"2024-10-23\",\r\n        \"validadeAposVencimento\": 30\r\n      },\r\n      \"devedor\": {\r\n        \"logradouro\": \"Alameda Souza, Numero 80, Bairro Braz\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"cep\": \"54310750\",\r\n        \"cnpj\": \"68542653101838\",\r\n        \"nome\": \"João Souza\"\r\n      },\r\n      \"valor\": {\r\n        \"original\": \"500.00\",\r\n        \"abatimento\": {\r\n          \"modalidade\": \"1\",\r\n          \"valorPerc\": \"0.50\"\r\n        }\r\n      },\r\n      \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n      \"solicitacaoPagador\": \"Informar matrícula\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv/456",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"456"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança com Vencimento - modalidade abatimento não informada",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"dataDeVencimento\": \"23-12-2024\",\r\n        \"validadeAposVencimento\": 30\r\n    },\r\n    \"devedor\": {\r\n        \"logradouro\": \"Alameda Souza, Numero 80, Bairro Braz\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"cep\": \"54310750\",\r\n        \"cnpj\": \"68542653101838\",\r\n        \"nome\": \"João Souza\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"500.00\",\r\n        \"abatimento\": {\r\n            \"modalidade\": \"0\",\r\n            \"valorPerc\": \"0.50\"\r\n        }\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Informar matrícula\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv/789",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"789"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revisar Cobrança com Vencimento - sucesso",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "ak_bmsc=DDB9DA37FE481C21DCEBA051E7776DFF~000000000000000000000000000000~YAAQ0Ql7XCrl/bWTAQAAG1UpwBrG2OuBobFZoGpR35EvH8jqMY9v6FPIUqgfGqX6m+niqOziymaPoiJ4nmPZXe4HU+68Yaqnt9QH2BAa81k4jQg7HbHVPYVMPb79lQ/UNKqPQ9lagDxL6so3mS+tVficSpg2+bsjVRU5kDNuzTS0aVJ8i4ro7BrY6sVlS1ats/8ZqAPPXNSFyunl/hCgGkJvHb2F4d3jPCv74P2ujIxz1MFrs2jnwiKw9XXf/hxBSqFAuG1R370w0RIFu+3egiz5hu4D2AwEJefHTSQQemTcvCbbl7WBTpKCXmSqd6Ro/oBZQWG2aRYQwgZpttZ0f6zH00JTzoybUpE55V+9gj9u6JgJWhIfMIqRoaI=; bm_sv=EA4270876A5ADAFEDAC76BFF46D965A8~YAAQzAl7XK1l/ryTAQAAbxyFwBry++zC+LVnbq4HrqSJmwwdH6f1W/FtWeos9W0O+8cIoUqBTotXNWDjAs4cmMRXwmI5jt8SdcwMbgH455SjyMjaFDoq3dzZ1X1U/IgGe4rVVFdeLom7CyIbo6dpt/wlkfxLJhMRP1MADHsi6lJLf3ESQdw0sDeCSTJrNPc+KrDRWTHqi9uT4t9WMWXDdbRvS/Zv5ereEK7R+e/16vjUJ7UP6pRH/SrZjZoD0iO6NU+8cPgk~1; f0ee00a3c6086fde9072d03fe06f4365=3aa9cb14447b330fd15628fecf58e680"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"valor\": {\n        \"original\": \"15000.00\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv/TESTEAPIGESTAOBRADESCO00000020",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"TESTEAPIGESTAOBRADESCO00000020"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revisar Cobrança com Vencimento - TXID não encontrado",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"valor\": {\r\n        \"original\": \"15.00\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv/9876543",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"9876543"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revisar Cobrança com Vencimento - data de vencimento superior a 6 anos",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "ak_bmsc=DDB9DA37FE481C21DCEBA051E7776DFF~000000000000000000000000000000~YAAQ0Ql7XCrl/bWTAQAAG1UpwBrG2OuBobFZoGpR35EvH8jqMY9v6FPIUqgfGqX6m+niqOziymaPoiJ4nmPZXe4HU+68Yaqnt9QH2BAa81k4jQg7HbHVPYVMPb79lQ/UNKqPQ9lagDxL6so3mS+tVficSpg2+bsjVRU5kDNuzTS0aVJ8i4ro7BrY6sVlS1ats/8ZqAPPXNSFyunl/hCgGkJvHb2F4d3jPCv74P2ujIxz1MFrs2jnwiKw9XXf/hxBSqFAuG1R370w0RIFu+3egiz5hu4D2AwEJefHTSQQemTcvCbbl7WBTpKCXmSqd6Ro/oBZQWG2aRYQwgZpttZ0f6zH00JTzoybUpE55V+9gj9u6JgJWhIfMIqRoaI=; bm_sv=EA4270876A5ADAFEDAC76BFF46D965A8~YAAQzAl7XAWE/ryTAQAAZZKGwBrd/eNnqNgaTo0VhiL/1ytrx6u72JPEeuytiUS5uofShEOWfBQ1H8/ZVcq0nVQPoHtgu8jXIYwy78C252N060aoCAsdT8swKlJIJpEjP/KC+FL1QiYV2vc50zwx1weeOgSXIeOBsAfwU4PkW15+8FxRyRbknOXTApHzBE6Ey7kqG/gPGKl2h+aV9YXP93NXC5/39Fh+xOSIAKmmNiKWqPRjdRWih4do/Bfv80etB4RW+PX6~1; f0ee00a3c6086fde9072d03fe06f4365=accaf590b8908275a5fba875cb45f707"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"calendario\": {\n        \"dataDeVencimento\": \"2049-12-21\",\n        \"validadeAposVencimento\": 0\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cobv/TESTEAPIGESTAOBRADESCO00011111",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"TESTEAPIGESTAOBRADESCO00011111"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PIX Cobrança de Chaves",
+					"item": [
+						{
+							"name": "Consultar Lista de Cobranças Imediatas - sucesso",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/cob/chavepix?chave=f24099b2-5615-463b-9208-701fbd030473&inicio=2023-01-01T00%3A00%3A00.000Z&fim=2024-01-03T12%3A59%3A59.999Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"cob",
+										"chavepix"
+									],
+									"query": [
+										{
+											"key": "chave",
+											"value": "f24099b2-5615-463b-9208-701fbd030473"
+										},
+										{
+											"key": "inicio",
+											"value": "2023-01-01T00%3A00%3A00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2024-01-03T12%3A59%3A59.999Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Lista de Cobranças Imediatas - sem registro de cobrança",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/cob/chavepix?chave=Z24099b2-5615-463b-9208-701fbd030475&inicio=2024-01-01T00:00:00.000Z&fim=2024-12-20T12:59:59.999Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"cob",
+										"chavepix"
+									],
+									"query": [
+										{
+											"key": "chave",
+											"value": "Z24099b2-5615-463b-9208-701fbd030475"
+										},
+										{
+											"key": "inicio",
+											"value": "2024-01-01T00:00:00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2024-12-20T12:59:59.999Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Lista de Cobranças Imediatas - zero registros encontrados",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/cob/chavepix?chave=Z24099b2-5615-463b-9208-701fbd030475&inicio=2024-01-01T00%3A00%3A00.000Z&fim=2024-12-20T12%3A59%3A59.999Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"cob",
+										"chavepix"
+									],
+									"query": [
+										{
+											"key": "chave",
+											"value": "Z24099b2-5615-463b-9208-701fbd030475"
+										},
+										{
+											"key": "inicio",
+											"value": "2024-01-01T00%3A00%3A00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2024-12-20T12%3A59%3A59.999Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Lista de Cobranças Imediatas - campo data fim não pode ser posterior a data de consulta",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/cob/chavepix?chave=a24099b2-5615-463b-9208-701fbd030481&inicio=2024-01-01T00%3A00%3A00.000Z&fim=2025-12-20T12%3A59%3A59.999Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"cob",
+										"chavepix"
+									],
+									"query": [
+										{
+											"key": "chave",
+											"value": "a24099b2-5615-463b-9208-701fbd030481"
+										},
+										{
+											"key": "inicio",
+											"value": "2024-01-01T00%3A00%3A00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2025-12-20T12%3A59%3A59.999Z"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Cobrança EMV",
+					"item": [
+						{
+							"name": "Criar uma cobrança imediata - sucesso",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"1.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob-emv",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob-emv"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar uma cobrança imediata - não encontrado chave no DICT",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"12223.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob-emv",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob-emv"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar uma cobrança imediata - valor não preenchido",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob-emv",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob-emv"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar uma cobrança imediata - modalidade alteração não preenchido",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"12223.00\",\r\n        \"modalidadeAlteracao\": \"\"\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob-emv",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob-emv"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar uma cobrança imediata - expiração superior a 8640000",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"333333600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"12223.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob-emv",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob-emv"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar uma cobrança imediata  EMV e QR CODE- sucesso - AJUSTAR",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"5.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"97f97304-c70e-448f-ae4d-eefc737850d4\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob-emv/TESTESANDBOXPORTAL00000000000000002",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob-emv",
+										"TESTESANDBOXPORTAL00000000000000002"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar uma cobrança imediata EMV e QR CODE- TXID fora de schema",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"123.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob-emv/GESTAOAPITESTEMARCOS00000000000001323",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob-emv",
+										"GESTAOAPITESTEMARCOS00000000000001323"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar uma cobrança imediata EMV e QR CODE- modalidade alteração não preenchido",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"54673.00\",\r\n        \"modalidadeAlteracao\": \"\"\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob-emv/TESTEBRADESCOSANDBOX000000000000001",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob-emv",
+										"TESTEBRADESCOSANDBOX000000000000001"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Cobrança Estática",
+					"item": [
+						{
+							"name": "Criar Cobrança Estática - sucesso precisa ajustar",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\n    \"txid\": \"TesteTiagoCobe240624005891\",\n    \"valor\": \"10.00\",\n    \"solicitacaoPagador\": \"QR Code Estático\",\n    \"nomePersonalizacaoQr\": \"Personalizado\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/cobe",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"cobe"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança Estática - sem informar a chave pix",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"chave\": \"\",\n    \"txid\": \"TesteTiagoCobe240624005891\",\n    \"valor\": \"5.00\",\n    \"solicitacaoPagador\": \"QR Code Estático\",\n    \"nomePersonalizacaoQr\": \"Personalizado\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/cobe",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"cobe"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança Estática - TXID fora de schema superior a 25 caracteres",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\n    \"txid\": \"TesteTiagoCobe240624005891\",\n    \"valor\": \"5.00\",\n    \"solicitacaoPagador\": \"QR Code Estático\",\n    \"nomePersonalizacaoQr\": \"Personalizado\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/cobe",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"cobe"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança Estática - valor informado zerado",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\n    \"txid\": \"Testecobranca00001\",\n    \"valor\": \"0.00\",\n    \"solicitacaoPagador\": \"QR Code Estático\",\n    \"nomePersonalizacaoQr\": \"Personalizado\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/cobe",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"cobe"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança Estática - TXID fora de schema com caracter especial",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\n    \"txid\": \"Testecobrança00001\",\n    \"valor\": \"5.00\",\n    \"solicitacaoPagador\": \"QR Code Estático\",\n    \"nomePersonalizacaoQr\": \"Personalizado\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/cobe",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"cobe"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Cobranças Imediatas",
+					"item": [
+						{
+							"name": "Consultar Lista de Cobranças Imediata - sucesso",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob?inicio=2024-01-01T00%3A00%3A00.100Z&fim=2024-05-31T00%3A00%3A00.100Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob"
+									],
+									"query": [
+										{
+											"key": "cpf",
+											"value": "12958901866",
+											"disabled": true
+										},
+										{
+											"key": "cnpj",
+											"value": "18212775000196",
+											"disabled": true
+										},
+										{
+											"key": "locationPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "CONCLUIDA",
+											"disabled": true
+										},
+										{
+											"key": null,
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "inicio",
+											"value": "2024-01-01T00%3A00%3A00.100Z"
+										},
+										{
+											"key": "fim",
+											"value": "2024-05-31T00%3A00%3A00.100Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Lista de Cobranças Imediata - data inicio e data fim fora de schema",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob?inicio=2023-01-01T00:00:00.100&fim=2023-05-31T23:59:59.100",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob"
+									],
+									"query": [
+										{
+											"key": "cpf",
+											"value": "12958901866",
+											"disabled": true
+										},
+										{
+											"key": "cnpj",
+											"value": "18212775000196",
+											"disabled": true
+										},
+										{
+											"key": "locationPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "CONCLUIDA",
+											"disabled": true
+										},
+										{
+											"key": null,
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "inicio",
+											"value": "2023-01-01T00:00:00.100"
+										},
+										{
+											"key": "fim",
+											"value": "2023-05-31T23:59:59.100"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Lista de Cobranças Imediata - data inicio e data fim não respeitam o schema - ajustar",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob?inicio=2023-01-01T00:00:00.100Z&fim=2023-05-31T23:59:59.100Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob"
+									],
+									"query": [
+										{
+											"key": "cpf",
+											"value": "12958901866",
+											"disabled": true
+										},
+										{
+											"key": "cnpj",
+											"value": "18212775000196",
+											"disabled": true
+										},
+										{
+											"key": "locationPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "CONCLUIDA",
+											"disabled": true
+										},
+										{
+											"key": null,
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "inicio",
+											"value": "2023-01-01T00:00:00.100Z"
+										},
+										{
+											"key": "fim",
+											"value": "2023-05-31T23:59:59.100Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Lista de Cobranças Imediata - fora de schema com / no data fim",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob?inicio=2023-02-01T00:00:00.100Z&fim=2023-01-31T23/59:59.100Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob"
+									],
+									"query": [
+										{
+											"key": "cpf",
+											"value": "12958901866",
+											"disabled": true
+										},
+										{
+											"key": "cnpj",
+											"value": "18212775000196",
+											"disabled": true
+										},
+										{
+											"key": "locationPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "CONCLUIDA",
+											"disabled": true
+										},
+										{
+											"key": null,
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "inicio",
+											"value": "2023-02-01T00:00:00.100Z"
+										},
+										{
+											"key": "fim",
+											"value": "2023-01-31T23/59:59.100Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar cobrança imediata - sucesso",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"1.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar cobrança imediata - não encontrado chave no DICT",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"12223.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar cobrança imediata - valor não preenchido",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar cobrança imediata - modalidade alteração não preenchido",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"12223.00\",\r\n        \"modalidadeAlteracao\": \"\"\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar cobrança imediata - expiração superior a 8640000",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"333333600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"12223.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Cobrança Imediata - sucesso - ajustar",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob/123",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"123"
+									],
+									"query": [
+										{
+											"key": "revisao",
+											"value": "0",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Cobrança Imediata - TXID informado invalido",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob/567",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"567"
+									],
+									"query": [
+										{
+											"key": "revisao",
+											"value": "0",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar cobrança imediata com TXID - sucesso",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"5.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"97f97304-c70e-448f-ae4d-eefc737850d4\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob/TESTESANDBOXPORTAL00000000000000002",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"TESTESANDBOXPORTAL00000000000000002"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar cobrança imediata com TXID - não encontrado chave no DICT",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n             \"calendario\": {\r\n                  \"expiracao\": \"300000\"\r\n             },\r\n             \"devedor\": {\r\n                  \"nome\": \"**João&Benício**\",\r\n                  \"cnpj\": \"78775662000120\"\r\n             },\r\n           \"valor\": {\r\n                  \"original\": \"0.00\",\r\n                  \"modalidadeAlteracao\": 0,\r\n                  \"retirada\": {\r\n                       \"saque\": {\r\n                            \"valor\": \"10.00\",\r\n                            \"modalidadeAlteracao\": 0,\r\n                            \"prestadorDoServicoDeSaque\": \"999999\",\r\n                            \"modalidadeAgente\": \"AGTEC\"\r\n                       }\r\n                  }\r\n        \r\n             },\r\n             \"chave\": \"vcteste@teste.com.br\",\r\n             \"solicitacaoPagador\": \"Pagueoaluguel!\"\r\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob/123",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar cobrança imediata com TXID- expiração superior a 8640000",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"333333600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"12223.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob/567",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"567"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar cobrança imediata com TXID - modalidade alteração fora do schema - AJUSTAR",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"12223.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"b3bdd4e4-7cdc-41c1-bd70-7842d987d79f\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob/789",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"789"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revisar Cobrança Imediata com TXID - Sucesso",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \"valor\": {\r\n        \"original\": \"1.00\",\r\n        \"modalidadeAlteracao\": 0\r\n     }\r\n\r\n    }\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob/GESTAOAPITESTEMARCOS000000000000111",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"GESTAOAPITESTEMARCOS000000000000111"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revisar Cobrança Imediata com TXID - TXID informado não é válido",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"valor\": {\r\n        \"original\": \"2.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob/48fd63b85cab4424b59d0a2b1d35350",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"48fd63b85cab4424b59d0a2b1d35350"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revisar Cobrança Imediata com TXID - expiração maior que 8640000 segundos",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"33333360000\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob/48fd63b85cab4424b59d0a2b1d353503",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"48fd63b85cab4424b59d0a2b1d353503"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revisar Cobrança Imediata com TXID - alteração de valor para zero",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n    \"valor\": {\r\n        \"original\": \"0.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/cob/48fd63b85cab4424b59d0a2b1d353504",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"48fd63b85cab4424b59d0a2b1d353504"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Gerenciamento de Recebidos",
+					"item": [
+						{
+							"name": "Consultar Pix Recebido - sucesso - AJUSTAR",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/pix/123",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix",
+										"123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Pix Recebido - e2eid invalido",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/pix/323IdM410rQu30p4dr40",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix",
+										"323IdM410rQu30p4dr40"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Pix Recebido - PIX não encontrado",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/pix/323Idn0tf0und",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix",
+										"323Idn0tf0und"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Lista de Pix Recebidos - sucesso",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/pix?inicio=2024-10-02T00:00:00.000Z&fim=2024-10-03T10:06:00.000Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix"
+									],
+									"query": [
+										{
+											"key": "txid",
+											"value": "issoEumTxId",
+											"disabled": true
+										},
+										{
+											"key": "txIdPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "devolucaoPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "cpf",
+											"value": "8586758302",
+											"disabled": true
+										},
+										{
+											"key": "cnpj",
+											"value": "18708761000168",
+											"disabled": true
+										},
+										{
+											"key": "paginacao.paginaAtual",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "paginacao.itensPorPagina",
+											"value": "10000",
+											"disabled": true
+										},
+										{
+											"key": "inicio",
+											"value": "2024-10-02T00:00:00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2024-10-03T10:06:00.000Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Lista de Pix Recebidos - data inicio não respeita o schema",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/pix?inicio=2023-01-01-23:59:59.100&fim=2023-02-01T00:00:00.100Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix"
+									],
+									"query": [
+										{
+											"key": "txid",
+											"value": "issoEumTxId",
+											"disabled": true
+										},
+										{
+											"key": "txIdPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "devolucaoPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "cpf",
+											"value": "8586758302",
+											"disabled": true
+										},
+										{
+											"key": "cnpj",
+											"value": "18708761000168",
+											"disabled": true
+										},
+										{
+											"key": "paginacao.paginaAtual",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "paginacao.itensPorPagina",
+											"value": "10000",
+											"disabled": true
+										},
+										{
+											"key": "inicio",
+											"value": "2023-01-01-23:59:59.100"
+										},
+										{
+											"key": "fim",
+											"value": "2023-02-01T00:00:00.100Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Lista de Pix Recebidos - data inicio não pode ser posterior a data de consulta.",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/pix?inicio=2023-05-31T23:59:59.100Z&fim=2023-01-01T00:00:00.100Z",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix"
+									],
+									"query": [
+										{
+											"key": "txid",
+											"value": "issoEumTxId",
+											"disabled": true
+										},
+										{
+											"key": "txIdPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "devolucaoPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "cpf",
+											"value": "8586758302",
+											"disabled": true
+										},
+										{
+											"key": "cnpj",
+											"value": "18708761000168",
+											"disabled": true
+										},
+										{
+											"key": "paginacao.paginaAtual",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "paginacao.itensPorPagina",
+											"value": "10000",
+											"disabled": true
+										},
+										{
+											"key": "inicio",
+											"value": "2023-05-31T23:59:59.100Z"
+										},
+										{
+											"key": "fim",
+											"value": "2023-01-01T00:00:00.100Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Devolução do Pix Recebido - sucesso",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/pix/E60746948202410081143L399584nPdI/devolucao/0001",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix",
+										"E60746948202410081143L399584nPdI",
+										"devolucao",
+										"0001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Devolução do Pix Recebido - conta sem saldo para devolução",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/pix/E0102705820241007155230vPXuxHzWk/devolucao/000608",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix",
+										"E0102705820241007155230vPXuxHzWk",
+										"devolucao",
+										"000608"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Solicitar Devolução do Pix Recebido - sucesso",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"valor\": \"1.00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/pix/E60746948202410081143L399584nPdI/devolucao/0001",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix",
+										"E60746948202410081143L399584nPdI",
+										"devolucao",
+										"0001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Solicitar Devolução do Pix Recebido - e2eid errado",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"valor\": \"1.00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/pix/errorE60746948202406211501L2856R0RSvw/devolucao/000004",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix",
+										"errorE60746948202406211501L2856R0RSvw",
+										"devolucao",
+										"000004"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Solicitar Devolução do Pix Recebido - id de devolução errado",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"valor\": \"1.00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/pix/errorE60746948202406211501L2856R0RSvw/devolucao/00000069999999999999999999999999999999999999999",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix",
+										"errorE60746948202406211501L2856R0RSvw",
+										"devolucao",
+										"00000069999999999999999999999999999999999999999"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Location",
+					"item": [
+						{
+							"name": "Consultar Location do Payload - sucesso",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "ak_bmsc=BC4A9923B5BBF8D24645F3FB6808B3B6~000000000000000000000000000000~YAAQzAl7XCg3ObCTAQAAt/GcsRqAUgyHfKUrFa4ZAg/fy8M5XeDzFlvmo6vuxha49hcgyk0oAi9eULKtLzFXztGs5VakfGxs/inMv/9e98jRkLaFdmVGv418bMoYamDEfuoutdLTIY/dgisK60S1yAVqRvdHV/DX8UlG1Binwmh6b3l1xzQCb7fyTFGeT8epOhCcbfyHKWRDvArwsLpdILQyOm8Uis9Dq9XbEIIQYowJJ60ComLZqYioc4DCxB5x8B+aCvXTrWGPzJJMb4397oPP9cuYAQE52zelKhnWNeJKvp5BpiVgJkz0pwuH3T9XevG95Fz0nVV+NUBq7eUD0OhmQPjv6lBbT7XRKgPcpwhj; bm_sv=485A4AC383C2CC44E0FDD6E471276FE3~YAAQx2AXAnliVayTAQAAQ6ffsRqdEKPHadx3+yBkDqTiUrBsIPK72sgTZcCW0IrHyw3Q4yryZuYD5g7KIX7D23pBL56nB+Ad3OnWh987l84jg0ZiSbDc0sRh8YqeJg3XDOxDzUnPNeKM6tpYO4BMSXC8FLtTurMxYSb5CKd8eJjs06HTRUiVqvvJ5qGcwpJX9QLzimIc11gKxmHzdJLwSWD0VpX/qsYYYajLF7QdMq83ipZHm8HgoXFLYGChDxJSzgWF4zbP~1; f0ee00a3c6086fde9072d03fe06f4365=2f3f8ef650bb01f682a5c258c6c0368c"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc?txIdPresente=true&inicio=2023-01-01T00%3A00%3A00.100Z&fim=2023-05-31T23%3A59%3A59.100Z&tipoCob=cob&paginacao.paginaAtual=0&paginacao.itensPorPagina=100",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc"
+									],
+									"query": [
+										{
+											"key": "txIdPresente",
+											"value": "true"
+										},
+										{
+											"key": "inicio",
+											"value": "2023-01-01T00%3A00%3A00.100Z"
+										},
+										{
+											"key": "fim",
+											"value": "2023-05-31T23%3A59%3A59.100Z"
+										},
+										{
+											"key": "tipoCob",
+											"value": "cob"
+										},
+										{
+											"key": "paginacao.paginaAtual",
+											"value": "0"
+										},
+										{
+											"key": "paginacao.itensPorPagina",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Location do Payload - tipo de cobrança inválida.",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "ak_bmsc=BC4A9923B5BBF8D24645F3FB6808B3B6~000000000000000000000000000000~YAAQzAl7XCg3ObCTAQAAt/GcsRqAUgyHfKUrFa4ZAg/fy8M5XeDzFlvmo6vuxha49hcgyk0oAi9eULKtLzFXztGs5VakfGxs/inMv/9e98jRkLaFdmVGv418bMoYamDEfuoutdLTIY/dgisK60S1yAVqRvdHV/DX8UlG1Binwmh6b3l1xzQCb7fyTFGeT8epOhCcbfyHKWRDvArwsLpdILQyOm8Uis9Dq9XbEIIQYowJJ60ComLZqYioc4DCxB5x8B+aCvXTrWGPzJJMb4397oPP9cuYAQE52zelKhnWNeJKvp5BpiVgJkz0pwuH3T9XevG95Fz0nVV+NUBq7eUD0OhmQPjv6lBbT7XRKgPcpwhj; bm_sv=485A4AC383C2CC44E0FDD6E471276FE3~YAAQx2AXAnliVayTAQAAQ6ffsRqdEKPHadx3+yBkDqTiUrBsIPK72sgTZcCW0IrHyw3Q4yryZuYD5g7KIX7D23pBL56nB+Ad3OnWh987l84jg0ZiSbDc0sRh8YqeJg3XDOxDzUnPNeKM6tpYO4BMSXC8FLtTurMxYSb5CKd8eJjs06HTRUiVqvvJ5qGcwpJX9QLzimIc11gKxmHzdJLwSWD0VpX/qsYYYajLF7QdMq83ipZHm8HgoXFLYGChDxJSzgWF4zbP~1; f0ee00a3c6086fde9072d03fe06f4365=2f3f8ef650bb01f682a5c258c6c0368c"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipoCob\": \"tipoCobInvalido\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc?inicio=2024-03-03T00:00:00.000Z&fim=2024-03-06T15:30:00.000Z&txIdPresente=false&tipoCob=cob",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc"
+									],
+									"query": [
+										{
+											"key": "inicio",
+											"value": "2024-03-03T00:00:00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2024-03-06T15:30:00.000Z"
+										},
+										{
+											"key": "txIdPresente",
+											"value": "false"
+										},
+										{
+											"key": "tipoCob",
+											"value": "cob"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Location do Payload - data fim inválida",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "ak_bmsc=BC4A9923B5BBF8D24645F3FB6808B3B6~000000000000000000000000000000~YAAQzAl7XCg3ObCTAQAAt/GcsRqAUgyHfKUrFa4ZAg/fy8M5XeDzFlvmo6vuxha49hcgyk0oAi9eULKtLzFXztGs5VakfGxs/inMv/9e98jRkLaFdmVGv418bMoYamDEfuoutdLTIY/dgisK60S1yAVqRvdHV/DX8UlG1Binwmh6b3l1xzQCb7fyTFGeT8epOhCcbfyHKWRDvArwsLpdILQyOm8Uis9Dq9XbEIIQYowJJ60ComLZqYioc4DCxB5x8B+aCvXTrWGPzJJMb4397oPP9cuYAQE52zelKhnWNeJKvp5BpiVgJkz0pwuH3T9XevG95Fz0nVV+NUBq7eUD0OhmQPjv6lBbT7XRKgPcpwhj; bm_sv=485A4AC383C2CC44E0FDD6E471276FE3~YAAQx2AXAnliVayTAQAAQ6ffsRqdEKPHadx3+yBkDqTiUrBsIPK72sgTZcCW0IrHyw3Q4yryZuYD5g7KIX7D23pBL56nB+Ad3OnWh987l84jg0ZiSbDc0sRh8YqeJg3XDOxDzUnPNeKM6tpYO4BMSXC8FLtTurMxYSb5CKd8eJjs06HTRUiVqvvJ5qGcwpJX9QLzimIc11gKxmHzdJLwSWD0VpX/qsYYYajLF7QdMq83ipZHm8HgoXFLYGChDxJSzgWF4zbP~1; f0ee00a3c6086fde9072d03fe06f4365=2f3f8ef650bb01f682a5c258c6c0368c"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc?txIdPresente=true&inicio=2024-03-03T00:00:00.000Z&fim=123&tipoCob=cob",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc"
+									],
+									"query": [
+										{
+											"key": "txIdPresente",
+											"value": "true"
+										},
+										{
+											"key": "inicio",
+											"value": "2024-03-03T00:00:00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "123"
+										},
+										{
+											"key": "tipoCob",
+											"value": "cob"
+										},
+										{
+											"key": "paginacao.paginaAtual",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "paginacao.itensPorPagina",
+											"value": "100",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Location do Payload - data fim inválida - data fim menor que a data inicio",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "ak_bmsc=BC4A9923B5BBF8D24645F3FB6808B3B6~000000000000000000000000000000~YAAQzAl7XCg3ObCTAQAAt/GcsRqAUgyHfKUrFa4ZAg/fy8M5XeDzFlvmo6vuxha49hcgyk0oAi9eULKtLzFXztGs5VakfGxs/inMv/9e98jRkLaFdmVGv418bMoYamDEfuoutdLTIY/dgisK60S1yAVqRvdHV/DX8UlG1Binwmh6b3l1xzQCb7fyTFGeT8epOhCcbfyHKWRDvArwsLpdILQyOm8Uis9Dq9XbEIIQYowJJ60ComLZqYioc4DCxB5x8B+aCvXTrWGPzJJMb4397oPP9cuYAQE52zelKhnWNeJKvp5BpiVgJkz0pwuH3T9XevG95Fz0nVV+NUBq7eUD0OhmQPjv6lBbT7XRKgPcpwhj; bm_sv=485A4AC383C2CC44E0FDD6E471276FE3~YAAQx2AXAnliVayTAQAAQ6ffsRqdEKPHadx3+yBkDqTiUrBsIPK72sgTZcCW0IrHyw3Q4yryZuYD5g7KIX7D23pBL56nB+Ad3OnWh987l84jg0ZiSbDc0sRh8YqeJg3XDOxDzUnPNeKM6tpYO4BMSXC8FLtTurMxYSb5CKd8eJjs06HTRUiVqvvJ5qGcwpJX9QLzimIc11gKxmHzdJLwSWD0VpX/qsYYYajLF7QdMq83ipZHm8HgoXFLYGChDxJSzgWF4zbP~1; f0ee00a3c6086fde9072d03fe06f4365=2f3f8ef650bb01f682a5c258c6c0368c"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc?inicio=2024-03-03T00:00:00.000Z&fim=2024-03-01T00:00:00.000Z&txIdPresente=true&tipoCob=cob",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc"
+									],
+									"query": [
+										{
+											"key": "inicio",
+											"value": "2024-03-03T00:00:00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2024-03-01T00:00:00.000Z"
+										},
+										{
+											"key": "txIdPresente",
+											"value": "true"
+										},
+										{
+											"key": "tipoCob",
+											"value": "cob"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Location do Payload - sucesso",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipoCob\": \"cob\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Location do Payload - tipo de cobrança inválida",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipoCob\": \"tipoCobInvalido\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Location do Payload - CPF/CPF inválido",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipoCob\": \"operacaoInvalida\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recuperar Location do Payload {ID} - sucesso",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc/90130792",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc",
+										"90130792"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recuperar Location do Payload {ID} - CPF / CNPJ invalido",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc/90130800",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc",
+										"90130800"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recuperar Location do Payload {ID} - ID não encontrado",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc/90130799",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc",
+										"90130799"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Desvincular Location da Cobrança {id}/{txid} - sucesso",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc/90159664/txid",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc",
+										"90159664",
+										"txid"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "31014379/txid",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Desvincular Location da Cobrança {id}/{txid} - operação inválida",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc/90159664a/txid",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc",
+										"90159664a",
+										"txid"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "31014379/txid",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Desvincular Location da Cobrança {id}/{txid} - ID informado não possuí vínculo com um txid",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc/90130800/txid",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc",
+										"90130800",
+										"txid"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "31014379/txid",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Desvincular Location da Cobrança {id}/{txid} - Location não encontrada para o id informado",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/loc/9013079/txid",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc",
+										"9013079",
+										"txid"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "31014379/txid",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Notificações Bacen",
+					"item": [
+						{
+							"name": "Recuperar Informações Acerca do Webhook Pix - sucesso",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/webhook/dd361274-ade5-4369-923b-cc9a75ec754c",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"webhook",
+										"dd361274-ade5-4369-923b-cc9a75ec754c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recuperar Informações Acerca do Webhook Pix - chave pix não encontrada no DICT",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/webhook/124",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"webhook",
+										"124"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configurar o Webhook Pix - sucesso",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"webhookUrl\": \"teste@teste.com.br\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/webhook/dd361274-ade5-4369-923b-cc9a75ec754c",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"webhook",
+										"dd361274-ade5-4369-923b-cc9a75ec754c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configurar o Webhook Pix - chave Pix não encontrada no DICT",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"webhookUrl\": \"teste.com.br\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/webhook/123",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"webhook",
+										"123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configurar o Webhook Pix - Já existe URL cadastrada para a chave Pix informada",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"webhookUrl\": \"testejaexiste.com.br\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/webhook/123",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"webhook",
+										"123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Desvincular Webhook do PIX - Sucesso",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/webhook/dd361274-ade5-4369-923b-cc9a75ec754c",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"webhook",
+										"dd361274-ade5-4369-923b-cc9a75ec754c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Desvincular Webhook do PIX - Chave Pix não encontrada - AJUSTAR",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v2/webhook/123",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"webhook",
+										"123"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PRODUÇÃO",
+			"item": [
+				{
+					"name": "Token",
+					"item": [
+						{
+							"name": "Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody); \r",
+											"postman.setGlobalVariable(\"access_token\", jsonData.access_token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{ClientID_PRD}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{ClientSecret_PRD}}",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/auth/server/oauth/token",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"auth",
+										"server",
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Cobrança com Vencimento",
+					"item": [
+						{
+							"name": "Criar Cobrança com Vencimento",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"calendario\": {\r\n        \"dataDeVencimento\": \"2024-12-30\",\r\n        \"validadeAposVencimento\": 30\r\n      },\r\n      \"devedor\": {\r\n        \"logradouro\": \"Alameda Souza, Numero 80, Bairro Braz\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"cep\": \"54310750\",\r\n        \"cnpj\": \"68542653101838\",\r\n        \"nome\": \"Joao Souza\"\r\n      },\r\n      \"valor\": {\r\n        \"original\": \"5555.00\",\r\n        \"abatimento\": {\r\n          \"modalidade\": \"1\",\r\n          \"valorPerc\": \"0.50\"\r\n        }\r\n      },\r\n      \"chave\": \"{chave PIX}}\",\r\n      \"solicitacaoPagador\": \"Informar matri­cula\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cobv-emv/{TXID}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv-emv",
+										"{TXID}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Cobrança com Vencimento Parametrizado",
+					"item": [
+						{
+							"name": "Consultar listas de cobrança com vencimento",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cobv?inicio=2023-07-17T10:00:00.000Z&fim=2023-07-20T14:15:00.000Z",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv"
+									],
+									"query": [
+										{
+											"key": "inicio",
+											"value": "2023-07-17T10:00:00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2023-07-20T14:15:00.000Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar cobrança com vencimento com TXID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cobv/{TXID}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"{TXID}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Cobrança com Vencimento - sucesso",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n    \"dataDeVencimento\": \"2024-12-30\",\r\n    \"validadeAposVencimento\": 30\r\n    },\r\n    \"devedor\": {\r\n    \"logradouro\": \"Alameda Souza, Numero 80, Bairro Braz\",\r\n    \"cidade\": \"Recife\",\r\n    \"uf\": \"PE\",\r\n    \"cep\": \"54310750\",\r\n    \"cnpj\": \"68542653101838\",\r\n    \"nome\": \"João Souza\"\r\n    },\r\n    \"valor\": {\r\n    \"original\": \"5555.00\"\r\n    },\r\n    \"chave\": \"{chave pix}\",\r\n    \"solicitacaoPagador\": \"Informar matrícula\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cobv/{TXID}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"{TXID}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revisar Cobrança com Vencimento",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "ak_bmsc=DDB9DA37FE481C21DCEBA051E7776DFF~000000000000000000000000000000~YAAQ0Ql7XCrl/bWTAQAAG1UpwBrG2OuBobFZoGpR35EvH8jqMY9v6FPIUqgfGqX6m+niqOziymaPoiJ4nmPZXe4HU+68Yaqnt9QH2BAa81k4jQg7HbHVPYVMPb79lQ/UNKqPQ9lagDxL6so3mS+tVficSpg2+bsjVRU5kDNuzTS0aVJ8i4ro7BrY6sVlS1ats/8ZqAPPXNSFyunl/hCgGkJvHb2F4d3jPCv74P2ujIxz1MFrs2jnwiKw9XXf/hxBSqFAuG1R370w0RIFu+3egiz5hu4D2AwEJefHTSQQemTcvCbbl7WBTpKCXmSqd6Ro/oBZQWG2aRYQwgZpttZ0f6zH00JTzoybUpE55V+9gj9u6JgJWhIfMIqRoaI=; bm_sv=EA4270876A5ADAFEDAC76BFF46D965A8~YAAQzAl7XK1l/ryTAQAAbxyFwBry++zC+LVnbq4HrqSJmwwdH6f1W/FtWeos9W0O+8cIoUqBTotXNWDjAs4cmMRXwmI5jt8SdcwMbgH455SjyMjaFDoq3dzZ1X1U/IgGe4rVVFdeLom7CyIbo6dpt/wlkfxLJhMRP1MADHsi6lJLf3ESQdw0sDeCSTJrNPc+KrDRWTHqi9uT4t9WMWXDdbRvS/Zv5ereEK7R+e/16vjUJ7UP6pRH/SrZjZoD0iO6NU+8cPgk~1; f0ee00a3c6086fde9072d03fe06f4365=3aa9cb14447b330fd15628fecf58e680"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"valor\": {\n        \"original\": \"15000.00\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cobv/{TXID}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cobv",
+										"{TXID}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PIX Cobrança de Chaves",
+					"item": [
+						{
+							"name": "Consultar Lista de Cobranças Imediatas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v1/cob/chavepix?chave={chave pix}&inicio=2023-01-01T00%3A00%3A00.000Z&fim=2024-01-03T12%3A59%3A59.999Z",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"cob",
+										"chavepix"
+									],
+									"query": [
+										{
+											"key": "chave",
+											"value": "{chave pix}"
+										},
+										{
+											"key": "inicio",
+											"value": "2023-01-01T00%3A00%3A00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2024-01-03T12%3A59%3A59.999Z"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Cobrança EMV",
+					"item": [
+						{
+							"name": "Criar uma cobrança imediata",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"1.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"{chave pix}\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cob-emv",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob-emv"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar uma cobrança imediata EMV e QR CODE",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"5.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"{chave pix}}\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cob-emv/{TXID}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob-emv",
+										"{TXID}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Cobrança Estática",
+					"item": [
+						{
+							"name": "Criar Cobrança Estática - sucesso precisa ajustar",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"chave\": \"{chave pix}\",\n    \"txid\": \"{TXID}\",\n    \"valor\": \"10.00\",\n    \"solicitacaoPagador\": \"QR Code Estático\",\n    \"nomePersonalizacaoQr\": \"Personalizado\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v1/cobe",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"cobe"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Cobranças Imediatas",
+					"item": [
+						{
+							"name": "Consultar Lista de Cobranças Imediata",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cob?inicio=2024-01-01T00%3A00%3A00.100Z&fim=2024-05-31T00%3A00%3A00.100Z",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob"
+									],
+									"query": [
+										{
+											"key": "cpf",
+											"value": "12958901866",
+											"disabled": true
+										},
+										{
+											"key": "cnpj",
+											"value": "18212775000196",
+											"disabled": true
+										},
+										{
+											"key": "locationPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "CONCLUIDA",
+											"disabled": true
+										},
+										{
+											"key": null,
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "inicio",
+											"value": "2024-01-01T00%3A00%3A00.100Z"
+										},
+										{
+											"key": "fim",
+											"value": "2024-05-31T00%3A00%3A00.100Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar cobrança imediata",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"1.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"{chave pix}\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cob",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Cobrança Imediata",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cob/{txid}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"{txid}"
+									],
+									"query": [
+										{
+											"key": "revisao",
+											"value": "0",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar cobrança imediata com TXID",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"calendario\": {\r\n        \"expiracao\": \"3600\"\r\n    },\r\n    \"valor\": {\r\n        \"original\": \"5.00\",\r\n        \"modalidadeAlteracao\": 0\r\n    },\r\n    \"chave\": \"{chave pix}\",\r\n    \"solicitacaoPagador\": \"Teste do Revisar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cob/{txid}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"{txid}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revisar Cobrança Imediata com TXID",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \"valor\": {\r\n        \"original\": \"1.00\",\r\n        \"modalidadeAlteracao\": 0\r\n     }\r\n\r\n    }\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/cob/{txid}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"cob",
+										"{txid}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Gerenciamento de Recebidos",
+					"item": [
+						{
+							"name": "Consultar Pix Recebido",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/pix/{e2eid}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix",
+										"{e2eid}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Lista de Pix Recebidos",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/pix?inicio=2024-10-02T00:00:00.000Z&fim=2024-10-03T10:06:00.000Z",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix"
+									],
+									"query": [
+										{
+											"key": "txid",
+											"value": "issoEumTxId",
+											"disabled": true
+										},
+										{
+											"key": "txIdPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "devolucaoPresente",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "cpf",
+											"value": "8586758302",
+											"disabled": true
+										},
+										{
+											"key": "cnpj",
+											"value": "18708761000168",
+											"disabled": true
+										},
+										{
+											"key": "paginacao.paginaAtual",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "paginacao.itensPorPagina",
+											"value": "10000",
+											"disabled": true
+										},
+										{
+											"key": "inicio",
+											"value": "2024-10-02T00:00:00.000Z"
+										},
+										{
+											"key": "fim",
+											"value": "2024-10-03T10:06:00.000Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consultar Devolução do Pix Recebido",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/pix/{e2eid}/devolucao/{id_devolução}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix",
+										"{e2eid}",
+										"devolucao",
+										"{id_devolução}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Solicitar Devolução do Pix Recebido",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"valor\": \"1.00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/pix/{e2eid}/devolucao/{id_devolução}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"pix",
+										"{e2eid}",
+										"devolucao",
+										"{id_devolução}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Location",
+					"item": [
+						{
+							"name": "Consultar Location do Payload",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "ak_bmsc=BC4A9923B5BBF8D24645F3FB6808B3B6~000000000000000000000000000000~YAAQzAl7XCg3ObCTAQAAt/GcsRqAUgyHfKUrFa4ZAg/fy8M5XeDzFlvmo6vuxha49hcgyk0oAi9eULKtLzFXztGs5VakfGxs/inMv/9e98jRkLaFdmVGv418bMoYamDEfuoutdLTIY/dgisK60S1yAVqRvdHV/DX8UlG1Binwmh6b3l1xzQCb7fyTFGeT8epOhCcbfyHKWRDvArwsLpdILQyOm8Uis9Dq9XbEIIQYowJJ60ComLZqYioc4DCxB5x8B+aCvXTrWGPzJJMb4397oPP9cuYAQE52zelKhnWNeJKvp5BpiVgJkz0pwuH3T9XevG95Fz0nVV+NUBq7eUD0OhmQPjv6lBbT7XRKgPcpwhj; bm_sv=485A4AC383C2CC44E0FDD6E471276FE3~YAAQx2AXAnliVayTAQAAQ6ffsRqdEKPHadx3+yBkDqTiUrBsIPK72sgTZcCW0IrHyw3Q4yryZuYD5g7KIX7D23pBL56nB+Ad3OnWh987l84jg0ZiSbDc0sRh8YqeJg3XDOxDzUnPNeKM6tpYO4BMSXC8FLtTurMxYSb5CKd8eJjs06HTRUiVqvvJ5qGcwpJX9QLzimIc11gKxmHzdJLwSWD0VpX/qsYYYajLF7QdMq83ipZHm8HgoXFLYGChDxJSzgWF4zbP~1; f0ee00a3c6086fde9072d03fe06f4365=2f3f8ef650bb01f682a5c258c6c0368c"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/loc?txIdPresente=true&inicio=2023-01-01T00%3A00%3A00.100Z&fim=2023-05-31T23%3A59%3A59.100Z&tipoCob=cob&paginacao.paginaAtual=0&paginacao.itensPorPagina=100",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc"
+									],
+									"query": [
+										{
+											"key": "txIdPresente",
+											"value": "true"
+										},
+										{
+											"key": "inicio",
+											"value": "2023-01-01T00%3A00%3A00.100Z"
+										},
+										{
+											"key": "fim",
+											"value": "2023-05-31T23%3A59%3A59.100Z"
+										},
+										{
+											"key": "tipoCob",
+											"value": "cob"
+										},
+										{
+											"key": "paginacao.paginaAtual",
+											"value": "0"
+										},
+										{
+											"key": "paginacao.itensPorPagina",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Location do Payload",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tipoCob\": \"cob\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/loc",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recuperar Location do Payload {ID}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/loc/{id_location}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc",
+										"{id_location}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Desvincular Location da Cobrança {id}/{txid}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/loc/{id_location}/txid",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"loc",
+										"{id_location}",
+										"txid"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "31014379/txid",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "PIX Notificações Bacen",
+					"item": [
+						{
+							"name": "Recuperar Informações Acerca do Webhook Pix",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/webhook/{chave_pix}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"webhook",
+										"{chave_pix}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configurar o Webhook Pix",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"webhookUrl\": \"teste@teste.com.br\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/webhook/{chave_pix}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"webhook",
+										"{chave_pix}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Desvincular Webhook do PIX",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qrpix.bradesco.com.br/v2/webhook/{chave_pix}",
+									"protocol": "https",
+									"host": [
+										"qrpix",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v2",
+										"webhook",
+										"{chave_pix}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host-pj-tu",
+			"value": "pjl2.pj.cloud.corpd.bradesco.com.br"
+		},
+		{
+			"key": "host-pf-tu",
+			"value": "pfl2.pf.cloud.corpd.bradesco.com.br"
+		},
+		{
+			"key": "host-corp-tu",
+			"value": "corp.corp.cloud.corpd.bradesco.com.br"
+		},
+		{
+			"key": "url-was",
+			"value": "http://192.168.249.91:9036"
+		},
+		{
+			"key": "url-localhost",
+			"value": "localhost:9080"
+		},
+		{
+			"key": "x-stateless-open",
+			"value": "eyJwZXJpZmVyaWNvIjoiTE9DQUwiLCJpZGlvbWEiOjEsImNhbmFsIjo2NiwiZW1wcmVzYSI6MjM3LCJ1dWlkIjoiMDFmOWE1NmYtMjFiOS00M2RiLWJkOTktMTViODhjZjcwZjQyIiwiZGVwZW5kZW5jaWEiOjF9"
+		},
+		{
+			"key": "x-stateless-closed",
+			"value": "eyJmcndrIjp7InRpY2tldCI6IkYwQjc1QUQ2RkMyRjcwMDAiLCJpZHNlc3NhbyI6IjAwMDNDMDc0QjA3ODRGM1gwMzE3MDJGRUNGNDIwRTVFIiwidXN1YXJpbyI6IjAwNjY1MDAwMDAwMDUxMTYwOTAxIiwidGlwb1VzdWFyaW8iOiJUUlVTVCJ9fQ=="
+		},
+		{
+			"key": "url-ocp-pf-tu",
+			"value": ""
+		},
+		{
+			"key": "url-ocp-pj-tu",
+			"value": ""
+		},
+		{
+			"key": "url-pf-tu",
+			"value": "https://192.168.246.214"
+		},
+		{
+			"key": "url-pj-tu",
+			"value": "https://192.168.248.61"
+		},
+		{
+			"key": "x-stateless-open-pix",
+			"value": ""
+		},
+		{
+			"key": "x-stateless-closed-pix",
+			"value": ""
+		}
+	]
+}

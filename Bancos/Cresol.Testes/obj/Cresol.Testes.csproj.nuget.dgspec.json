@@ -1,0 +1,102 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\Bancos\\Cresol.Testes\\Cresol.Testes.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\AutomacaoBancaria.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\AutomacaoBancaria.csproj",
+        "projectName": "AutomacaoBancaria",
+        "projectPath": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\AutomacaoBancaria.csproj",
+        "UsingMicrosoftNETSdk": false,
+        "frameworks": {
+          "net472": {
+            "framework": "net472",
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "framework": "net472"
+        }
+      }
+    },
+    "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\Bancos\\Cresol.Testes\\Cresol.Testes.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\Bancos\\Cresol.Testes\\Cresol.Testes.csproj",
+        "projectName": "Cresol.Testes",
+        "projectPath": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\Bancos\\Cresol.Testes\\Cresol.Testes.csproj",
+        "packagesPath": "C:\\Users\\leand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\Bancos\\Cresol.Testes\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\leand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Fast Reports\\.NET\\2025.2.13\\FastCube .NET Trial\\Nuget": {},
+          "C:\\Program Files (x86)\\Fast Reports\\.NET\\2025.2.13\\FastReport .NET WPF Pack Trial\\Nugets": {},
+          "C:\\Program Files (x86)\\Fast Reports\\.NET\\2025.2.13\\FastReport .NET WinForms Pack Trial\\Nugets": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "framework": "net472",
+            "targetAlias": "net472",
+            "projectReferences": {
+              "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\AutomacaoBancaria.csproj": {
+                "projectPath": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\AutomacaoBancaria.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "net472": {
+          "framework": "net472",
+          "targetAlias": "net472",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.11.1, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.9.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0-pre.35, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

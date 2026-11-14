@@ -1,0 +1,74 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AA78FF98-D6E0-4BD5-AEBB-5875E660A779}|AutomacaoBancaria.csproj|C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\cutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA78FF98-D6E0-4BD5-AEBB-5875E660A779}|AutomacaoBancaria.csproj|solutionrelative:cutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA78FF98-D6E0-4BD5-AEBB-5875E660A779}|AutomacaoBancaria.csproj|c:\\users\\leand\\onedrive\\ekklesiasoft\\projetos\\dll\\automacaobancaria\\bancos\\sicoob\\pagador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA78FF98-D6E0-4BD5-AEBB-5875E660A779}|AutomacaoBancaria.csproj|solutionrelative:bancos\\sicoob\\pagador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA78FF98-D6E0-4BD5-AEBB-5875E660A779}|AutomacaoBancaria.csproj|C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\automacaobancariaclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA78FF98-D6E0-4BD5-AEBB-5875E660A779}|AutomacaoBancaria.csproj|solutionrelative:automacaobancariaclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Pagador.cs",
+              "DocumentMoniker": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\Bancos\\Sicoob\\Pagador.cs",
+              "RelativeDocumentMoniker": "Bancos\\Sicoob\\Pagador.cs",
+              "ToolTip": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\Bancos\\Sicoob\\Pagador.cs",
+              "RelativeToolTip": "Bancos\\Sicoob\\Pagador.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T11:59:02.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "cUtil.cs",
+              "DocumentMoniker": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\cUtil.cs",
+              "RelativeDocumentMoniker": "cUtil.cs",
+              "ToolTip": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\cUtil.cs",
+              "RelativeToolTip": "cUtil.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAgwBQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T10:46:48.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AutomacaoBancariaClient.cs",
+              "DocumentMoniker": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\AutomacaoBancariaClient.cs",
+              "RelativeDocumentMoniker": "AutomacaoBancariaClient.cs",
+              "ToolTip": "C:\\Users\\leand\\OneDrive\\EkklesiaSoft\\Projetos\\DLL\\AutomacaoBancaria\\AutomacaoBancariaClient.cs",
+              "RelativeToolTip": "AutomacaoBancariaClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T10:46:44.345Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

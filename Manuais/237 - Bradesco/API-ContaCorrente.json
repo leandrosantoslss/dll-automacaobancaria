@@ -1,0 +1,1319 @@
+{
+	"info": {
+		"_postman_id": "1a30fd64-aff0-4337-b0ab-541aa88737a9",
+		"name": "Saldo e extrato | cliente",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SANDBOX",
+			"item": [
+				{
+					"name": "Consulta de Extratos de Contas",
+					"item": [
+						{
+							"name": "Consulta extrato contas PJ - Agencia e Conta não correspondem ao cliente",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-extratos-contas/extratos?agencia=3995&conta=88888&dataInicio=01012023&dataFim=05012025&tipo=cc",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"fornecimento-extratos-contas",
+										"extratos"
+									],
+									"query": [
+										{
+											"key": "agencia",
+											"value": "3995"
+										},
+										{
+											"key": "conta",
+											"value": "88888"
+										},
+										{
+											"key": "dataInicio",
+											"value": "01012023"
+										},
+										{
+											"key": "dataFim",
+											"value": "05012025"
+										},
+										{
+											"key": "tipo",
+											"value": "cc"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Agencia e Conta não correspondem ao cliente",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJQUzI1NiJ9.ew0KICAgICJ2ZXIiOiAiMi4wIiwNCiAgICAic3ViIjogIjE1NDI5MTJjLTAwZjMtNGU4Ni05Y2JjLWZlZThjZjU2MDkwMiIsDQogICAgImlzcyI6ICJodHRwczovL2FwaS1wbGF0ZnUtc2JveC5hcHBzLmFyb2hvcGxhdGZ1cGkuYXJvY29ycHAuYnJhZGVzY28uY29tLmJyL2F1dGgvc2VydmVyLW10bHMvdjEvdG9rZW4iLA0KICAgICJhdWQiOiAiaHR0cHM6Ly9hcGktcGxhdGZ1LXNib3guYXBwcy5hcm9ob3BsYXRmdXBpLmFyb2NvcnBwLmJyYWRlc2NvLmNvbS5iciIsDQogICAgImlhdCI6IDE3Mzk0NDk3NTAsDQogICAgImV4cCI6IDE3Mzk0NTMzNTAsDQogICAgInNjcCI6ICJDVEFTIiwNCiAgICAianRpIjogIjRBNXB4bDY1cTJ5M0diUTUxNENoZkc9IiwNCiAgICAiY25mIjogew0KCSJ4NXQjMjU2IiA6ICJYRjhSS1pQanBydXFRNmc4N1RZZ2FPM3NzU0xnZ2RMY2V3YWdNTU4rSjN3PSINCn0sDQogICAgInRva2VuVHlwZSI6ICJhY2Nlc3MiLA0KICAgICJjbGllbnRUeXBlIjogInNlcnZlci1tdGxzIiwNCiAgICAiYXV0aERhdGEiOiAiZXlKbGJtTWlPaUpCTWpVMlIwTk5JaXdpWVd4bklqb2lVbE5CTFU5QlJWQXRNalUySW4wLmNMN0JPT2l3WnQ4NFNLU0l6YTJGVnRsWnd3RUZQMHZhbDJ5bF94eUVoSHg5VHVKMFVpb3kzemU2UTNLZlVGOW1PeTREdXRBREd5Mk12N2IzOEtVMlFiUHVTUUQ1el9SZzdMLVBlUTRzajlTNVo3d2xSM2RQOGQ2dWR5VWpobWxTVUFXeHlLcTUxZHFoR1dTUGNJRjZjbGhRZFk4NF9QTVl6OGJBMEVHelo5VXZPSGNYQ2dJV1A5VHgxX1l1WDU5UDBsdUgtb1VYdWxqY2xIWTJzd1Nyak1tUUhNWWdwdlZzSnJRMEtYVnRNSG1CZVhMR2gxdXowV2ZVUy05MlN5dFdXd2paZjRzMWpuTXJQbjVRR1l5ZzMzclF5T0o3SHZRTFF3ejVCbXBwTXFJSkVRanJwS2llaXhocHBabFNEQkhYSW5Uc0FFeTYwZGpCNkUyQm9pcVJNbkd6YzVjSi10dHNGak9KWkJDYmZZdmJ3NlRjaHV1WlhhU2JNNm0wTHMxaGI5WjZidndSMU1rY2x3WnJzUVJQQXcyT0xoYTBGcHBJN3JFbkt4TkUxMkZPdVREd2ZBWTlDQkpQVkZkS2I1dThkeXdXZ2pRVnlTWUlpVTBpNGRDTEc0c1EtYl8zMHFHTGNJblZQOThVMzFBckNMN3ZlSmRUTmZqei1QSGRVcFYzRHgwdzV6VFdXaV9POVpydGI5VTg5X0kwOXZkU0FhT0FOQVVHQXBzNjdEa09RVVVzWXQwYVhQUEtpdDFIVjhoZWdicVRvOFRsWkJFajlneFZabE8xSmI3UVdPaXVrT0NyMjc0VGlLTzVqXzR3bzdmc1BTREpIN2hSYlI2aGw4cThuUENRVmViOGhGdXE3aDBfRUVkYkRHbThjTkJ6NlZ1ZmVKOFlha3Z5ZlBVLnRfelgtUUUwaU8yZmhiS2kuZUlQSDZjSTRSaXkwZmIxalVSUG9kbFlBczUzR3gxTm84QV9oMTluUEJrTjNWN1VVaTA3dTYxM0VRa1VOT1Bza21ncGNwVUNsYTZ0OWNVdGtybjRJY3QxeElyX0pETE04ZF84Mll1NFZRMGQ2c2RISkVtY0hIRllmQnd1N1VUN0ZWNzJmUmdWamcyR1FvVVpSTlhicmFiTFduQnozM0VuSVRHenBCSFNvRHZXODVDZzdtQWNsMDFsY0FEc2ZuR010RUpJZ0RkX19IZzVzbkE3ZmFQbUl2YWJFNkNHd3dWU0JHOUUzT0tYQno1OEhOLWlzbzdMNEZoS01oYURkRlBBZ0w5dEtSS3pJNDQxMlNjb2pWelI4bzN2cWxVRk5reEktNWZqRHQ3M1hpelJYS1R1bTZQelY5OWczT21zWmJSQXZ6QkFhUnJ1SmRxZ1VrMWtCcVQ3M2xUbUQ0VDE5a0FOcHk1SnhTUURtcHpmLVlRRDZkdGtyT19IamVRbVQteWVuZ1hjMThOeHBvcGhyVHdnVFVYY19SLS1IWDNJSFhKbGFObXc3dElUdkoyYmFkRnNaWHFGMnhOUWtPZ2R1WWtBSDNQRGhGRzFYSDdzU1U3Ukx4c05DV2g2QTAzX0NuTjhJRzljVjg4RU9ENVpoYndzWkJDODRnLUk2VDNPQW5kUDAwUXNRWEdMb0NmSUc5SXpPLXRIaWVSWXFvcVR5d0w3Qk9FeVpHLTMyNWZZbUpmMVhUZ0Z0dDhOcUZuUEdGQ2ZTOUFCT0FkRVpVRndmRncuandWN09xTFJjZ0xNbElHTmVjZXh1ZyINCn0.HYlHmmoIGeVRwl0CH0iVCauowXdkHVOfKdhy503aWVqK3hpMwiTBJGfdJKGIN-WJjACXF4FkHFtzDBtyEixe3RTvIpE0G23bIw5fAetbZe3W5eFWfWJ0Sevm_F6mZQ6RLi8RzbKw3P9WTKfcPPdIDg7zPVflOJCPcq1YNSRIXcJlp9akL0uLQIZibwEYP8YIc6HXIWnlr6Mc09Xk2cOI-xUidlWRTQKEE61lSV99IJptdV2msBtclIoStTZ3jo9NYIPMRB7BEx_fDcENglD_eVzMif0k1OTvRXjKf3PODuR74NmTh1boG1cnDh7V66vkD4j5jHmTtTrmW8_K20Heo2DExA4Tsmu7wHwiMbdwXikFUP0EjMLDE0bKGaQRYsj3X8XF_oclRARxg12S6E0ECKOcducShE2ybZzueLeSCOndXIowBFVpASNI6_hr-aX74N5cgUcqRSsylJWlkEGTr94L13N56rtSah68ReoLzQWEMtGqwG_ZzVekXTjqUT-NqJLGPurqCVWzk4XHdD81L7HgpAbVHuqD0MlMfcVSTnqfEAqU0LGDdccH9jQVhmzBUvPkm0u1D-CF57M238i2E7ka8vhRdFhaegZKOZaInp9SUyq3mgloHfwr4wMOIJWNu9O69jHg-CRxVNIliEcH8zy-xCTEwjVOsflVzuMF8qw",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-extratos-contas/extratos?agencia=3995&conta=88888&dataInicio=01012023&dataFim=05012025&tipo=cc",
+											"protocol": "https",
+											"host": [
+												"openapisandbox",
+												"prebanco",
+												"com",
+												"br"
+											],
+											"path": [
+												"v1",
+												"fornecimento-extratos-contas",
+												"extratos"
+											],
+											"query": [
+												{
+													"key": "agencia",
+													"value": "3995"
+												},
+												{
+													"key": "conta",
+													"value": "88888"
+												},
+												{
+													"key": "dataInicio",
+													"value": "01012023"
+												},
+												{
+													"key": "dataFim",
+													"value": "05012025"
+												},
+												{
+													"key": "tipo",
+													"value": "cc"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "x-rate-limit",
+											"value": "[{\"window\":0,\"type\":\"throttle\",\"remaining\":99}]"
+										},
+										{
+											"key": "Max-Forwards",
+											"value": "20"
+										},
+										{
+											"key": "x-correlationid",
+											"value": "Id-06e6ad672ce07811d64a7d12 0"
+										},
+										{
+											"key": "Accept",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "100"
+										},
+										{
+											"key": "Expires",
+											"value": "Thu, 13 Feb 2025 12:31:02 GMT"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "max-age=0, no-cache, no-store"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 13 Feb 2025 12:31:02 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "f0ee00a3c6086fde9072d03fe06f4365=f2c95f4d1e87c9ed882381d0e833300a; path=/; HttpOnly; Secure; SameSite=None"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "ak_bmsc=2C45C186905CCF4A88A4F646104DF329~000000000000000000000000000000~YAAQzAl7XCP/GvyUAQAAHohK/xroUz4De6KfNcCIlFRtyFbyvwCNlINuJsaHBkK/MUf5RMWY6TVWhkConM1pJ6rFNs40TKvLsevqvLVWmVMHwl66Dl8l+kEiSrpC42KLhvAPzmScgnhyqGm025piAjr4AHthjOHtSwveJaTcUhxaTL0n014c4e99G8ENhRGNG7vvGj/azxyACm/54g7gEvlTI0Lnk4YWQFg+LJKkPN5GMZMuGBk08aXZVGhoZIuBlG6ljokw3ETzq68HXeEDti7UPsgCtZa+nikvIGwjrMvv9vWZU8G//h6f6IvlMvOcfYhfwzDUas+fk1Ws2W+lJQOtBstfMIbOoGo7aH80xuU7; Domain=.prebanco.com.br; Path=/; Expires=Thu, 13 Feb 2025 14:31:01 GMT; Max-Age=7199"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "cdn-cache; desc=MISS"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "edge; dur=67"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "origin; dur=209"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "ak_p; desc=\"1739449861763_1551567308_46192268_27557_12699_16_122_-\";dur=1"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"codigoErro\": \"Consulta não permitida\",\n    \"descricao\": \"Agência e conta não correspondem ao Cliente\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Consulta extrato contas PJ -Intervalo Inválido",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-extratos-contas/extratos?agencia=3995&conta=75556&dataInicio=01012023&dataFim=05012025&tipo=cc",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"fornecimento-extratos-contas",
+										"extratos"
+									],
+									"query": [
+										{
+											"key": "agencia",
+											"value": "3995"
+										},
+										{
+											"key": "conta",
+											"value": "75556"
+										},
+										{
+											"key": "dataInicio",
+											"value": "01012023"
+										},
+										{
+											"key": "dataFim",
+											"value": "05012025"
+										},
+										{
+											"key": "tipo",
+											"value": "cc"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Intervalo Inválido",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJQUzI1NiJ9.ew0KICAgICJ2ZXIiOiAiMi4wIiwNCiAgICAic3ViIjogIjE1NDI5MTJjLTAwZjMtNGU4Ni05Y2JjLWZlZThjZjU2MDkwMiIsDQogICAgImlzcyI6ICJodHRwczovL2FwaS1wbGF0ZnUtc2JveC5hcHBzLmFyb2hvcGxhdGZ1cGkuYXJvY29ycHAuYnJhZGVzY28uY29tLmJyL2F1dGgvc2VydmVyLW10bHMvdjEvdG9rZW4iLA0KICAgICJhdWQiOiAiaHR0cHM6Ly9hcGktcGxhdGZ1LXNib3guYXBwcy5hcm9ob3BsYXRmdXBpLmFyb2NvcnBwLmJyYWRlc2NvLmNvbS5iciIsDQogICAgImlhdCI6IDE3Mzk0NDk3NTAsDQogICAgImV4cCI6IDE3Mzk0NTMzNTAsDQogICAgInNjcCI6ICJDVEFTIiwNCiAgICAianRpIjogIjRBNXB4bDY1cTJ5M0diUTUxNENoZkc9IiwNCiAgICAiY25mIjogew0KCSJ4NXQjMjU2IiA6ICJYRjhSS1pQanBydXFRNmc4N1RZZ2FPM3NzU0xnZ2RMY2V3YWdNTU4rSjN3PSINCn0sDQogICAgInRva2VuVHlwZSI6ICJhY2Nlc3MiLA0KICAgICJjbGllbnRUeXBlIjogInNlcnZlci1tdGxzIiwNCiAgICAiYXV0aERhdGEiOiAiZXlKbGJtTWlPaUpCTWpVMlIwTk5JaXdpWVd4bklqb2lVbE5CTFU5QlJWQXRNalUySW4wLmNMN0JPT2l3WnQ4NFNLU0l6YTJGVnRsWnd3RUZQMHZhbDJ5bF94eUVoSHg5VHVKMFVpb3kzemU2UTNLZlVGOW1PeTREdXRBREd5Mk12N2IzOEtVMlFiUHVTUUQ1el9SZzdMLVBlUTRzajlTNVo3d2xSM2RQOGQ2dWR5VWpobWxTVUFXeHlLcTUxZHFoR1dTUGNJRjZjbGhRZFk4NF9QTVl6OGJBMEVHelo5VXZPSGNYQ2dJV1A5VHgxX1l1WDU5UDBsdUgtb1VYdWxqY2xIWTJzd1Nyak1tUUhNWWdwdlZzSnJRMEtYVnRNSG1CZVhMR2gxdXowV2ZVUy05MlN5dFdXd2paZjRzMWpuTXJQbjVRR1l5ZzMzclF5T0o3SHZRTFF3ejVCbXBwTXFJSkVRanJwS2llaXhocHBabFNEQkhYSW5Uc0FFeTYwZGpCNkUyQm9pcVJNbkd6YzVjSi10dHNGak9KWkJDYmZZdmJ3NlRjaHV1WlhhU2JNNm0wTHMxaGI5WjZidndSMU1rY2x3WnJzUVJQQXcyT0xoYTBGcHBJN3JFbkt4TkUxMkZPdVREd2ZBWTlDQkpQVkZkS2I1dThkeXdXZ2pRVnlTWUlpVTBpNGRDTEc0c1EtYl8zMHFHTGNJblZQOThVMzFBckNMN3ZlSmRUTmZqei1QSGRVcFYzRHgwdzV6VFdXaV9POVpydGI5VTg5X0kwOXZkU0FhT0FOQVVHQXBzNjdEa09RVVVzWXQwYVhQUEtpdDFIVjhoZWdicVRvOFRsWkJFajlneFZabE8xSmI3UVdPaXVrT0NyMjc0VGlLTzVqXzR3bzdmc1BTREpIN2hSYlI2aGw4cThuUENRVmViOGhGdXE3aDBfRUVkYkRHbThjTkJ6NlZ1ZmVKOFlha3Z5ZlBVLnRfelgtUUUwaU8yZmhiS2kuZUlQSDZjSTRSaXkwZmIxalVSUG9kbFlBczUzR3gxTm84QV9oMTluUEJrTjNWN1VVaTA3dTYxM0VRa1VOT1Bza21ncGNwVUNsYTZ0OWNVdGtybjRJY3QxeElyX0pETE04ZF84Mll1NFZRMGQ2c2RISkVtY0hIRllmQnd1N1VUN0ZWNzJmUmdWamcyR1FvVVpSTlhicmFiTFduQnozM0VuSVRHenBCSFNvRHZXODVDZzdtQWNsMDFsY0FEc2ZuR010RUpJZ0RkX19IZzVzbkE3ZmFQbUl2YWJFNkNHd3dWU0JHOUUzT0tYQno1OEhOLWlzbzdMNEZoS01oYURkRlBBZ0w5dEtSS3pJNDQxMlNjb2pWelI4bzN2cWxVRk5reEktNWZqRHQ3M1hpelJYS1R1bTZQelY5OWczT21zWmJSQXZ6QkFhUnJ1SmRxZ1VrMWtCcVQ3M2xUbUQ0VDE5a0FOcHk1SnhTUURtcHpmLVlRRDZkdGtyT19IamVRbVQteWVuZ1hjMThOeHBvcGhyVHdnVFVYY19SLS1IWDNJSFhKbGFObXc3dElUdkoyYmFkRnNaWHFGMnhOUWtPZ2R1WWtBSDNQRGhGRzFYSDdzU1U3Ukx4c05DV2g2QTAzX0NuTjhJRzljVjg4RU9ENVpoYndzWkJDODRnLUk2VDNPQW5kUDAwUXNRWEdMb0NmSUc5SXpPLXRIaWVSWXFvcVR5d0w3Qk9FeVpHLTMyNWZZbUpmMVhUZ0Z0dDhOcUZuUEdGQ2ZTOUFCT0FkRVpVRndmRncuandWN09xTFJjZ0xNbElHTmVjZXh1ZyINCn0.HYlHmmoIGeVRwl0CH0iVCauowXdkHVOfKdhy503aWVqK3hpMwiTBJGfdJKGIN-WJjACXF4FkHFtzDBtyEixe3RTvIpE0G23bIw5fAetbZe3W5eFWfWJ0Sevm_F6mZQ6RLi8RzbKw3P9WTKfcPPdIDg7zPVflOJCPcq1YNSRIXcJlp9akL0uLQIZibwEYP8YIc6HXIWnlr6Mc09Xk2cOI-xUidlWRTQKEE61lSV99IJptdV2msBtclIoStTZ3jo9NYIPMRB7BEx_fDcENglD_eVzMif0k1OTvRXjKf3PODuR74NmTh1boG1cnDh7V66vkD4j5jHmTtTrmW8_K20Heo2DExA4Tsmu7wHwiMbdwXikFUP0EjMLDE0bKGaQRYsj3X8XF_oclRARxg12S6E0ECKOcducShE2ybZzueLeSCOndXIowBFVpASNI6_hr-aX74N5cgUcqRSsylJWlkEGTr94L13N56rtSah68ReoLzQWEMtGqwG_ZzVekXTjqUT-NqJLGPurqCVWzk4XHdD81L7HgpAbVHuqD0MlMfcVSTnqfEAqU0LGDdccH9jQVhmzBUvPkm0u1D-CF57M238i2E7ka8vhRdFhaegZKOZaInp9SUyq3mgloHfwr4wMOIJWNu9O69jHg-CRxVNIliEcH8zy-xCTEwjVOsflVzuMF8qw",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Cookie",
+												"value": "f0ee00a3c6086fde9072d03fe06f4365=480baf5dca48072c333a1971b2c5e08d",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-extratos-contas/extratos?agencia=3995&conta=75556&dataInicio=01012023&dataFim=05012025&tipo=cc",
+											"protocol": "https",
+											"host": [
+												"openapisandbox",
+												"prebanco",
+												"com",
+												"br"
+											],
+											"path": [
+												"v1",
+												"fornecimento-extratos-contas",
+												"extratos"
+											],
+											"query": [
+												{
+													"key": "agencia",
+													"value": "3995"
+												},
+												{
+													"key": "conta",
+													"value": "75556"
+												},
+												{
+													"key": "dataInicio",
+													"value": "01012023"
+												},
+												{
+													"key": "dataFim",
+													"value": "05012025"
+												},
+												{
+													"key": "tipo",
+													"value": "cc"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "x-rate-limit",
+											"value": "[{\"window\":0,\"type\":\"throttle\",\"remaining\":99}]"
+										},
+										{
+											"key": "Max-Forwards",
+											"value": "20"
+										},
+										{
+											"key": "x-correlationid",
+											"value": "Id-b8e6ad6748f72a72a77e73e6 0"
+										},
+										{
+											"key": "Accept",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "98"
+										},
+										{
+											"key": "Expires",
+											"value": "Thu, 13 Feb 2025 12:34:00 GMT"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "max-age=0, no-cache, no-store"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 13 Feb 2025 12:34:00 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "f0ee00a3c6086fde9072d03fe06f4365=6dd22d3eaa20b283c793c31f8a31651f; path=/; HttpOnly; Secure; SameSite=None"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "bm_sv=088389BD9E062E48987F29B82606D470~YAAQzAl7XN5RG/yUAQAAJUJN/xqXqvcu2xsYx6cJdKk8NMa4DfcMcFPRr7Om0KZM2PlMsjaCN+cpjgfDTZCBcrcCWZSbvhgRq8MmjlgOhVX41nW13SNqwvmYyrIwLHWV7Sp13oQU9IarJzFlSuQl+j7PEVvW7AwAwyKDdjcs9sIibWLE5tY176Nb6eakEurLEcw3J4WEG1TvGrqxkZyZcBwKV/GcyAOS/7kSaixsMH2QARgXlzTWJVLneWgRP7X+fDhyTBs=~1; Domain=.prebanco.com.br; Path=/; Expires=Thu, 13 Feb 2025 14:34:00 GMT; Max-Age=7200; Secure"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "cdn-cache; desc=MISS"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "edge; dur=11"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "origin; dur=221"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "ak_p; desc=\"1739450040462_1551567308_46329297_23178_13734_27_159_-\";dur=1"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"codigoErro\": \"PERIODO NAO PERMITIDO\",\n    \"descricao\": \"Intervalo maximo de pesquisa permitido: 1 ano\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Consulta extrato contas PJ - Sucesso",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-extratos-contas/extratos?agencia=3750&conta=75557&tipo=cc&dataInicio=06112024&dataFim=20112024",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"fornecimento-extratos-contas",
+										"extratos"
+									],
+									"query": [
+										{
+											"key": "agencia",
+											"value": "3750"
+										},
+										{
+											"key": "conta",
+											"value": "75557"
+										},
+										{
+											"key": "tipo",
+											"value": "cc"
+										},
+										{
+											"key": "dataInicio",
+											"value": "06112024"
+										},
+										{
+											"key": "dataFim",
+											"value": "20112024"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJQUzI1NiJ9.ew0KICAgICJ2ZXIiOiAiMi4wIiwNCiAgICAic3ViIjogIjE1NDI5MTJjLTAwZjMtNGU4Ni05Y2JjLWZlZThjZjU2MDkwMiIsDQogICAgImlzcyI6ICJodHRwczovL2FwaS1wbGF0ZnUtc2JveC5hcHBzLmFyb2hvcGxhdGZ1cGkuYXJvY29ycHAuYnJhZGVzY28uY29tLmJyL2F1dGgvc2VydmVyLW10bHMvdjEvdG9rZW4iLA0KICAgICJhdWQiOiAiaHR0cHM6Ly9hcGktcGxhdGZ1LXNib3guYXBwcy5hcm9ob3BsYXRmdXBpLmFyb2NvcnBwLmJyYWRlc2NvLmNvbS5iciIsDQogICAgImlhdCI6IDE3Mzk0NDk3NTAsDQogICAgImV4cCI6IDE3Mzk0NTMzNTAsDQogICAgInNjcCI6ICJDVEFTIiwNCiAgICAianRpIjogIjRBNXB4bDY1cTJ5M0diUTUxNENoZkc9IiwNCiAgICAiY25mIjogew0KCSJ4NXQjMjU2IiA6ICJYRjhSS1pQanBydXFRNmc4N1RZZ2FPM3NzU0xnZ2RMY2V3YWdNTU4rSjN3PSINCn0sDQogICAgInRva2VuVHlwZSI6ICJhY2Nlc3MiLA0KICAgICJjbGllbnRUeXBlIjogInNlcnZlci1tdGxzIiwNCiAgICAiYXV0aERhdGEiOiAiZXlKbGJtTWlPaUpCTWpVMlIwTk5JaXdpWVd4bklqb2lVbE5CTFU5QlJWQXRNalUySW4wLmNMN0JPT2l3WnQ4NFNLU0l6YTJGVnRsWnd3RUZQMHZhbDJ5bF94eUVoSHg5VHVKMFVpb3kzemU2UTNLZlVGOW1PeTREdXRBREd5Mk12N2IzOEtVMlFiUHVTUUQ1el9SZzdMLVBlUTRzajlTNVo3d2xSM2RQOGQ2dWR5VWpobWxTVUFXeHlLcTUxZHFoR1dTUGNJRjZjbGhRZFk4NF9QTVl6OGJBMEVHelo5VXZPSGNYQ2dJV1A5VHgxX1l1WDU5UDBsdUgtb1VYdWxqY2xIWTJzd1Nyak1tUUhNWWdwdlZzSnJRMEtYVnRNSG1CZVhMR2gxdXowV2ZVUy05MlN5dFdXd2paZjRzMWpuTXJQbjVRR1l5ZzMzclF5T0o3SHZRTFF3ejVCbXBwTXFJSkVRanJwS2llaXhocHBabFNEQkhYSW5Uc0FFeTYwZGpCNkUyQm9pcVJNbkd6YzVjSi10dHNGak9KWkJDYmZZdmJ3NlRjaHV1WlhhU2JNNm0wTHMxaGI5WjZidndSMU1rY2x3WnJzUVJQQXcyT0xoYTBGcHBJN3JFbkt4TkUxMkZPdVREd2ZBWTlDQkpQVkZkS2I1dThkeXdXZ2pRVnlTWUlpVTBpNGRDTEc0c1EtYl8zMHFHTGNJblZQOThVMzFBckNMN3ZlSmRUTmZqei1QSGRVcFYzRHgwdzV6VFdXaV9POVpydGI5VTg5X0kwOXZkU0FhT0FOQVVHQXBzNjdEa09RVVVzWXQwYVhQUEtpdDFIVjhoZWdicVRvOFRsWkJFajlneFZabE8xSmI3UVdPaXVrT0NyMjc0VGlLTzVqXzR3bzdmc1BTREpIN2hSYlI2aGw4cThuUENRVmViOGhGdXE3aDBfRUVkYkRHbThjTkJ6NlZ1ZmVKOFlha3Z5ZlBVLnRfelgtUUUwaU8yZmhiS2kuZUlQSDZjSTRSaXkwZmIxalVSUG9kbFlBczUzR3gxTm84QV9oMTluUEJrTjNWN1VVaTA3dTYxM0VRa1VOT1Bza21ncGNwVUNsYTZ0OWNVdGtybjRJY3QxeElyX0pETE04ZF84Mll1NFZRMGQ2c2RISkVtY0hIRllmQnd1N1VUN0ZWNzJmUmdWamcyR1FvVVpSTlhicmFiTFduQnozM0VuSVRHenBCSFNvRHZXODVDZzdtQWNsMDFsY0FEc2ZuR010RUpJZ0RkX19IZzVzbkE3ZmFQbUl2YWJFNkNHd3dWU0JHOUUzT0tYQno1OEhOLWlzbzdMNEZoS01oYURkRlBBZ0w5dEtSS3pJNDQxMlNjb2pWelI4bzN2cWxVRk5reEktNWZqRHQ3M1hpelJYS1R1bTZQelY5OWczT21zWmJSQXZ6QkFhUnJ1SmRxZ1VrMWtCcVQ3M2xUbUQ0VDE5a0FOcHk1SnhTUURtcHpmLVlRRDZkdGtyT19IamVRbVQteWVuZ1hjMThOeHBvcGhyVHdnVFVYY19SLS1IWDNJSFhKbGFObXc3dElUdkoyYmFkRnNaWHFGMnhOUWtPZ2R1WWtBSDNQRGhGRzFYSDdzU1U3Ukx4c05DV2g2QTAzX0NuTjhJRzljVjg4RU9ENVpoYndzWkJDODRnLUk2VDNPQW5kUDAwUXNRWEdMb0NmSUc5SXpPLXRIaWVSWXFvcVR5d0w3Qk9FeVpHLTMyNWZZbUpmMVhUZ0Z0dDhOcUZuUEdGQ2ZTOUFCT0FkRVpVRndmRncuandWN09xTFJjZ0xNbElHTmVjZXh1ZyINCn0.HYlHmmoIGeVRwl0CH0iVCauowXdkHVOfKdhy503aWVqK3hpMwiTBJGfdJKGIN-WJjACXF4FkHFtzDBtyEixe3RTvIpE0G23bIw5fAetbZe3W5eFWfWJ0Sevm_F6mZQ6RLi8RzbKw3P9WTKfcPPdIDg7zPVflOJCPcq1YNSRIXcJlp9akL0uLQIZibwEYP8YIc6HXIWnlr6Mc09Xk2cOI-xUidlWRTQKEE61lSV99IJptdV2msBtclIoStTZ3jo9NYIPMRB7BEx_fDcENglD_eVzMif0k1OTvRXjKf3PODuR74NmTh1boG1cnDh7V66vkD4j5jHmTtTrmW8_K20Heo2DExA4Tsmu7wHwiMbdwXikFUP0EjMLDE0bKGaQRYsj3X8XF_oclRARxg12S6E0ECKOcducShE2ybZzueLeSCOndXIowBFVpASNI6_hr-aX74N5cgUcqRSsylJWlkEGTr94L13N56rtSah68ReoLzQWEMtGqwG_ZzVekXTjqUT-NqJLGPurqCVWzk4XHdD81L7HgpAbVHuqD0MlMfcVSTnqfEAqU0LGDdccH9jQVhmzBUvPkm0u1D-CF57M238i2E7ka8vhRdFhaegZKOZaInp9SUyq3mgloHfwr4wMOIJWNu9O69jHg-CRxVNIliEcH8zy-xCTEwjVOsflVzuMF8qw",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Cookie",
+												"value": "f0ee00a3c6086fde9072d03fe06f4365=480baf5dca48072c333a1971b2c5e08d",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-extratos-contas/extratos?agencia=3750&conta=75557&tipo=cc&dataInicio=06112024&dataFim=20112024",
+											"protocol": "https",
+											"host": [
+												"openapisandbox",
+												"prebanco",
+												"com",
+												"br"
+											],
+											"path": [
+												"v1",
+												"fornecimento-extratos-contas",
+												"extratos"
+											],
+											"query": [
+												{
+													"key": "agencia",
+													"value": "3750"
+												},
+												{
+													"key": "conta",
+													"value": "75557"
+												},
+												{
+													"key": "tipo",
+													"value": "cc"
+												},
+												{
+													"key": "dataInicio",
+													"value": "06112024"
+												},
+												{
+													"key": "dataFim",
+													"value": "20112024"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "x-rate-limit",
+											"value": "[{\"window\":0,\"type\":\"throttle\",\"remaining\":99}]"
+										},
+										{
+											"key": "Max-Forwards",
+											"value": "20"
+										},
+										{
+											"key": "x-correlationid",
+											"value": "Id-bcebad6762e6e7af910bc012 0"
+										},
+										{
+											"key": "Accept",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Expires",
+											"value": "Thu, 13 Feb 2025 12:55:25 GMT"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "max-age=0, no-cache, no-store"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 13 Feb 2025 12:55:25 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1457"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "f0ee00a3c6086fde9072d03fe06f4365=f2c95f4d1e87c9ed882381d0e833300a; path=/; HttpOnly; Secure; SameSite=None"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "bm_sv=088389BD9E062E48987F29B82606D470~YAAQ0Ql7XKOYkviUAQAAitpg/xqaI3tJpreVn1/OK5vzAJeRB61N1OmB64aoyEyKWRKGHGlHtMHDJ8ePOReh2dvWUIpQGmxbmGqzyjOiYHjopgwWsiRwCl3xLDAzsgBsVm8J8wO5LIGQdXC3KJH65zH+W+P0+nhRIqxEH4AN8xYkRFakpvoQGzhepxeKG0bMmfG01ut2HlxUQ3N/mtFbFfTv+/rwYXzmLnIZTXC8EDJwicJ8zhZDDk5AlV1hWnyNk2Wb+Fw=~1; Domain=.prebanco.com.br; Path=/; Expires=Thu, 13 Feb 2025 14:34:00 GMT; Max-Age=5915; Secure"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "cdn-cache; desc=MISS"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "edge; dur=67"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "origin; dur=278"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "ak_p; desc=\"1739451324559_1551567313_97040592_34781_15173_3_140_-\";dur=1"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"extratoUltimosLancamentos\": {\n        \"codigoRetorno\": \"00\",\n        \"mensagem\": \"CTAS0673 - CONSULTA EFETUADA COM SUCESSO\",\n        \"identificaoCliente\": \"0\",\n        \"razaoConta\": \"00705\",\n        \"numeroConta\": \"0075557\",\n        \"digitoConta\": \"5\",\n        \"nomeCliente\": \"CONTA AMBIENTE TU\",\n        \"quantidadeLancamentos\": \"8\",\n        \"statusContaCorrente\": \"0\",\n        \"statusContaPoupanca\": \"0\",\n        \"identificadorTipoConta\": \"conta corrente\",\n        \"statusCoberturaAutomatica\": \"0\",\n        \"contaPoupancaFacil\": \"0000000\",\n        \"dataUltimaAtualizacao\": \"      \",\n        \"identificadorModalidadeConta\": \" \",\n        \"dataProximoPagamentoInss\": \"00000000\",\n        \"dataVencimentoCartaoInss\": \"000000\",\n        \"statusCartaoInss\": \"\",\n        \"listaLancamentos\": {\n            \"Saldo Anterior\": [\n                {\n                    \"sinalSaldo\": \"+\",\n                    \"valorLancamento\": \"0,00\",\n                    \"segundaLinhalLancamento\": \"\",\n                    \"sinalLancamento\": \"\",\n                    \"identificacaoSubCodigo\": \"S\",\n                    \"numeroDocumento\": \"0000000\",\n                    \"valorSaldoAposLancamento\": \"6.759,00\",\n                    \"dataLancamento\": \"10/12/2024\"\n                }\n            ],\n            \"Ultimos Lancamentos\": [\n                {\n                    \"sinalSaldo\": \"+\",\n                    \"valorLancamento\": \"1,15\",\n                    \"segundaLinhalLancamento\": \"\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"03584\",\n                    \"descritivoLancamentoAbreviado\": \"RENT.INV.FACIL\",\n                    \"numeroDocumento\": \"0000003\",\n                    \"valorSaldoAposLancamento\": \"6.760,15\",\n                    \"dataLancamento\": \"17/01/2025\",\n                    \"descritivoLancamentoCompleto\": \"RENTAB.INVEST FACILCRED*\"\n                },\n                {\n                    \"sinalSaldo\": \"+\",\n                    \"valorLancamento\": \"800,00\",\n                    \"segundaLinhalLancamento\": \"\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"00101\",\n                    \"descritivoLancamentoAbreviado\": \"RESGATE AUT INV\",\n                    \"numeroDocumento\": \"0000004\",\n                    \"valorSaldoAposLancamento\": \"7.560,15\",\n                    \"dataLancamento\": \"17/01/2025\",\n                    \"descritivoLancamentoCompleto\": \"RESG AUTOMATICO INVESTIM\"\n                },\n                {\n                    \"sinalSaldo\": \"+\",\n                    \"valorLancamento\": \"100,00\",\n                    \"segundaLinhalLancamento\": \"TESTE VANESSA 1\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"00997\",\n                    \"descritivoLancamentoAbreviado\": \"COD. LANC. 00997\",\n                    \"numeroDocumento\": \"0000005\",\n                    \"valorSaldoAposLancamento\": \"7.660,15\",\n                    \"dataLancamento\": \"17/01/2025\",\n                    \"descritivoLancamentoCompleto\": \"COD. LANC. 00997\"\n                },\n                {\n                    \"sinalSaldo\": \"+\",\n                    \"valorLancamento\": \"210,01\",\n                    \"segundaLinhalLancamento\": \"TESTE VANESSA 2\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"00998\",\n                    \"descritivoLancamentoAbreviado\": \"CHQ COMPENSADO\",\n                    \"numeroDocumento\": \"0000006\",\n                    \"valorSaldoAposLancamento\": \"7.870,16\",\n                    \"dataLancamento\": \"21/01/2025\",\n                    \"descritivoLancamentoCompleto\": \"CHEQUE COMPENSADO\"\n                },\n                {\n                    \"sinalSaldo\": \"+\",\n                    \"valorLancamento\": \"210,00\",\n                    \"segundaLinhalLancamento\": \"TESTE VANESSA 3\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"00771\",\n                    \"descritivoLancamentoAbreviado\": \"AC CTA N RECADA\",\n                    \"numeroDocumento\": \"0000007\",\n                    \"valorSaldoAposLancamento\": \"8.080,16\",\n                    \"dataLancamento\": \"21/01/2025\",\n                    \"descritivoLancamentoCompleto\": \"ACERTO CONTA N/RECADAST*\"\n                }\n            ],\n            \"Lancamentos Dia\": [\n                {\n                    \"sinalSaldo\": \"+\",\n                    \"valorLancamento\": \"15,00\",\n                    \"segundaLinhalLancamento\": \"REM: EMPRESA PAGADOR       22/01\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"03212\",\n                    \"descritivoLancamentoAbreviado\": \"TRANSFE PIX\",\n                    \"numeroDocumento\": \"0936269\",\n                    \"valorSaldoAposLancamento\": \"8.095,16\",\n                    \"dataLancamento\": \"22/01/2025\",\n                    \"descritivoLancamentoCompleto\": \"TRANSFERENCIA PIX\"\n                },\n                {\n                    \"sinalSaldo\": \"+\",\n                    \"valorLancamento\": \"72,95\",\n                    \"segundaLinhalLancamento\": \"REM: TESTE CHAVES          22/01\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"03212\",\n                    \"descritivoLancamentoAbreviado\": \"TRANSFE PIX\",\n                    \"numeroDocumento\": \"0948412\",\n                    \"valorSaldoAposLancamento\": \"8.168,11\",\n                    \"dataLancamento\": \"22/01/2025\",\n                    \"descritivoLancamentoCompleto\": \"TRANSFERENCIA PIX\"\n                }\n            ]\n        }\n    },\n    \"extratoLancamentosFuturos\": {\n        \"codigoRetorno\": \"00\",\n        \"mensagem\": \"CTAS0673 - CONSULTA EFETUADA COM SUCESSO\",\n        \"quantidadeLancamentos\": \"5\",\n        \"listaLancamentos\": {\n            \"Lancamentos Futuros\": [\n                {\n                    \"valorLancamento\": \"1.233,00\",\n                    \"segundaLinhalLancamento\": \"\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"00112\",\n                    \"descritivoLancamentoAbreviado\": \"TRANSF.AUT. C/C\",\n                    \"numeroDocumento\": \"0015446\",\n                    \"dataLancamento\": \"03/02/2025\",\n                    \"descritivoLancamentoCompleto\": \"TRANSF.AUTORIZ.ENTRE C/C\"\n                },\n                {\n                    \"valorLancamento\": \"478,02\",\n                    \"segundaLinhalLancamento\": \"\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"00112\",\n                    \"descritivoLancamentoAbreviado\": \"TRANSF.AUT. C/C\",\n                    \"numeroDocumento\": \"0004545\",\n                    \"dataLancamento\": \"03/02/2025\",\n                    \"descritivoLancamentoCompleto\": \"TRANSF.AUTORIZ.ENTRE C/C\"\n                },\n                {\n                    \"valorLancamento\": \"600,01\",\n                    \"segundaLinhalLancamento\": \"\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"00110\",\n                    \"descritivoLancamentoAbreviado\": \"APL AUT FUNDOS\",\n                    \"numeroDocumento\": \"1223113\",\n                    \"dataLancamento\": \"10/02/2025\",\n                    \"descritivoLancamentoCompleto\": \"APLICACAO AUTOMAT FUNDOS\"\n                },\n                {\n                    \"valorLancamento\": \"701,55\",\n                    \"segundaLinhalLancamento\": \"\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"00554\",\n                    \"descritivoLancamentoAbreviado\": \"COMP COMPL PARC\",\n                    \"numeroDocumento\": \"0122332\",\n                    \"dataLancamento\": \"10/02/2025\",\n                    \"descritivoLancamentoCompleto\": \"COMPENS COMPLEMENTO PARC\"\n                },\n                {\n                    \"valorLancamento\": \"910,00\",\n                    \"segundaLinhalLancamento\": \"\",\n                    \"sinalLancamento\": \"+\",\n                    \"identificacaoSubCodigo\": \"N\",\n                    \"codigoLancamento\": \"00970\",\n                    \"descritivoLancamentoAbreviado\": \"EST2V CART DEB\",\n                    \"numeroDocumento\": \"0444404\",\n                    \"dataLancamento\": \"15/02/2025\",\n                    \"descritivoLancamentoCompleto\": \"EST 2VIA CARTAO DEBITO\"\n                }\n            ]\n        }\n    },\n    \"extratoPorPeriodo\": {\n        \"codigoRetorno\": \"00\",\n        \"mensagem\": \"CTAS0673 - CONSULTA EFETUADA COM SUCESSO\",\n        \"identificaoCliente\": \"1\",\n        \"razaoConta\": \"00705\",\n        \"numeroConta\": \"0075557\",\n        \"digitoConta\": \"5\",\n        \"nomeCliente\": \"CONTA AMBIENTE TU               \",\n        \"quantidadeLancamentos\": \"12\",\n        \"lstLancamentoMensal\": [\n            {\n                \"dataLancamento\": \"30/09/2024\",\n                \"numeroDocumento\": \"0000000\",\n                \"valorLancamento\": \"0,00\",\n                \"sinalLancamento\": \"+\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"80,00\",\n                \"sinalSaldo\": \"+\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"01\",\n                \"codigoLancamento\": \"00000\",\n                \"descritivoLancamentoAbreviado\": \"Saldo Anterior\",\n                \"descritivoLancamentoCompleto\": \"Saldo Anterior\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            },\n            {\n                \"dataLancamento\": \"01/10/2024\",\n                \"numeroDocumento\": \"0000001\",\n                \"valorLancamento\": \"700,00\",\n                \"sinalLancamento\": \"-\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"620,00\",\n                \"sinalSaldo\": \"-\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"02\",\n                \"codigoLancamento\": \"03205\",\n                \"descritivoLancamentoAbreviado\": \"TRANSFE PIX\",\n                \"descritivoLancamentoCompleto\": \"TRANSFERENCIA PIX\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            },\n            {\n                \"dataLancamento\": \"05/10/2024\",\n                \"numeroDocumento\": \"0000001\",\n                \"valorLancamento\": \"800,00\",\n                \"sinalLancamento\": \"+\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"180,00\",\n                \"sinalSaldo\": \"+\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"02\",\n                \"codigoLancamento\": \"03205\",\n                \"descritivoLancamentoAbreviado\": \"TRANSFE PIX\",\n                \"descritivoLancamentoCompleto\": \"TRANSFERENCIA PIX\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            },\n            {\n                \"dataLancamento\": \"15/10/2024\",\n                \"numeroDocumento\": \"0000001\",\n                \"valorLancamento\": \"600,00\",\n                \"sinalLancamento\": \"+\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"780,00\",\n                \"sinalSaldo\": \"+\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"02\",\n                \"codigoLancamento\": \"03205\",\n                \"descritivoLancamentoAbreviado\": \"TRANSFE PIX\",\n                \"descritivoLancamentoCompleto\": \"TRANSFERENCIA PIX\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            },\n            {\n                \"dataLancamento\": \"20/10/2024\",\n                \"numeroDocumento\": \"0000001\",\n                \"valorLancamento\": \"500,00\",\n                \"sinalLancamento\": \"+\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"1.280,00\",\n                \"sinalSaldo\": \"+\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"02\",\n                \"codigoLancamento\": \"03205\",\n                \"descritivoLancamentoAbreviado\": \"TRANSFE PIX\",\n                \"descritivoLancamentoCompleto\": \"TRANSFERENCIA PIX\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            },\n            {\n                \"dataLancamento\": \"28/10/2024\",\n                \"numeroDocumento\": \"0000001\",\n                \"valorLancamento\": \"400,00\",\n                \"sinalLancamento\": \"-\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"880,00\",\n                \"sinalSaldo\": \"+\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"02\",\n                \"codigoLancamento\": \"03205\",\n                \"descritivoLancamentoAbreviado\": \"TRANSFE PIX\",\n                \"descritivoLancamentoCompleto\": \"TRANSFERENCIA PIX\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            },\n            {\n                \"dataLancamento\": \"01/11/2024\",\n                \"numeroDocumento\": \"0000001\",\n                \"valorLancamento\": \"550,00\",\n                \"sinalLancamento\": \"-\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"330,00\",\n                \"sinalSaldo\": \"+\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"02\",\n                \"codigoLancamento\": \"03205\",\n                \"descritivoLancamentoAbreviado\": \"TRANSFE PIX\",\n                \"descritivoLancamentoCompleto\": \"TRANSFERENCIA PIX\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            },\n            {\n                \"dataLancamento\": \"05/11/2024\",\n                \"numeroDocumento\": \"0000002\",\n                \"valorLancamento\": \"860,00\",\n                \"sinalLancamento\": \"+\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"1.190,00\",\n                \"sinalSaldo\": \"+\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"02\",\n                \"codigoLancamento\": \"03205\",\n                \"descritivoLancamentoAbreviado\": \"TRANSFE PIX\",\n                \"descritivoLancamentoCompleto\": \"TRANSFERENCIA PIX\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            },\n            {\n                \"dataLancamento\": \"15/11/2024\",\n                \"numeroDocumento\": \"0000003\",\n                \"valorLancamento\": \"688,00\",\n                \"sinalLancamento\": \"+\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"1.878,00\",\n                \"sinalSaldo\": \"+\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"02\",\n                \"codigoLancamento\": \"03205\",\n                \"descritivoLancamentoAbreviado\": \"TRANSFE PIX\",\n                \"descritivoLancamentoCompleto\": \"TRANSFERENCIA PIX\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            },\n            {\n                \"dataLancamento\": \"03/12/2024\",\n                \"numeroDocumento\": \"0000001\",\n                \"valorLancamento\": \"101,50\",\n                \"sinalLancamento\": \"+\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"1.979,50\",\n                \"sinalSaldo\": \"+\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"02\",\n                \"codigoLancamento\": \"03210\",\n                \"descritivoLancamentoAbreviado\": \"RECB QRCODE PIX\",\n                \"descritivoLancamentoCompleto\": \"RECB. QRCODE DINAMIC PIX\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            },\n            {\n                \"dataLancamento\": \"11/12/2024\",\n                \"numeroDocumento\": \"0000002\",\n                \"valorLancamento\": \"210,15\",\n                \"sinalLancamento\": \"+\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"2.189,65\",\n                \"sinalSaldo\": \"+\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"02\",\n                \"codigoLancamento\": \"03212\",\n                \"descritivoLancamentoAbreviado\": \"TRANSFE PIX\",\n                \"descritivoLancamentoCompleto\": \"TRANSFERENCIA PIX\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            },\n            {\n                \"dataLancamento\": \"13/12/2024\",\n                \"numeroDocumento\": \"0000003\",\n                \"valorLancamento\": \"1,15\",\n                \"sinalLancamento\": \"+\",\n                \"segundaLinhalLancamento\": \"\",\n                \"valorSaldoAposLancamento\": \"2.190,80\",\n                \"sinalSaldo\": \"+\",\n                \"identificacaoSubCodigo\": null,\n                \"tipoLancamento\": \"02\",\n                \"codigoLancamento\": \"03584\",\n                \"descritivoLancamentoAbreviado\": \"RENT.INV.FACIL\",\n                \"descritivoLancamentoCompleto\": \"RENTAB.INVEST FACILCRED*\",\n                \"dataDebitoCpmf\": \"0000000\",\n                \"valorCpmf\": \"000000000000000\"\n            }\n        ]\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Consulta de Saldos de Contas",
+					"item": [
+						{
+							"name": "Consulta saldo contas PJ - Sucesso",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-saldos-contas/saldos?agencia=3995&conta=75557",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"fornecimento-saldos-contas",
+										"saldos"
+									],
+									"query": [
+										{
+											"key": "agencia",
+											"value": "3995"
+										},
+										{
+											"key": "conta",
+											"value": "75557"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJQUzI1NiJ9.ew0KICAgICJ2ZXIiOiAiMi4wIiwNCiAgICAic3ViIjogIjE1NDI5MTJjLTAwZjMtNGU4Ni05Y2JjLWZlZThjZjU2MDkwMiIsDQogICAgImlzcyI6ICJodHRwczovL2FwaS1wbGF0ZnUtc2JveC5hcHBzLmFyb2hvcGxhdGZ1cGkuYXJvY29ycHAuYnJhZGVzY28uY29tLmJyL2F1dGgvc2VydmVyLW10bHMvdjEvdG9rZW4iLA0KICAgICJhdWQiOiAiaHR0cHM6Ly9hcGktcGxhdGZ1LXNib3guYXBwcy5hcm9ob3BsYXRmdXBpLmFyb2NvcnBwLmJyYWRlc2NvLmNvbS5iciIsDQogICAgImlhdCI6IDE3Mzk0NDk3NTAsDQogICAgImV4cCI6IDE3Mzk0NTMzNTAsDQogICAgInNjcCI6ICJDVEFTIiwNCiAgICAianRpIjogIjRBNXB4bDY1cTJ5M0diUTUxNENoZkc9IiwNCiAgICAiY25mIjogew0KCSJ4NXQjMjU2IiA6ICJYRjhSS1pQanBydXFRNmc4N1RZZ2FPM3NzU0xnZ2RMY2V3YWdNTU4rSjN3PSINCn0sDQogICAgInRva2VuVHlwZSI6ICJhY2Nlc3MiLA0KICAgICJjbGllbnRUeXBlIjogInNlcnZlci1tdGxzIiwNCiAgICAiYXV0aERhdGEiOiAiZXlKbGJtTWlPaUpCTWpVMlIwTk5JaXdpWVd4bklqb2lVbE5CTFU5QlJWQXRNalUySW4wLmNMN0JPT2l3WnQ4NFNLU0l6YTJGVnRsWnd3RUZQMHZhbDJ5bF94eUVoSHg5VHVKMFVpb3kzemU2UTNLZlVGOW1PeTREdXRBREd5Mk12N2IzOEtVMlFiUHVTUUQ1el9SZzdMLVBlUTRzajlTNVo3d2xSM2RQOGQ2dWR5VWpobWxTVUFXeHlLcTUxZHFoR1dTUGNJRjZjbGhRZFk4NF9QTVl6OGJBMEVHelo5VXZPSGNYQ2dJV1A5VHgxX1l1WDU5UDBsdUgtb1VYdWxqY2xIWTJzd1Nyak1tUUhNWWdwdlZzSnJRMEtYVnRNSG1CZVhMR2gxdXowV2ZVUy05MlN5dFdXd2paZjRzMWpuTXJQbjVRR1l5ZzMzclF5T0o3SHZRTFF3ejVCbXBwTXFJSkVRanJwS2llaXhocHBabFNEQkhYSW5Uc0FFeTYwZGpCNkUyQm9pcVJNbkd6YzVjSi10dHNGak9KWkJDYmZZdmJ3NlRjaHV1WlhhU2JNNm0wTHMxaGI5WjZidndSMU1rY2x3WnJzUVJQQXcyT0xoYTBGcHBJN3JFbkt4TkUxMkZPdVREd2ZBWTlDQkpQVkZkS2I1dThkeXdXZ2pRVnlTWUlpVTBpNGRDTEc0c1EtYl8zMHFHTGNJblZQOThVMzFBckNMN3ZlSmRUTmZqei1QSGRVcFYzRHgwdzV6VFdXaV9POVpydGI5VTg5X0kwOXZkU0FhT0FOQVVHQXBzNjdEa09RVVVzWXQwYVhQUEtpdDFIVjhoZWdicVRvOFRsWkJFajlneFZabE8xSmI3UVdPaXVrT0NyMjc0VGlLTzVqXzR3bzdmc1BTREpIN2hSYlI2aGw4cThuUENRVmViOGhGdXE3aDBfRUVkYkRHbThjTkJ6NlZ1ZmVKOFlha3Z5ZlBVLnRfelgtUUUwaU8yZmhiS2kuZUlQSDZjSTRSaXkwZmIxalVSUG9kbFlBczUzR3gxTm84QV9oMTluUEJrTjNWN1VVaTA3dTYxM0VRa1VOT1Bza21ncGNwVUNsYTZ0OWNVdGtybjRJY3QxeElyX0pETE04ZF84Mll1NFZRMGQ2c2RISkVtY0hIRllmQnd1N1VUN0ZWNzJmUmdWamcyR1FvVVpSTlhicmFiTFduQnozM0VuSVRHenBCSFNvRHZXODVDZzdtQWNsMDFsY0FEc2ZuR010RUpJZ0RkX19IZzVzbkE3ZmFQbUl2YWJFNkNHd3dWU0JHOUUzT0tYQno1OEhOLWlzbzdMNEZoS01oYURkRlBBZ0w5dEtSS3pJNDQxMlNjb2pWelI4bzN2cWxVRk5reEktNWZqRHQ3M1hpelJYS1R1bTZQelY5OWczT21zWmJSQXZ6QkFhUnJ1SmRxZ1VrMWtCcVQ3M2xUbUQ0VDE5a0FOcHk1SnhTUURtcHpmLVlRRDZkdGtyT19IamVRbVQteWVuZ1hjMThOeHBvcGhyVHdnVFVYY19SLS1IWDNJSFhKbGFObXc3dElUdkoyYmFkRnNaWHFGMnhOUWtPZ2R1WWtBSDNQRGhGRzFYSDdzU1U3Ukx4c05DV2g2QTAzX0NuTjhJRzljVjg4RU9ENVpoYndzWkJDODRnLUk2VDNPQW5kUDAwUXNRWEdMb0NmSUc5SXpPLXRIaWVSWXFvcVR5d0w3Qk9FeVpHLTMyNWZZbUpmMVhUZ0Z0dDhOcUZuUEdGQ2ZTOUFCT0FkRVpVRndmRncuandWN09xTFJjZ0xNbElHTmVjZXh1ZyINCn0.HYlHmmoIGeVRwl0CH0iVCauowXdkHVOfKdhy503aWVqK3hpMwiTBJGfdJKGIN-WJjACXF4FkHFtzDBtyEixe3RTvIpE0G23bIw5fAetbZe3W5eFWfWJ0Sevm_F6mZQ6RLi8RzbKw3P9WTKfcPPdIDg7zPVflOJCPcq1YNSRIXcJlp9akL0uLQIZibwEYP8YIc6HXIWnlr6Mc09Xk2cOI-xUidlWRTQKEE61lSV99IJptdV2msBtclIoStTZ3jo9NYIPMRB7BEx_fDcENglD_eVzMif0k1OTvRXjKf3PODuR74NmTh1boG1cnDh7V66vkD4j5jHmTtTrmW8_K20Heo2DExA4Tsmu7wHwiMbdwXikFUP0EjMLDE0bKGaQRYsj3X8XF_oclRARxg12S6E0ECKOcducShE2ybZzueLeSCOndXIowBFVpASNI6_hr-aX74N5cgUcqRSsylJWlkEGTr94L13N56rtSah68ReoLzQWEMtGqwG_ZzVekXTjqUT-NqJLGPurqCVWzk4XHdD81L7HgpAbVHuqD0MlMfcVSTnqfEAqU0LGDdccH9jQVhmzBUvPkm0u1D-CF57M238i2E7ka8vhRdFhaegZKOZaInp9SUyq3mgloHfwr4wMOIJWNu9O69jHg-CRxVNIliEcH8zy-xCTEwjVOsflVzuMF8qw",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Cookie",
+												"value": "f0ee00a3c6086fde9072d03fe06f4365=480baf5dca48072c333a1971b2c5e08d",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-saldos-contas/saldos?agencia=3995&conta=75557",
+											"protocol": "https",
+											"host": [
+												"openapisandbox",
+												"prebanco",
+												"com",
+												"br"
+											],
+											"path": [
+												"v1",
+												"fornecimento-saldos-contas",
+												"saldos"
+											],
+											"query": [
+												{
+													"key": "agencia",
+													"value": "3995"
+												},
+												{
+													"key": "conta",
+													"value": "75557"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "x-rate-limit",
+											"value": "[{\"window\":0,\"type\":\"throttle\",\"remaining\":99}]"
+										},
+										{
+											"key": "Max-Forwards",
+											"value": "20"
+										},
+										{
+											"key": "x-correlationid",
+											"value": "Id-a8f1ad6736044e5be05c0af8 0"
+										},
+										{
+											"key": "Accept",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Expires",
+											"value": "Thu, 13 Feb 2025 13:20:40 GMT"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "max-age=0, no-cache, no-store"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 13 Feb 2025 13:20:40 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "639"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "f0ee00a3c6086fde9072d03fe06f4365=6dd22d3eaa20b283c793c31f8a31651f; path=/; HttpOnly; Secure; SameSite=None"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "bm_sv=088389BD9E062E48987F29B82606D470~YAAQ0Ql7XMtulfiUAQAABvx3/xqrjxIJMgu2an2936c/vKqtjWPwuHbFbP+JFVkGMCMIZnhm1fFZd1mPBCMbMf/oJTXTt8cZrhFgvTvvRQXqrWDWnrld3yPp9HLpubNfHwCmto1r2jzbZ6uEjvHM8n/jeyQcGea9LfziRDd/sQ+tDbwKGb9vo51XknC9oB/1X/ZQ4dDN7IsPTjHGFMHs0V3fl3qXXZWqb8Xbu2nYHIiCu6d18DeIR5bh5biKVYgOznS5ZEgI~1; Domain=.prebanco.com.br; Path=/; Expires=Thu, 13 Feb 2025 14:34:00 GMT; Max-Age=4400; Secure"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "cdn-cache; desc=MISS"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "edge; dur=43"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "origin; dur=251"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "ak_p; desc=\"1739452840501_1551567313_98607119_29383_13985_16_156_-\";dur=1"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"saldoCC\": {\n        \"codigoRetorno\": \"00\",\n        \"mensagem\": \"CTAS0673 - CONSULTA EFETUADA COM SUCESSO\",\n        \"identificaoCliente\": \"0\",\n        \"razaoConta\": \"00705\",\n        \"numeroConta\": \"0075557\",\n        \"digitoConta\": \"5\",\n        \"nomeCliente\": \"CONTA AMBIENTE TU\",\n        \"statusContaCorrente\": \"0\",\n        \"statusContaPoupanca\": \"0\",\n        \"identificadorTipoConta\": \"conta corrente\",\n        \"statusCoberturaAutomatica\": \"0\",\n        \"contaPoupancaFacil\": \"0000000\",\n        \"dataUltimaAtualizacao\": \"\",\n        \"identificadorModalidadeConta\": \"\",\n        \"dataProximoPagamentoInss\": \"00000000\",\n        \"dataVencimentoCartaoInss\": \"000000\",\n        \"statusCartaoInss\": \"\",\n        \"quantidadeLancamentos\": \"8\",\n        \"lstLancamentosSaldos\": [\n            {\n                \"nomeProduto\": \"DISPONIVEL:\",\n                \"nomeProdutoResumido\": \"DISPONIVEL:\",\n                \"codigoProduto\": 999,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"0,00\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"= TOTAL DE RECURSOS\",\n                \"nomeProdutoResumido\": \"= TOTAL DE RECURSOS\",\n                \"codigoProduto\": 995,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"77,95\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"+ CTA CORRENTE\",\n                \"nomeProdutoResumido\": \"+ CTA CORRENTE\",\n                \"codigoProduto\": 998,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"77,95\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"LINHA EM BRANCO\",\n                \"nomeProdutoResumido\": \"LINHA EM BRANCO\",\n                \"codigoProduto\": 977,\n                \"identificadorSaldo\": \"\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"\",\n                \"sinalSaldo\": \"\"\n            },\n            {\n                \"nomeProduto\": \"SALDO TOTAL\",\n                \"nomeProdutoResumido\": \"SALDO TOTAL\",\n                \"codigoProduto\": 984,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"77,95\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"LINHA EM BRANCO\",\n                \"nomeProdutoResumido\": \"LINHA EM BRANCO\",\n                \"codigoProduto\": 977,\n                \"identificadorSaldo\": \"\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"\",\n                \"sinalSaldo\": \"\"\n            },\n            {\n                \"nomeProduto\": \"SALDO DISP. P/INVEST.\",\n                \"nomeProdutoResumido\": \"SALDO DISP. P/INVEST.\",\n                \"codigoProduto\": 962,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"77,95\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"LINHA EM BRANCO\",\n                \"nomeProdutoResumido\": \"LINHA EM BRANCO\",\n                \"codigoProduto\": 977,\n                \"identificadorSaldo\": \"\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"\",\n                \"sinalSaldo\": \"\"\n            }\n        ]\n    },\n    \"saldoCP\": {\n        \"codigoRetorno\": \"00\",\n        \"mensagem\": \"CTAS0673 - CONSULTA EFETUADA COM SUCESSO\",\n        \"identificaoCliente\": \"0\",\n        \"razaoConta\": \"01051\",\n        \"numeroConta\": \"0075557\",\n        \"digitoConta\": \"5\",\n        \"nomeCliente\": \"CONTA AMBIENTE TU\",\n        \"statusContaCorrente\": \"0\",\n        \"statusContaPoupanca\": \"0\",\n        \"identificadorTipoConta\": \"conta poupanca\",\n        \"statusCoberturaAutomatica\": \"\",\n        \"contaPoupancaFacil\": \"0000000\",\n        \"dataUltimaAtualizacao\": \"N\",\n        \"identificadorModalidadeConta\": \"1\",\n        \"dataProximoPagamentoInss\": \"00000000\",\n        \"dataVencimentoCartaoInss\": \"000000\",\n        \"statusCartaoInss\": \"\",\n        \"quantidadeLancamentos\": \"7\",\n        \"lstLancamentosSaldos\": [\n            {\n                \"nomeProduto\": \"DISPONIVEL:\",\n                \"nomeProdutoResumido\": \"DISPONIVEL:\",\n                \"codigoProduto\": 999,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"0,00\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"= TOTAL DE RECURSOS\",\n                \"nomeProdutoResumido\": \"= TOTAL DE RECURSOS\",\n                \"codigoProduto\": 995,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"77,95\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"+ CTA CORRENTE\",\n                \"nomeProdutoResumido\": \"+ CTA CORRENTE\",\n                \"codigoProduto\": 998,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"77,95\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"LINHA EM BRANCO\",\n                \"nomeProdutoResumido\": \"LINHA EM BRANCO\",\n                \"codigoProduto\": 977,\n                \"identificadorSaldo\": \"\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"\",\n                \"sinalSaldo\": \"\"\n            },\n            {\n                \"nomeProduto\": \"SALDO TOTAL\",\n                \"nomeProdutoResumido\": \"SALDO TOTAL\",\n                \"codigoProduto\": 984,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"77,95\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"LINHA EM BRANCO\",\n                \"nomeProdutoResumido\": \"LINHA EM BRANCO\",\n                \"codigoProduto\": 977,\n                \"identificadorSaldo\": \"\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"\",\n                \"sinalSaldo\": \"\"\n            },\n            {\n                \"nomeProduto\": \"SALDO DISP. P/INVEST.\",\n                \"nomeProdutoResumido\": \"SALDO DISP. P/INVEST.\",\n                \"codigoProduto\": 962,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"77,95\",\n                \"sinalSaldo\": \"+\"\n            }\n        ]\n    },\n    \"saldoAplicacaoCC\": {\n        \"codigoRetorno\": \"00\",\n        \"mensagem\": \"CTAS0673 - CONSULTA EFETUADA COM SUCESSO\",\n        \"quantidadeLancamentos\": \"1\",\n        \"lstLancamentosSaldos\": [\n            {\n                \"nomeProduto\": \"INVEST FACIL BRADESCO\",\n                \"nomeProdutoResumido\": \"INVEST FACIL BR\",\n                \"codigoProduto\": 19,\n                \"identificadorSaldo\": \"1\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"250,00\",\n                \"sinalSaldo\": \"+\"\n            }\n        ]\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Consulta saldo contas PJ -Saldo CC não Habilitado",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-saldos-contas/saldos?agencia=3995&conta=75556",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"fornecimento-saldos-contas",
+										"saldos"
+									],
+									"query": [
+										{
+											"key": "agencia",
+											"value": "3995"
+										},
+										{
+											"key": "conta",
+											"value": "75556"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Saldo não Hablitado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJQUzI1NiJ9.ew0KICAgICJ2ZXIiOiAiMi4wIiwNCiAgICAic3ViIjogIjE1NDI5MTJjLTAwZjMtNGU4Ni05Y2JjLWZlZThjZjU2MDkwMiIsDQogICAgImlzcyI6ICJodHRwczovL2FwaS1wbGF0ZnUtc2JveC5hcHBzLmFyb2hvcGxhdGZ1cGkuYXJvY29ycHAuYnJhZGVzY28uY29tLmJyL2F1dGgvc2VydmVyLW10bHMvdjEvdG9rZW4iLA0KICAgICJhdWQiOiAiaHR0cHM6Ly9hcGktcGxhdGZ1LXNib3guYXBwcy5hcm9ob3BsYXRmdXBpLmFyb2NvcnBwLmJyYWRlc2NvLmNvbS5iciIsDQogICAgImlhdCI6IDE3Mzk0NDk3NTAsDQogICAgImV4cCI6IDE3Mzk0NTMzNTAsDQogICAgInNjcCI6ICJDVEFTIiwNCiAgICAianRpIjogIjRBNXB4bDY1cTJ5M0diUTUxNENoZkc9IiwNCiAgICAiY25mIjogew0KCSJ4NXQjMjU2IiA6ICJYRjhSS1pQanBydXFRNmc4N1RZZ2FPM3NzU0xnZ2RMY2V3YWdNTU4rSjN3PSINCn0sDQogICAgInRva2VuVHlwZSI6ICJhY2Nlc3MiLA0KICAgICJjbGllbnRUeXBlIjogInNlcnZlci1tdGxzIiwNCiAgICAiYXV0aERhdGEiOiAiZXlKbGJtTWlPaUpCTWpVMlIwTk5JaXdpWVd4bklqb2lVbE5CTFU5QlJWQXRNalUySW4wLmNMN0JPT2l3WnQ4NFNLU0l6YTJGVnRsWnd3RUZQMHZhbDJ5bF94eUVoSHg5VHVKMFVpb3kzemU2UTNLZlVGOW1PeTREdXRBREd5Mk12N2IzOEtVMlFiUHVTUUQ1el9SZzdMLVBlUTRzajlTNVo3d2xSM2RQOGQ2dWR5VWpobWxTVUFXeHlLcTUxZHFoR1dTUGNJRjZjbGhRZFk4NF9QTVl6OGJBMEVHelo5VXZPSGNYQ2dJV1A5VHgxX1l1WDU5UDBsdUgtb1VYdWxqY2xIWTJzd1Nyak1tUUhNWWdwdlZzSnJRMEtYVnRNSG1CZVhMR2gxdXowV2ZVUy05MlN5dFdXd2paZjRzMWpuTXJQbjVRR1l5ZzMzclF5T0o3SHZRTFF3ejVCbXBwTXFJSkVRanJwS2llaXhocHBabFNEQkhYSW5Uc0FFeTYwZGpCNkUyQm9pcVJNbkd6YzVjSi10dHNGak9KWkJDYmZZdmJ3NlRjaHV1WlhhU2JNNm0wTHMxaGI5WjZidndSMU1rY2x3WnJzUVJQQXcyT0xoYTBGcHBJN3JFbkt4TkUxMkZPdVREd2ZBWTlDQkpQVkZkS2I1dThkeXdXZ2pRVnlTWUlpVTBpNGRDTEc0c1EtYl8zMHFHTGNJblZQOThVMzFBckNMN3ZlSmRUTmZqei1QSGRVcFYzRHgwdzV6VFdXaV9POVpydGI5VTg5X0kwOXZkU0FhT0FOQVVHQXBzNjdEa09RVVVzWXQwYVhQUEtpdDFIVjhoZWdicVRvOFRsWkJFajlneFZabE8xSmI3UVdPaXVrT0NyMjc0VGlLTzVqXzR3bzdmc1BTREpIN2hSYlI2aGw4cThuUENRVmViOGhGdXE3aDBfRUVkYkRHbThjTkJ6NlZ1ZmVKOFlha3Z5ZlBVLnRfelgtUUUwaU8yZmhiS2kuZUlQSDZjSTRSaXkwZmIxalVSUG9kbFlBczUzR3gxTm84QV9oMTluUEJrTjNWN1VVaTA3dTYxM0VRa1VOT1Bza21ncGNwVUNsYTZ0OWNVdGtybjRJY3QxeElyX0pETE04ZF84Mll1NFZRMGQ2c2RISkVtY0hIRllmQnd1N1VUN0ZWNzJmUmdWamcyR1FvVVpSTlhicmFiTFduQnozM0VuSVRHenBCSFNvRHZXODVDZzdtQWNsMDFsY0FEc2ZuR010RUpJZ0RkX19IZzVzbkE3ZmFQbUl2YWJFNkNHd3dWU0JHOUUzT0tYQno1OEhOLWlzbzdMNEZoS01oYURkRlBBZ0w5dEtSS3pJNDQxMlNjb2pWelI4bzN2cWxVRk5reEktNWZqRHQ3M1hpelJYS1R1bTZQelY5OWczT21zWmJSQXZ6QkFhUnJ1SmRxZ1VrMWtCcVQ3M2xUbUQ0VDE5a0FOcHk1SnhTUURtcHpmLVlRRDZkdGtyT19IamVRbVQteWVuZ1hjMThOeHBvcGhyVHdnVFVYY19SLS1IWDNJSFhKbGFObXc3dElUdkoyYmFkRnNaWHFGMnhOUWtPZ2R1WWtBSDNQRGhGRzFYSDdzU1U3Ukx4c05DV2g2QTAzX0NuTjhJRzljVjg4RU9ENVpoYndzWkJDODRnLUk2VDNPQW5kUDAwUXNRWEdMb0NmSUc5SXpPLXRIaWVSWXFvcVR5d0w3Qk9FeVpHLTMyNWZZbUpmMVhUZ0Z0dDhOcUZuUEdGQ2ZTOUFCT0FkRVpVRndmRncuandWN09xTFJjZ0xNbElHTmVjZXh1ZyINCn0.HYlHmmoIGeVRwl0CH0iVCauowXdkHVOfKdhy503aWVqK3hpMwiTBJGfdJKGIN-WJjACXF4FkHFtzDBtyEixe3RTvIpE0G23bIw5fAetbZe3W5eFWfWJ0Sevm_F6mZQ6RLi8RzbKw3P9WTKfcPPdIDg7zPVflOJCPcq1YNSRIXcJlp9akL0uLQIZibwEYP8YIc6HXIWnlr6Mc09Xk2cOI-xUidlWRTQKEE61lSV99IJptdV2msBtclIoStTZ3jo9NYIPMRB7BEx_fDcENglD_eVzMif0k1OTvRXjKf3PODuR74NmTh1boG1cnDh7V66vkD4j5jHmTtTrmW8_K20Heo2DExA4Tsmu7wHwiMbdwXikFUP0EjMLDE0bKGaQRYsj3X8XF_oclRARxg12S6E0ECKOcducShE2ybZzueLeSCOndXIowBFVpASNI6_hr-aX74N5cgUcqRSsylJWlkEGTr94L13N56rtSah68ReoLzQWEMtGqwG_ZzVekXTjqUT-NqJLGPurqCVWzk4XHdD81L7HgpAbVHuqD0MlMfcVSTnqfEAqU0LGDdccH9jQVhmzBUvPkm0u1D-CF57M238i2E7ka8vhRdFhaegZKOZaInp9SUyq3mgloHfwr4wMOIJWNu9O69jHg-CRxVNIliEcH8zy-xCTEwjVOsflVzuMF8qw",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Cookie",
+												"value": "f0ee00a3c6086fde9072d03fe06f4365=480baf5dca48072c333a1971b2c5e08d",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-saldos-contas/saldos?agencia=3995&conta=75556",
+											"protocol": "https",
+											"host": [
+												"openapisandbox",
+												"prebanco",
+												"com",
+												"br"
+											],
+											"path": [
+												"v1",
+												"fornecimento-saldos-contas",
+												"saldos"
+											],
+											"query": [
+												{
+													"key": "agencia",
+													"value": "3995"
+												},
+												{
+													"key": "conta",
+													"value": "75556"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "x-rate-limit",
+											"value": "[{\"window\":0,\"type\":\"throttle\",\"remaining\":99}]"
+										},
+										{
+											"key": "Max-Forwards",
+											"value": "20"
+										},
+										{
+											"key": "x-correlationid",
+											"value": "Id-4df0ad670bebacde006e5ae1 0"
+										},
+										{
+											"key": "Accept",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Expires",
+											"value": "Thu, 13 Feb 2025 13:14:53 GMT"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "max-age=0, no-cache, no-store"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 13 Feb 2025 13:14:53 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "708"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "f0ee00a3c6086fde9072d03fe06f4365=f2c95f4d1e87c9ed882381d0e833300a; path=/; HttpOnly; Secure; SameSite=None"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "bm_sv=088389BD9E062E48987F29B82606D470~YAAQ0Ql7XPPGlPiUAQAAMrBy/xowd4ClCM8Z78TDOaWfrw7CT74vCZqjlaQReFvjNAHJGibuZ3n6yF2XAgcc2pdbFh6Z65CuZGNaZ1I+A4LG0DPrY59KqQxWunX5e6YDCjfF9Jq70QOTetNuOUAPEvWyf5mSTXYJFn382VZmkq21z/bxpeyLzhZYtzk2IHxRpxgOCx4nsoaaG2SJuj2M7OycH5adN5CPQYNk0cNLhPkeZduwJ5KkOTHW2WwFeulqXQjNCHg=~1; Domain=.prebanco.com.br; Path=/; Expires=Thu, 13 Feb 2025 14:34:00 GMT; Max-Age=4747; Secure"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "cdn-cache; desc=MISS"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "edge; dur=59"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "origin; dur=329"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "ak_p; desc=\"1739452493307_1551567313_98241597_38892_25764_14_149_-\";dur=1"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"saldoCC\": {\n        \"codigoRetorno\": \"12\",\n        \"mensagem\": \"CTAS2183 - ERRO NAO PREVISTO NO MODULO YMENENTR - 0000197 - MINI - Erro Generico\",\n        \"identificaoCliente\": null,\n        \"razaoConta\": null,\n        \"numeroConta\": null,\n        \"digitoConta\": null,\n        \"nomeCliente\": null,\n        \"statusContaCorrente\": null,\n        \"statusContaPoupanca\": null,\n        \"identificadorTipoConta\": null,\n        \"statusCoberturaAutomatica\": null,\n        \"contaPoupancaFacil\": null,\n        \"dataUltimaAtualizacao\": null,\n        \"identificadorModalidadeConta\": null,\n        \"dataProximoPagamentoInss\": null,\n        \"dataVencimentoCartaoInss\": null,\n        \"statusCartaoInss\": null,\n        \"quantidadeLancamentos\": null,\n        \"lstLancamentosSaldos\": null\n    },\n    \"saldoCP\": {\n        \"codigoRetorno\": \"00\",\n        \"mensagem\": \"CTAS0673 - CONSULTA EFETUADA COM SUCESSO\",\n        \"identificaoCliente\": \"0\",\n        \"razaoConta\": \"01051\",\n        \"numeroConta\": \"0280905\",\n        \"digitoConta\": \"2\",\n        \"nomeCliente\": \"CONTA CORRENTE PF TDM E\",\n        \"statusContaCorrente\": \"2\",\n        \"statusContaPoupanca\": \"0\",\n        \"identificadorTipoConta\": \"conta poupanca\",\n        \"statusCoberturaAutomatica\": \"\",\n        \"contaPoupancaFacil\": \"0000000\",\n        \"dataUltimaAtualizacao\": \"N\",\n        \"identificadorModalidadeConta\": \"1\",\n        \"dataProximoPagamentoInss\": \"00000000\",\n        \"dataVencimentoCartaoInss\": \"000000\",\n        \"statusCartaoInss\": \"\",\n        \"quantidadeLancamentos\": \"6\",\n        \"lstLancamentosSaldos\": [\n            {\n                \"nomeProduto\": \"DISPONIVEL:\",\n                \"nomeProdutoResumido\": \"DISPONIVEL:\",\n                \"codigoProduto\": 999,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"0,00\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"= TOTAL DE RECURSOS\",\n                \"nomeProdutoResumido\": \"= TOTAL DE RECURSOS\",\n                \"codigoProduto\": 995,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"150,00\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"+ CTA POUPANCA\",\n                \"nomeProdutoResumido\": \"+ CTA POUPANCA\",\n                \"codigoProduto\": 997,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"150,00\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"SALDO NOVA POUP MP 567\",\n                \"nomeProdutoResumido\": \"SALDO NOVA POUP MP 567\",\n                \"codigoProduto\": 987,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"150,00\",\n                \"sinalSaldo\": \"+\"\n            },\n            {\n                \"nomeProduto\": \"LINHA EM BRANCO\",\n                \"nomeProdutoResumido\": \"LINHA EM BRANCO\",\n                \"codigoProduto\": 977,\n                \"identificadorSaldo\": \"\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"\",\n                \"sinalSaldo\": \"\"\n            },\n            {\n                \"nomeProduto\": \"SALDO TOTAL\",\n                \"nomeProdutoResumido\": \"SALDO TOTAL\",\n                \"codigoProduto\": 984,\n                \"identificadorSaldo\": \"0\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"150,00\",\n                \"sinalSaldo\": \"+\"\n            }\n        ]\n    },\n    \"saldoAplicacaoCC\": {\n        \"codigoRetorno\": \"00\",\n        \"mensagem\": \"CTAS0673 - CONSULTA EFETUADA COM SUCESSO\",\n        \"quantidadeLancamentos\": \"1\",\n        \"lstLancamentosSaldos\": [\n            {\n                \"nomeProduto\": \"INVEST FACIL BRADESCO\",\n                \"nomeProdutoResumido\": \"INVEST FACIL BR\",\n                \"codigoProduto\": 19,\n                \"identificadorSaldo\": \"1\",\n                \"dataLancamentoDb2\": \"\",\n                \"valorLancamento\": \"250,00\",\n                \"sinalSaldo\": \"+\"\n            }\n        ]\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Consulta saldo contas PJ - Agencia e Conta não correspondem ao cliente",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token_sandbox}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-saldos-contas/saldos?agencia=3995&conta=88888",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"fornecimento-saldos-contas",
+										"saldos"
+									],
+									"query": [
+										{
+											"key": "agencia",
+											"value": "3995"
+										},
+										{
+											"key": "conta",
+											"value": "88888"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Agencia e Conta não correspondem ao cliente",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJQUzI1NiJ9.ew0KICAgICJ2ZXIiOiAiMi4wIiwNCiAgICAic3ViIjogIjE1NDI5MTJjLTAwZjMtNGU4Ni05Y2JjLWZlZThjZjU2MDkwMiIsDQogICAgImlzcyI6ICJodHRwczovL2FwaS1wbGF0ZnUtc2JveC5hcHBzLmFyb2hvcGxhdGZ1cGkuYXJvY29ycHAuYnJhZGVzY28uY29tLmJyL2F1dGgvc2VydmVyLW10bHMvdjEvdG9rZW4iLA0KICAgICJhdWQiOiAiaHR0cHM6Ly9hcGktcGxhdGZ1LXNib3guYXBwcy5hcm9ob3BsYXRmdXBpLmFyb2NvcnBwLmJyYWRlc2NvLmNvbS5iciIsDQogICAgImlhdCI6IDE3Mzk0NDk3NTAsDQogICAgImV4cCI6IDE3Mzk0NTMzNTAsDQogICAgInNjcCI6ICJDVEFTIiwNCiAgICAianRpIjogIjRBNXB4bDY1cTJ5M0diUTUxNENoZkc9IiwNCiAgICAiY25mIjogew0KCSJ4NXQjMjU2IiA6ICJYRjhSS1pQanBydXFRNmc4N1RZZ2FPM3NzU0xnZ2RMY2V3YWdNTU4rSjN3PSINCn0sDQogICAgInRva2VuVHlwZSI6ICJhY2Nlc3MiLA0KICAgICJjbGllbnRUeXBlIjogInNlcnZlci1tdGxzIiwNCiAgICAiYXV0aERhdGEiOiAiZXlKbGJtTWlPaUpCTWpVMlIwTk5JaXdpWVd4bklqb2lVbE5CTFU5QlJWQXRNalUySW4wLmNMN0JPT2l3WnQ4NFNLU0l6YTJGVnRsWnd3RUZQMHZhbDJ5bF94eUVoSHg5VHVKMFVpb3kzemU2UTNLZlVGOW1PeTREdXRBREd5Mk12N2IzOEtVMlFiUHVTUUQ1el9SZzdMLVBlUTRzajlTNVo3d2xSM2RQOGQ2dWR5VWpobWxTVUFXeHlLcTUxZHFoR1dTUGNJRjZjbGhRZFk4NF9QTVl6OGJBMEVHelo5VXZPSGNYQ2dJV1A5VHgxX1l1WDU5UDBsdUgtb1VYdWxqY2xIWTJzd1Nyak1tUUhNWWdwdlZzSnJRMEtYVnRNSG1CZVhMR2gxdXowV2ZVUy05MlN5dFdXd2paZjRzMWpuTXJQbjVRR1l5ZzMzclF5T0o3SHZRTFF3ejVCbXBwTXFJSkVRanJwS2llaXhocHBabFNEQkhYSW5Uc0FFeTYwZGpCNkUyQm9pcVJNbkd6YzVjSi10dHNGak9KWkJDYmZZdmJ3NlRjaHV1WlhhU2JNNm0wTHMxaGI5WjZidndSMU1rY2x3WnJzUVJQQXcyT0xoYTBGcHBJN3JFbkt4TkUxMkZPdVREd2ZBWTlDQkpQVkZkS2I1dThkeXdXZ2pRVnlTWUlpVTBpNGRDTEc0c1EtYl8zMHFHTGNJblZQOThVMzFBckNMN3ZlSmRUTmZqei1QSGRVcFYzRHgwdzV6VFdXaV9POVpydGI5VTg5X0kwOXZkU0FhT0FOQVVHQXBzNjdEa09RVVVzWXQwYVhQUEtpdDFIVjhoZWdicVRvOFRsWkJFajlneFZabE8xSmI3UVdPaXVrT0NyMjc0VGlLTzVqXzR3bzdmc1BTREpIN2hSYlI2aGw4cThuUENRVmViOGhGdXE3aDBfRUVkYkRHbThjTkJ6NlZ1ZmVKOFlha3Z5ZlBVLnRfelgtUUUwaU8yZmhiS2kuZUlQSDZjSTRSaXkwZmIxalVSUG9kbFlBczUzR3gxTm84QV9oMTluUEJrTjNWN1VVaTA3dTYxM0VRa1VOT1Bza21ncGNwVUNsYTZ0OWNVdGtybjRJY3QxeElyX0pETE04ZF84Mll1NFZRMGQ2c2RISkVtY0hIRllmQnd1N1VUN0ZWNzJmUmdWamcyR1FvVVpSTlhicmFiTFduQnozM0VuSVRHenBCSFNvRHZXODVDZzdtQWNsMDFsY0FEc2ZuR010RUpJZ0RkX19IZzVzbkE3ZmFQbUl2YWJFNkNHd3dWU0JHOUUzT0tYQno1OEhOLWlzbzdMNEZoS01oYURkRlBBZ0w5dEtSS3pJNDQxMlNjb2pWelI4bzN2cWxVRk5reEktNWZqRHQ3M1hpelJYS1R1bTZQelY5OWczT21zWmJSQXZ6QkFhUnJ1SmRxZ1VrMWtCcVQ3M2xUbUQ0VDE5a0FOcHk1SnhTUURtcHpmLVlRRDZkdGtyT19IamVRbVQteWVuZ1hjMThOeHBvcGhyVHdnVFVYY19SLS1IWDNJSFhKbGFObXc3dElUdkoyYmFkRnNaWHFGMnhOUWtPZ2R1WWtBSDNQRGhGRzFYSDdzU1U3Ukx4c05DV2g2QTAzX0NuTjhJRzljVjg4RU9ENVpoYndzWkJDODRnLUk2VDNPQW5kUDAwUXNRWEdMb0NmSUc5SXpPLXRIaWVSWXFvcVR5d0w3Qk9FeVpHLTMyNWZZbUpmMVhUZ0Z0dDhOcUZuUEdGQ2ZTOUFCT0FkRVpVRndmRncuandWN09xTFJjZ0xNbElHTmVjZXh1ZyINCn0.HYlHmmoIGeVRwl0CH0iVCauowXdkHVOfKdhy503aWVqK3hpMwiTBJGfdJKGIN-WJjACXF4FkHFtzDBtyEixe3RTvIpE0G23bIw5fAetbZe3W5eFWfWJ0Sevm_F6mZQ6RLi8RzbKw3P9WTKfcPPdIDg7zPVflOJCPcq1YNSRIXcJlp9akL0uLQIZibwEYP8YIc6HXIWnlr6Mc09Xk2cOI-xUidlWRTQKEE61lSV99IJptdV2msBtclIoStTZ3jo9NYIPMRB7BEx_fDcENglD_eVzMif0k1OTvRXjKf3PODuR74NmTh1boG1cnDh7V66vkD4j5jHmTtTrmW8_K20Heo2DExA4Tsmu7wHwiMbdwXikFUP0EjMLDE0bKGaQRYsj3X8XF_oclRARxg12S6E0ECKOcducShE2ybZzueLeSCOndXIowBFVpASNI6_hr-aX74N5cgUcqRSsylJWlkEGTr94L13N56rtSah68ReoLzQWEMtGqwG_ZzVekXTjqUT-NqJLGPurqCVWzk4XHdD81L7HgpAbVHuqD0MlMfcVSTnqfEAqU0LGDdccH9jQVhmzBUvPkm0u1D-CF57M238i2E7ka8vhRdFhaegZKOZaInp9SUyq3mgloHfwr4wMOIJWNu9O69jHg-CRxVNIliEcH8zy-xCTEwjVOsflVzuMF8qw",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Cookie",
+												"value": "f0ee00a3c6086fde9072d03fe06f4365=480baf5dca48072c333a1971b2c5e08d",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "https://openapisandbox.prebanco.com.br/v1/fornecimento-saldos-contas/saldos?agencia=3995&conta=88888",
+											"protocol": "https",
+											"host": [
+												"openapisandbox",
+												"prebanco",
+												"com",
+												"br"
+											],
+											"path": [
+												"v1",
+												"fornecimento-saldos-contas",
+												"saldos"
+											],
+											"query": [
+												{
+													"key": "agencia",
+													"value": "3995"
+												},
+												{
+													"key": "conta",
+													"value": "88888"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "x-rate-limit",
+											"value": "[{\"window\":0,\"type\":\"throttle\",\"remaining\":99}]"
+										},
+										{
+											"key": "Max-Forwards",
+											"value": "20"
+										},
+										{
+											"key": "x-correlationid",
+											"value": "Id-faefad6714028204d3276dfc 0"
+										},
+										{
+											"key": "Accept",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "100"
+										},
+										{
+											"key": "Expires",
+											"value": "Thu, 13 Feb 2025 13:13:30 GMT"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "max-age=0, no-cache, no-store"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 13 Feb 2025 13:13:30 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "cdn-cache; desc=MISS"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "edge; dur=49"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "origin; dur=287"
+										},
+										{
+											"key": "Server-Timing",
+											"value": "ak_p; desc=\"1739452409897_1551567308_48550503_33687_14058_2_162_-\";dur=1"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "bm_sv=088389BD9E062E48987F29B82606D470~YAAQzAl7XIpZH/yUAQAALGpx/xqbf5jsa7+mS/tL0uyRz3o5IqdN78ZeSDAo6HsHAImsXeA8ZrPqSIi4q584bPyrydfaJ3GoHMVA0tJQJGEiYZFIV5voimEj1UIsBZaSqSlxL3m9X0hxCQrPlZ1cQrLB2VEkx0sqXBTYVajpFdD4wBO192oI4iVFY8Znim82Zlbtmhsm90Y6DbxwDWHb6I+kh6BvuMTdfDT9kJ/VN9lN71XxDiSrzDWd6SKQmQTnXY3bjXg=~1; Domain=.prebanco.com.br; Path=/; Expires=Thu, 13 Feb 2025 14:34:00 GMT; Max-Age=4830; Secure"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"codigoErro\": \"Consulta não permitida\",\n    \"descricao\": \"Agência e conta não correspondem ao Cliente\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Token",
+					"item": [
+						{
+							"name": "Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody); \r",
+											"postman.setGlobalVariable(\"access_token_sandbox\", jsonData.access_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{ClientID_SDX}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{ClientSecret_SDX}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://openapisandbox.prebanco.com.br/auth/server-mtls/v2/token",
+									"protocol": "https",
+									"host": [
+										"openapisandbox",
+										"prebanco",
+										"com",
+										"br"
+									],
+									"path": [
+										"auth",
+										"server-mtls",
+										"v2",
+										"token"
+									]
+								},
+								"description": "Generated from cURL: curl --location --request POST 'https://openapisandbox.prebanco.com.br/auth/server-mtls/v2/token' \\\n--header 'Cookie: f0ee00a3c6086fde9072d03fe06f4365=8da38a76fa65f1f4bba6399a74c60380; f0ee00a3c6086fde9072d03fe06f4365=3f7ea64c54953729c74670b76eeaa25c' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--data-urlencode 'grant_type=client_credentials' \\\n--data-urlencode 'client_id=1542912c-00f3-4e86-9cbc-fee8cf560902' \\\n--data-urlencode 'client_secret=5136c071-a2b6-4b7f-8222-bc50e868ddb0'"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PRODUÇÃO",
+			"item": [
+				{
+					"name": "Token",
+					"item": [
+						{
+							"name": "Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody); \r",
+											"postman.setGlobalVariable(\"access_token\", jsonData.access_token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{ClientID_PRD}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{ClientSecret_PRD}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://openapi.bradesco.com.br/auth/server-mtls/v1/token",
+									"protocol": "https",
+									"host": [
+										"openapi",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"auth",
+										"server-mtls",
+										"v1",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consulta de Saldos de Contas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapi.bradesco.com.br/v1/fornecimento-saldos-contas/saldos?agencia={{agencia}}&conta={{conta}}",
+									"protocol": "https",
+									"host": [
+										"openapi",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"fornecimento-saldos-contas",
+										"saldos"
+									],
+									"query": [
+										{
+											"key": "agencia",
+											"value": "{{agencia}}"
+										},
+										{
+											"key": "conta",
+											"value": "{{conta}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consulta de Extratos de Contas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://openapi.bradesco.com.br/v1/fornecimento-extratos-contas/extratos?agencia={{agencia}}&conta={{conta}}&tipo={{tipo}}&dataInicio={{datainicio}}&dataFim={{datafim}}",
+									"protocol": "https",
+									"host": [
+										"openapi",
+										"bradesco",
+										"com",
+										"br"
+									],
+									"path": [
+										"v1",
+										"fornecimento-extratos-contas",
+										"extratos"
+									],
+									"query": [
+										{
+											"key": "agencia",
+											"value": "{{agencia}}"
+										},
+										{
+											"key": "conta",
+											"value": "{{conta}}"
+										},
+										{
+											"key": "tipo",
+											"value": "{{tipo}}"
+										},
+										{
+											"key": "dataInicio",
+											"value": "{{datainicio}}"
+										},
+										{
+											"key": "dataFim",
+											"value": "{{datafim}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
